@@ -19,7 +19,7 @@ class Specialisation
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Student", mappedBy="specialiation")
+     * @ORM\OneToMany(targetEntity="App\Entity\Student", mappedBy="specialisation")
      */
     private $students;
 
@@ -62,7 +62,7 @@ class Specialisation
     {
         if (!$this->students->contains($student)) {
             $this->students[] = $student;
-            $student->setSpecialiation($this);
+            $student->setSpecialisation($this);
         }
 
         return $this;
@@ -73,8 +73,8 @@ class Specialisation
         if ($this->students->contains($student)) {
             $this->students->removeElement($student);
             // set the owning side to null (unless already changed)
-            if ($student->getSpecialiation() === $this) {
-                $student->setSpecialiation(null);
+            if ($student->getSpecialisation() === $this) {
+                $student->setSpecialisation(null);
             }
         }
 
