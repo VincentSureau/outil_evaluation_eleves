@@ -1,0 +1,13 @@
+easy_admin:
+   entities:
+       # List the entity class name you want to manage
+       - App\Entity\Student
+       - App\Entity\Review
+       - App\Entity\Referent
+       - App\Entity\School
+       - App\Entity\Cirfa
+       - App\Entity\Srm
+       - App\Entity\Specialisation
+       - App\Entity\Tp
+       - App\Entity\Competence
+       - App\Entity\User

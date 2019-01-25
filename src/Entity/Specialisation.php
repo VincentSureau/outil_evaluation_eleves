@@ -33,6 +33,11 @@ class Specialisation
      */
     private $competence;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
@@ -134,6 +139,23 @@ class Specialisation
                 $competence->setSpecialisation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

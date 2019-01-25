@@ -114,4 +114,10 @@ class Referent
 
         return $this;
     }
+
+
+    public function __toString(): ?string
+    {
+        return $this->gender .' '. $this->lastname;
+    }
 }
