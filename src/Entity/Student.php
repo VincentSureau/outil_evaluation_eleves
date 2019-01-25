@@ -49,7 +49,7 @@ class Student
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Specialisation", inversedBy="students")
      */
-    private $specialiation;
+    private $specialisation;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Srm", inversedBy="students")
@@ -153,14 +153,14 @@ class Student
         return $this;
     }
 
-    public function getSpecialiation(): ?Specialisation
+    public function getSpecialisation(): ?Specialisation
     {
-        return $this->specialiation;
+        return $this->specialisation;
     }
 
-    public function setSpecialiation(?Specialisation $specialiation): self
+    public function setSpecialisation(?Specialisation $specialisation): self
     {
-        $this->specialiation = $specialiation;
+        $this->specialisation = $specialisation;
 
         return $this;
     }
