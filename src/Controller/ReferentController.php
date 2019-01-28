@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Referent;
 use App\Form\ReferentType;
+use FOS\RestBundle\View;
 use App\Repository\ReferentRepository;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -96,20 +99,27 @@ class ReferentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/students", name="referent_students")
+     * @Get(
+     *     path = "/{id}/students",
+     *     name="referent_students",
+     *     requirements = {"id"="\d+"}
+     * )
+     * @Rest\View(serializerGroups={"student"})
      */
     public function getStudents(Referent $referent)
     {     
-        $students = [];
+        // $students = [];
 
-        foreach($referent->getStudents() as $student){
-            $students[] = [
-                'id' => $student->getId(),
-                'firstname' => $student->getFirstname(),
-                'lastname' => $student->getLastname(),
-            ];
-        }
+        // foreach($referent->getStudents() as $student){
+        //     $students[] = [
+        //         'id' => $student->getId(),
+        //         'firstname' => $student->getFirstname(),
+        //         'lastname' => $student->getLastname(),
+        //     ];
+        // }
 
-        return new JsonResponse($students);
+        // return new JsonResponse($students);
+
+        return $referent->getStudents();
     }
 }

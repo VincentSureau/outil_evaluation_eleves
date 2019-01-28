@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation AS Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StudentRepository")
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Student
 {
@@ -13,26 +16,41 @@ class Student
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $gender;
 
@@ -43,26 +61,41 @@ class Student
 
     /**
      * @ORM\Column(type="datetime")
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $birthdate;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Specialisation", inversedBy="students")
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $specialisation;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Srm", inversedBy="students")
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $srm;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Cirfa", inversedBy="students")
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $cirfa;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\School", inversedBy="students")
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $school;
 
