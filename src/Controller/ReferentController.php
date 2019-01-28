@@ -53,7 +53,7 @@ class ReferentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="referent_show", methods={"GET"})
+     * @Route("/{id}", name="referent_show", methods={"GET"}, requirements = {"id"="\d+"})
      */
     public function show(Referent $referent): Response
     {
@@ -108,18 +108,18 @@ class ReferentController extends AbstractController
      */
     public function getStudents(Referent $referent)
     {     
-        // $students = [];
-
-        // foreach($referent->getStudents() as $student){
-        //     $students[] = [
-        //         'id' => $student->getId(),
-        //         'firstname' => $student->getFirstname(),
-        //         'lastname' => $student->getLastname(),
-        //     ];
-        // }
-
-        // return new JsonResponse($students);
-
         return $referent->getStudents();
+    }
+
+    /**
+     * @Get(
+     *     path = "/list",
+     *     name="referents_list",
+     * )
+     * @Rest\View()
+     */
+    public function getReferents(ReferentRepository $referentRepository)
+    {     
+        return $referentRepository->findAll();
     }
 }

@@ -19,21 +19,29 @@ class Referent
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * 
+     * @Serializer\Expose()
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Serializer\Expose()
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Serializer\Expose()
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Serializer\Expose()
      */
     private $gender;
 

@@ -12,6 +12,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ path('home') }}">Accueil <span class="sr-only">(current)</span></a>
+          <a class="dropdown-item" href="{{ path('student_index') }}">Elèves <span class="sr-only">(current)</span></a>
           <a class="dropdown-item" href="{{ path('referent_index') }}">Référents <span class="sr-only">(current)</span></a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
@@ -20,6 +21,9 @@
 
       <li class="nav-item active">
         <a class="nav-link d-lg-none" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active d-lg-none">
+        <a class="nav-link" href="{{ path('student_index') }}">Elèves <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active d-lg-none">
         <a class="nav-link" href="{{ path('referent_index') }}">Référents <span class="sr-only">(current)</span></a>

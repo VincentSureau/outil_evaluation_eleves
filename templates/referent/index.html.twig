@@ -35,5 +35,38 @@
         </tbody>
     </table>
 
+    <table id="referents_list" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Civilité</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
     <a href="{{ path('referent_new') }}">Create new</a>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#referents_list').DataTable({
+                ajax: {
+                    url: '{{ path('referents_list') }}',
+                    dataSrc: ''
+                },
+                columns: [
+                    { data:'id'},
+                    { data:'gender'},
+                    { data:'firstname'},
+                    { data:'lastname'},
+                ],
+            });
+        } );
+    </script>
 {% endblock %}
