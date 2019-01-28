@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Referent index{% endblock %}
+
+{% block body %}
+    <h1>Referent index</h1>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Gender</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for referent in referents %}
+            <tr>
+                <td>{{ referent.id }}</td>
+                <td>{{ referent.firstname }}</td>
+                <td>{{ referent.lastname }}</td>
+                <td>{{ referent.gender }}</td>
+                <td>
+                    <a href="{{ path('referent_show', {'id': referent.id}) }}">show</a>
+                    <a href="{{ path('referent_edit', {'id': referent.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('referent_new') }}">Create new</a>
+{% endblock %}

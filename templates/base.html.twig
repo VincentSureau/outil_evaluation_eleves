@@ -15,15 +15,15 @@
     <body>
         {% block body %}{% endblock %}
 
-        <script type="text/javascript" src="jQuery-3.3.1/jquery-3.3.1.min.js"></script>
-        <script type="text/javascript" src="Bootstrap-4-4.1.1/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="DataTables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="Buttons-1.5.4/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="Buttons-1.5.4/js/buttons.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="Responsive-2.2.2/js/dataTables.responsive.min.js"></script>
-        <script type="text/javascript" src="Responsive-2.2.2/js/responsive.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="RowGroup-1.1.0/js/dataTables.rowGroup.min.js"></script>
+        <script type="text/javascript" src="{{ asset("jQuery-3.3.1/jquery-3.3.1.min.js") }}"></script>
+        <script type="text/javascript" src="{{ asset("Bootstrap-4-4.1.1/js/bootstrap.min.js") }}"></script>
+        <script type="text/javascript" src="{{ asset("DataTables-1.10.18/js/jquery.dataTables.min.js") }}"></script>
+        <script type="text/javascript" src="{{ asset("DataTables-1.10.18/js/dataTables.bootstrap4.min.js") }}"></script>
+        <script type="text/javascript" src="{{ asset("Buttons-1.5.4/js/dataTables.buttons.min.js") }}"></script>
+        <script type="text/javascript" src="{{ asset("Buttons-1.5.4/js/buttons.bootstrap4.min.js") }}"></script>
+        <script type="text/javascript" src="{{ asset("Responsive-2.2.2/js/dataTables.responsive.min.js") }}"></script>
+        <script type="text/javascript" src="{{ asset("Responsive-2.2.2/js/responsive.bootstrap4.min.js") }}"></script>
+        <script type="text/javascript" src="{{ asset("RowGroup-1.1.0/js/dataTables.rowGroup.min.js") }}"></script>
 
         {% block javascripts %}{% endblock %}
     </body>
