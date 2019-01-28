@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\School;
 use App\Entity\Student;
 use App\Form\StudentType;
 use App\Repository\StudentRepository;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -105,5 +106,20 @@ class StudentController extends AbstractController
     public function getStudents(StudentRepository $studentRepository)
     {     
         return $studentRepository->findAll();
+    }
+
+    /**
+     * @Get(
+     *     path = "/schools/{id}",
+     *     name="students_school_list",
+     *     requirements={"id":"\d+"}
+     * )
+     * @Rest\View(serializerGroups={"student"})
+     */
+    public function getStudentsBySchool(School $school, StudentRepository $studentRepository)
+    {     
+        return $studentRepository->findBy([
+            'school' => $school
+        ]);
     }
 }

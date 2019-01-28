@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}School index{% endblock %}
+
+{% block body %}
+    <h1>School index</h1>
+
+    <table id="schools_list" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Academie</th>
+                <th>Téléphone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('school_new') }}">Create new</a>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#schools_list').DataTable({
+                ajax: {
+                    url: '{{ path('schools_list') }}',
+                    dataSrc: ''
+                },
+                columns: [
+                    {
+                        data:'id',
+                        render: function(data, type, row, meta){
+                            data = '<a href="' + row.id + '">' + data + '</a>';
+                            return data;
+                        }
+                    },
+                    {
+                        data:'name',
+                        render: function(data, type, row, meta){
+                            data = '<a href="' + row.id + '">' + data + '</a>';
+                            return data;
+                        }
+                    },
+                    { data:'academy'},
+                    { data:'number'},
+                    { data:'email'},
+                ],
+            });
+        } );
+    </script>
+{% endblock %}

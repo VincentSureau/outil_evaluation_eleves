@@ -16,6 +16,8 @@ class School
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * 
+     * @Serializer\Groups({"student", "school"})
      */
     private $id;
 
@@ -23,22 +25,31 @@ class School
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
-     * @Serializer\Groups({"student"})
+     * @Serializer\Groups({"student", "school"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student", "school"})
      */
     private $number;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student", "school"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student", "school"})
      */
     private $academy;
 
