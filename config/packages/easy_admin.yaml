@@ -1,11 +1,23 @@
 easy_admin:
-    site_name: '<img src="/images/head_banner_pro.png" />'
-
     entities:
-        Student:
+        Eleve:
             class: App\Entity\Student
-            label: Elèves
+            label: 'Elèves'
             list:
+                title: 'Liste des élèves'
+                fields:
+                    - {property: gender, label: 'Civilité'}
+                    - {property: lastname, label: 'Nom'}
+                    - {property: firstname, label: 'Prénom'}
+                    - {property: birthdate, label: 'Date de naissance', type: 'date'}
+                    - {property: birthplace, label: 'Lieu de naissance'}
+                    - {property: city, label: 'Ville'}
+                    - {property: school, label: 'Lycée'}
+                    - {property: cirfa, label: 'CIRFA'}
+                    - {property: srm, label: 'SRM'}
+                    - {property: bordee, label: 'Bordée'}
+            show:
+                title: 'Eleve'
                 fields:
                     - {property: gender, label: 'Civilité'}
                     - {property: lastname, label: 'Nom'}
@@ -18,7 +30,7 @@ easy_admin:
                     - {property: srm, label: 'SRM'}
                     - {property: bordee, label: 'Bordée'}
             form:
-                title: 'Prof. principal'
+                title: 'Eleve'
                 fields:
                     - {property: gender, label: 'Civilité'}
                     - {property: lastname, label: 'Nom'}
@@ -30,17 +42,28 @@ easy_admin:
                     - {property: cirfa, label: 'CIRFA'}
                     - {property: srm, label: 'SRM'}
                     - {property: bordee, label: 'Bordée'}
+            edit:
+                title: 'Modifier un elève'
+            new:
+                title: 'Créer un elève'
         Dossier:
             class: App\Entity\Review
         ProfPrincipal:
             label: Prof. principal
             class: App\Entity\Referent
             list:
+                title: 'Liste des Prof. principaux'
+                fields:
+                    - {property: gender, label: 'Civilité'}
+                    - {property: lastname, label: 'Nom'}
+                    - {property: firstname, label: 'Prénom'}
+            show:
                 title: 'Prof. principal'
                 fields:
                     - {property: gender, label: 'Civilité'}
                     - {property: lastname, label: 'Nom'}
                     - {property: firstname, label: 'Prénom'}
+                    - {property: students, label: 'Elèves'}
             form:
                 title: 'Prof. principal'
                 fields:
@@ -50,16 +73,28 @@ easy_admin:
                     - {property: firstname, label: 'Prénom'}
                     - {type: 'tab', label: 'Elèves'}
                     - {property: students, label: 'Elèves'}
-        School:
+            edit:
+                title: 'Modifier un prof. principal'
+            new:
+                title: 'Modifier un prof. principal'
+        Lycee:
             label: 'Lycée'
             class: App\Entity\School
             list:
+                title: 'Liste des lycées'
+                fields:
+                    - {property: name, label: 'Nom'}
+                    - {property: academy, label: 'Académie'}
+                    - {property: number, label: 'Téléphone'}
+                    - {property: email, label: 'Email'}
+            show:
                 title: 'Lycée'
                 fields:
                     - {property: name, label: 'Nom'}
                     - {property: academy, label: 'Académie'}
                     - {property: number, label: 'Téléphone'}
                     - {property: email, label: 'Email'}
+                    - {property: students, label: 'Elèves'}
             form:
                 title: 'Lycée'
                 fields:
@@ -78,11 +113,18 @@ easy_admin:
             class: App\Entity\Cirfa
             label: 'CIRFA'
             list:
+                title: 'Liste des CIRFA'
+                fields:
+                    - {property: city, label: 'Ville'}
+                    - {property: number, label: 'Téléphone'}
+                    - {property: email, label: 'Email'}
+            show:
                 title: 'CIRFA'
                 fields:
                     - {property: city, label: 'Ville'}
                     - {property: number, label: 'Téléphone'}
                     - {property: email, label: 'Email'}
+                    - {property: students, label: 'Elèves'}
             form:
                 title: 'CIRFA'
                 fields:
@@ -100,10 +142,16 @@ easy_admin:
             class: App\Entity\Srm
             label: 'SRM'
             list:
+                title: 'Liste des SRM'
+                fields:
+                    - {property: name, label: 'Nom'}
+                    - {property: email, label: 'Email'}
+            show:
                 title: 'SRM'
                 fields:
                     - {property: name, label: 'Nom'}
                     - {property: email, label: 'Email'}
+                    - {property: students, label: 'Elèves'}
             form:
                 title: 'SRM'
                 fields:
@@ -120,9 +168,16 @@ easy_admin:
             class: App\Entity\Specialisation
             label: 'Spécialisation'
             list:
+                title: 'Liste des spécialisations'
+                fields:
+                    - {property: name, label: 'Intitulé'}
+            show:
                 title: 'Spécialisation'
                 fields:
                     - {property: name, label: 'Intitulé'}
+                    - {property: competence, label: 'Compétences'}
+                    - {property: tps, label: 'Travaux pratiques'}
+                    - {property: students, label: 'Eleves'}
             form:
                 title: 'Spécialisation'
                 fields:
@@ -146,6 +201,12 @@ easy_admin:
                 fields:
                     - {property: name, label: 'Intitulé'}
                     - {property: specialisation, label: 'Spécialisation'}
+            show:
+                title: 'TPs'
+                fields:
+                    - {property: name, label: 'Intitulé'}
+                    - {property: specialisation, label: 'Spécialisation'}
+                    - {property: competence, label: 'Compétences'}
             form:
                 title: 'TP'
                 fields:
@@ -154,15 +215,26 @@ easy_admin:
                     - {property: specialisation, label: 'Spécialisation'}
                     - {type: 'tab', label: 'Compétences'}
                     - {property: competence, label: 'Compétences'}
+            edit:
+                title: 'Modifier un TP'
+            new:
+                title: 'Créer un TP'
         Competence:
             class: App\Entity\Competence
             label: 'Compétences'
             list:
+                title: 'Liste des compétences'
+                fields:
+                    - {property: reference, label: 'Référence'}
+                    - {property: name, label: 'Intitulé'}
+                    - {property: specialisation, label: 'Spécialisation'}
+            show:
                 title: 'Compétences'
                 fields:
                     - {property: reference, label: 'Référence'}
                     - {property: name, label: 'Intitulé'}
                     - {property: specialisation, label: 'Spécialisation'}
+                    - {property: tps, label: 'Travaux pratiques'}
             form:
                 title: 'Compétences'
                 fields:
@@ -179,7 +251,17 @@ easy_admin:
         Utilisateur:
             class: App\Entity\User
             label: 'Utilisateurs'
+            icon: user
             list:
+                title: 'Liste des tilisateurs'
+                fields:
+                    - {property: username, label: 'Username'}
+                    - {property: firstname, lasbel: 'Prénom'}
+                    - {property: lastname, label: 'Nom'}
+                    - {property: email, label: 'Email'}
+                    - {property: number, label: 'Téléphone'}
+                    - {property: grade, label: 'Grade'}
+            show:
                 title: 'Utilisateurs'
                 fields:
                     - {property: username, label: 'Username'}
@@ -189,7 +271,7 @@ easy_admin:
                     - {property: number, label: 'Téléphone'}
                     - {property: grade, label: 'Grade'}
             form:
-                title: 'Urilisateur'
+                title: 'Utilisateur'
                 fields:
                     - {property: username, label: 'Username'}
                     - {property: firstname, lasbel: 'Prénom'}
@@ -201,6 +283,25 @@ easy_admin:
                 title: 'Modifier un utilisateur'
             new:
                 title: 'Créer un utilisateur'
-
     formats:
         date: 'd/m/Y'
+    design:
+        brand_color: '#000080'
+        menu:
+            - {entity: Eleve, icon: graduation-cap}
+            - {entity: Dossier, icon: folder-open}
+            - {entity: ProfPrincipal, icon: user-md}
+            - {entity: Lycee, icon: university}
+            - {entity: CIRFA, icon: home}
+            - {entity: SRM, icon: building-o}
+            - {entity: Competence, icon: puzzle-piece}
+            - {entity: TP, icon: briefcase}
+            - {entity: Specialisation, icon: book}
+            - {entity: Utilisateur, icon: users}
+    site_name: '<img src="/images/head_banner_pro.png" />'
+    list:
+        actions:
+            - { name: 'show', icon: 'search' }
+            - { name: 'edit', icon: 'pencil' }
+            - { name: 'delete', icon: 'trash' }
+            - { name: 'new', icon: 'plus-circle', label: Nouveau }
