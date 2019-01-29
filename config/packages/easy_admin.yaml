@@ -173,6 +173,7 @@ easy_admin:
                     - {property: name, label: 'Intitulé'}
             show:
                 title: 'Spécialisation'
+                max_results: 20
                 fields:
                     - {property: name, label: 'Intitulé'}
                     - {property: competence, label: 'Compétences'}
@@ -203,6 +204,7 @@ easy_admin:
                     - {property: specialisation, label: 'Spécialisation'}
             show:
                 title: 'TPs'
+                max_results: 20
                 fields:
                     - {property: name, label: 'Intitulé'}
                     - {property: specialisation, label: 'Spécialisation'}
@@ -283,6 +285,31 @@ easy_admin:
                 title: 'Modifier un utilisateur'
             new:
                 title: 'Créer un utilisateur'
+        Bordee:
+            class: App\Entity\Bordee
+            label: 'Bordée'
+            list:
+                title: 'Liste des bordée'
+                fields:
+                    - {property: name, label: 'Nom'}
+
+            show:
+                max_results: 30
+                title: 'Bordée'
+                fields:
+                    - {property: name, label: 'Nom'}
+                    - {property: students, label: 'Elèves'}
+            form:
+                title: 'Bordée'
+                fields:
+                    - {type: tab, label: 'Informations'}
+                    - {property: name, label: 'Nom'}
+                    - {type: tab, label: 'Elèves'}
+                    - {property: students, label: 'Elèves'}
+            edit:
+                title: 'Modifier une bordée'
+            new:
+                title: 'Créer une bordée'
     formats:
         date: 'd/m/Y'
     design:
@@ -294,6 +321,7 @@ easy_admin:
             - {entity: Lycee, icon: university}
             - {entity: CIRFA, icon: home}
             - {entity: SRM, icon: building-o}
+            - {entity: Bordee}
             - {entity: Competence, icon: puzzle-piece}
             - {entity: TP, icon: briefcase}
             - {entity: Specialisation, icon: book}

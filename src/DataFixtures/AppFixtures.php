@@ -7,6 +7,7 @@ use Faker\Factory;
 use App\Entity\Srm;
 use App\Entity\User;
 use App\Entity\Cirfa;
+use App\Entity\Bordee;
 use App\Entity\School;
 use App\Entity\Student;
 use App\Entity\Referent;
@@ -45,6 +46,16 @@ class AppFixtures extends Fixture
         $cirfas = [];
         $referents = [];
         $specialisations = [];
+        $bordees = [];
+
+        for($i = 17; $i < 20; $i++){
+            for($j = 1; $j < 5; $j++){
+                $bordee = new Bordee;
+                $bordee->setName($i . '.' . $j);
+                $manager->persist($bordee);
+                $bordees[] = $bordee;
+            }
+        }
 
         for ($i = 0; $i < 70; $i++)
         {
@@ -134,7 +145,7 @@ class AppFixtures extends Fixture
                     ->setCirfa($cirfas[array_rand($cirfas)])
                     ->setSchool($schools[array_rand($schools)])
                     ->setReferent($referents[array_rand($referents)])
-                    ->setBordee($faker->randomDigitNotNull)
+                    ->setBordee($bordees[array_rand($bordees)])
                     ;
 
             $manager->persist($student);

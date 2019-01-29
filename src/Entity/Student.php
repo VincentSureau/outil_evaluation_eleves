@@ -110,7 +110,12 @@ class Student
     private $review;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Bordee", inversedBy="students")
+     * @ORM\JoinColumn(nullable=false)
+     * 
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $bordee;
 
@@ -268,15 +273,16 @@ class Student
         return $this->firstname .' '. $this->lastname;
     }
 
-    public function getBordee(): ?string
+    public function getBordee(): ?Bordee
     {
         return $this->bordee;
     }
 
-    public function setBordee(string $bordee): self
+    public function setBordee(?Bordee $bordee): self
     {
         $this->bordee = $bordee;
 
         return $this;
     }
+
 }
