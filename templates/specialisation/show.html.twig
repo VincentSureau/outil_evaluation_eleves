@@ -42,16 +42,7 @@
     </table>
 
     <table id="students_list" class="table table-striped table-bordered" style="width:100%">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ specialisation.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ specialisation.name }}</td>
-            </tr>
-        </tbody>
+
     </table>
 
 {% endblock %}
@@ -76,6 +67,53 @@
                     {
                         title: 'Intitulé',
                         data:'name'
+                    },
+                ],
+            });
+        } );
+
+        $(document).ready( function () {
+            $('#students_list').DataTable({
+                ajax: {
+                    url: '{{ path('students_specialisation_list', {id: specialisation.id}) }}',
+                    dataSrc: ''
+                },
+                columns: [
+                    {
+                        title: 'id',
+                        data:'id'
+                    },
+                    {
+                        title: 'Civilité',
+                        data:'gender'
+                    },
+                    {
+                        title: 'Prénom',
+                        data:'firstname'
+                    },
+                    {
+                        title: 'Nom',
+                        data:'lastname'
+                    },
+                    {
+                        title: 'Ville',
+                        data:'city'
+                    },
+                    {
+                        title: 'Date de naissance',
+                        data:'birthdate'
+                    },
+                    {
+                        title: 'Lycée',
+                        data:'school.name'
+                    },
+                    {
+                        title: 'SRM',
+                        data:'srm.name'
+                    },
+                    {
+                        title: 'CIRFA',
+                        data:'cirfa.city'
                     },
                 ],
             });

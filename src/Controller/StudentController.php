@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\School;
 use App\Entity\Student;
 use App\Form\StudentType;
+use App\Entity\Specialisation;
 use App\Repository\StudentRepository;
+use App\Repository\SpecialisationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\HttpFoundation\Response;
@@ -120,6 +122,20 @@ class StudentController extends AbstractController
     {     
         return $studentRepository->findBy([
             'school' => $school
+        ]);
+    }
+    /**
+     * @Get(
+     *     path = "/specialisation/{id}",
+     *     name="students_specialisation_list",
+     *     requirements={"id":"\d+"}
+     * )
+     * @Rest\View(serializerGroups={"student"})
+     */
+    public function getStudentsBySpecialisation(Specialisation $specialisation, StudentRepository $studentRepository)
+    {     
+        return $studentRepository->findBy([
+            'specialisation' => $specialisation
         ]);
     }
 }

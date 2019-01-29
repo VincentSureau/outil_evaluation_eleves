@@ -14,9 +14,15 @@ use App\Entity\Competence;
 use App\Entity\Specialisation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
@@ -28,7 +34,8 @@ class AppFixtures extends Fixture
             ->setEmail($faker->safeEmail)
             ->setNumber($faker->phoneNumber)
             ->setGrade($faker->word)
-            ->setPassword('lapinmarin')
+            ->setPassword($this->encoder->encodePassword($user, 'lapinmarin'))
+            ->setRoles(['ROLE_ADMIN'])
             ;
         
         $manager->persist($user);
@@ -126,7 +133,9 @@ class AppFixtures extends Fixture
                     ->setSrm($srms[array_rand($srms)])
                     ->setCirfa($cirfas[array_rand($cirfas)])
                     ->setSchool($schools[array_rand($schools)])
-                    ->setReferent($referents[array_rand($referents)]);
+                    ->setReferent($referents[array_rand($referents)])
+                    ->setBordee($faker->randomDigitNotNull)
+                    ;
 
             $manager->persist($student);
             
