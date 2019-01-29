@@ -123,6 +123,6 @@ class Competence
 
     public function __toString(): string
     {
-        return $this->name;
+        return $this->reference . ' - ' . $this->name;
     }
 }

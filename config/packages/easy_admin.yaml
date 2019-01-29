@@ -5,30 +5,202 @@ easy_admin:
         Student:
             class: App\Entity\Student
             label: Elèves
+            list:
+                fields:
+                    - {property: gender, label: 'Civilité'}
+                    - {property: lastname, label: 'Nom'}
+                    - {property: firstname, label: 'Prénom'}
+                    - {property: birthdate, label: 'Date de naissance', type: 'date'}
+                    - {property: birthplace, label: 'Lieu de naissance'}
+                    - {property: city, label: 'Ville'}
+                    - {property: school, label: 'Lycée'}
+                    - {property: cirfa, label: 'CIRFA'}
+                    - {property: srm, label: 'SRM'}
+                    - {property: bordee, label: 'Bordée'}
+            form:
+                title: 'Prof. principal'
+                fields:
+                    - {property: gender, label: 'Civilité'}
+                    - {property: lastname, label: 'Nom'}
+                    - {property: firstname, label: 'Prénom'}
+                    - {property: birthdate, type: 'birthday', label: 'Date de naissance', type_options: { format: 'dd-MM-yyyy'}}
+                    - {property: birthplace, label: 'Lieu de naissance'}
+                    - {property: city, label: 'Ville'}
+                    - {property: school, label: 'Lycée'}
+                    - {property: cirfa, label: 'CIRFA'}
+                    - {property: srm, label: 'SRM'}
+                    - {property: bordee, label: 'Bordée'}
         Dossier:
             class: App\Entity\Review
         ProfPrincipal:
             label: Prof. principal
             class: App\Entity\Referent
+            list:
+                title: 'Prof. principal'
+                fields:
+                    - {property: gender, label: 'Civilité'}
+                    - {property: lastname, label: 'Nom'}
+                    - {property: firstname, label: 'Prénom'}
             form:
+                title: 'Prof. principal'
                 fields:
                     - {type: 'tab', label: 'Informations'}
-                    - firstname
-                    - lastname
-                    - gender
+                    - {property: gender, label: 'Civilité'}
+                    - {property: lastname, label: 'Nom'}
+                    - {property: firstname, label: 'Prénom'}
                     - {type: 'tab', label: 'Elèves'}
-                    - {property: students}
-        Lycée:
+                    - {property: students, label: 'Elèves'}
+        School:
+            label: 'Lycée'
             class: App\Entity\School
+            list:
+                title: 'Lycée'
+                fields:
+                    - {property: name, label: 'Nom'}
+                    - {property: academy, label: 'Académie'}
+                    - {property: number, label: 'Téléphone'}
+                    - {property: email, label: 'Email'}
+            form:
+                title: 'Lycée'
+                fields:
+                    - {type: 'tab', label: 'Informations'}
+                    - {property: name, label: 'Nom'}
+                    - {property: academy, label: 'Académie'}
+                    - {property: number, label: 'Téléphone'}
+                    - {property: email, label: 'Email'}
+                    - {type: 'tab', label: 'Elèves'}
+                    - {property: students, label: 'Elèves'}
+            edit:
+                title: 'Modifier un lycée'
+            new:
+                title: 'Créer un lycée'
         CIRFA:
             class: App\Entity\Cirfa
+            label: 'CIRFA'
+            list:
+                title: 'CIRFA'
+                fields:
+                    - {property: city, label: 'Ville'}
+                    - {property: number, label: 'Téléphone'}
+                    - {property: email, label: 'Email'}
+            form:
+                title: 'CIRFA'
+                fields:
+                    - {type: 'tab', label: 'Informations'}
+                    - {property: city, label: 'Ville'}
+                    - {property: number, label: 'Téléphone'}
+                    - {property: email, label: 'Email'}
+                    - {type: 'tab', label: 'Elèves'}
+                    - {property: students, label: 'Elèves'}
+            edit:
+                title: 'Modifier un CIRFA'
+            new:
+                title: 'Créer un CIRFA'
         SRM:
             class: App\Entity\Srm
-        Spécialisation:
+            label: 'SRM'
+            list:
+                title: 'SRM'
+                fields:
+                    - {property: name, label: 'Nom'}
+                    - {property: email, label: 'Email'}
+            form:
+                title: 'SRM'
+                fields:
+                    - {type: 'tab', label: 'Informations'}
+                    - {property: name, label: 'Nom'}
+                    - {property: email, label: 'Email'}
+                    - {type: 'tab', label: 'Elèves'}
+                    - {property: students, label: 'Elèves'}
+            edit:
+                title: 'Modifier un SRM'
+            new:
+                title: 'Créer un SRM'
+        Specialisation:
             class: App\Entity\Specialisation
+            label: 'Spécialisation'
+            list:
+                title: 'Spécialisation'
+                fields:
+                    - {property: name, label: 'Intitulé'}
+            form:
+                title: 'Spécialisation'
+                fields:
+                    - {type: 'tab', label: 'Informations'}
+                    - {property: name, label: 'Intitulé'}
+                    - {type: 'tab', label: 'Compétences'}
+                    - {property: competence, label: 'Compétences'}
+                    - {type: 'tab', label: 'Travaux pratiques'}
+                    - {property: tps, label: 'Travaux pratiques'}
+                    - {type: 'tab', label: 'Eleves'}
+                    - {property: students, label: 'Eleves'}
+            edit:
+                title: 'Modifier une spécialisation'
+            new:
+                title: 'Créer une spécialisation'
         TP:
             class: App\Entity\Tp
-        Compétence:
+            label: 'TP'
+            list:
+                title: 'Liste des TPs'
+                fields:
+                    - {property: name, label: 'Intitulé'}
+                    - {property: specialisation, label: 'Spécialisation'}
+            form:
+                title: 'TP'
+                fields:
+                    - {type: 'tab', label: 'Informations'}
+                    - {property: name, label: 'Intitulé'}
+                    - {property: specialisation, label: 'Spécialisation'}
+                    - {type: 'tab', label: 'Compétences'}
+                    - {property: competence, label: 'Compétences'}
+        Competence:
             class: App\Entity\Competence
+            label: 'Compétences'
+            list:
+                title: 'Compétences'
+                fields:
+                    - {property: reference, label: 'Référence'}
+                    - {property: name, label: 'Intitulé'}
+                    - {property: specialisation, label: 'Spécialisation'}
+            form:
+                title: 'Compétences'
+                fields:
+                    - {type: 'tab', label: 'Informations'}
+                    - {property: reference, label: 'Référence'}
+                    - {property: name, label: 'Intitulé'}
+                    - {property: specialisation, label: 'Spécialisation'}
+                    - {type: 'tab', label: 'Travaux pratiques'}
+                    - {property: tps, label: 'Travaux pratiques'}
+            edit:
+                title: 'Modifier une compétences'
+            new:
+                title: 'Créer une compétences'
         Utilisateur:
             class: App\Entity\User
+            label: 'Utilisateurs'
+            list:
+                title: 'Utilisateurs'
+                fields:
+                    - {property: username, label: 'Username'}
+                    - {property: firstname, lasbel: 'Prénom'}
+                    - {property: lastname, label: 'Nom'}
+                    - {property: email, label: 'Email'}
+                    - {property: number, label: 'Téléphone'}
+                    - {property: grade, label: 'Grade'}
+            form:
+                title: 'Urilisateur'
+                fields:
+                    - {property: username, label: 'Username'}
+                    - {property: firstname, lasbel: 'Prénom'}
+                    - {property: lastname, label: 'Nom'}
+                    - {property: email, label: 'Email'}
+                    - {property: number, label: 'Téléphone'}
+                    - {property: grade, label: 'Grade'}
+            edit:
+                title: 'Modifier un utilisateur'
+            new:
+                title: 'Créer un utilisateur'
+
+    formats:
+        date: 'd/m/Y'

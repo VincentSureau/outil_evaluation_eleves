@@ -109,6 +109,11 @@ class Student
      */
     private $review;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $bordee;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -261,5 +266,17 @@ class Student
     public function __toString(): string
     {
         return $this->firstname .' '. $this->lastname;
+    }
+
+    public function getBordee(): ?string
+    {
+        return $this->bordee;
+    }
+
+    public function setBordee(string $bordee): self
+    {
+        $this->bordee = $bordee;
+
+        return $this;
     }
 }
