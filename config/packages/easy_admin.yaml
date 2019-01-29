@@ -298,6 +298,7 @@ easy_admin:
             - {entity: TP, icon: briefcase}
             - {entity: Specialisation, icon: book}
             - {entity: Utilisateur, icon: users}
+            - {label: 'Retour au site', route: 'home', icon: 'external-link'}
     site_name: '<img src="/images/head_banner_pro.png" />'
     list:
         actions:
