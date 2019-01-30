@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bordee index{% endblock %}
+
+{% block body %}
+    <h1>Bordee index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bordee in bordees %}
+            <tr>
+                <td>{{ bordee.id }}</td>
+                <td>{{ bordee.name }}</td>
+                <td>
+                    <a href="{{ path('bordee_show', {'id': bordee.id}) }}">show</a>
+                    <a href="{{ path('bordee_edit', {'id': bordee.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('bordee_new') }}">Create new</a>
+{% endblock %}

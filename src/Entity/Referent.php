@@ -12,6 +12,14 @@ use JMS\Serializer\Annotation AS Serializer;
  * @ORM\Entity(repositoryClass="App\Repository\ReferentRepository")
  * 
  * @Serializer\ExclusionPolicy("all")
+ * @Serializer\VirtualProperty(
+ *     "name",
+ *     exp="object.__toString()",
+ *     options={
+ *          @Serializer\SerializedName("name"),
+ *          @Serializer\Groups({"student"})
+ *     }
+ *  )
  */
 class Referent
 {
@@ -20,7 +28,9 @@ class Referent
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * 
+     * 
      * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $id;
 
@@ -127,7 +137,9 @@ class Referent
         return $this;
     }
 
-
+    /*
+     * @return string|null
+     */
     public function __toString(): ?string
     {
         return $this->gender .' '. $this->lastname;

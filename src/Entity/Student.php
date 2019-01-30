@@ -101,11 +101,17 @@ class Student
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Referent", inversedBy="students")
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $referent;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Review", cascade={"persist", "remove"})
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"student"})
      */
     private $review;
 
