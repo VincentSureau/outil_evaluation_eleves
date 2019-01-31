@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">Evaluation des élèves</a>
+    <a class="navbar-brand" href="{{ path('home') }}">Evaluation des élèves</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
       <li class="nav-item dropdown d-none d-lg-flex">
@@ -11,30 +11,38 @@
           Menu
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ path('home') }}">Accueil <span class="sr-only">(current)</span></a>
-          <a class="dropdown-item" href="{{ path('student_index') }}">Elèves <span class="sr-only">(current)</span></a>
-          <a class="dropdown-item" href="{{ path('referent_index') }}">Référents <span class="sr-only">(current)</span></a>
+          <a class="dropdown-item" href="{{ path('home') }}">Accueil</a>
+          <a class="dropdown-item" href="{{ path('student_index') }}">Elèves (tous)</a>
+          <a class="dropdown-item" href="{{ path('bordee_index') }}">Elèves (par bordee ou classe)</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link d-lg-none" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link d-lg-none" href="{{ path('home') }}">Home</a>
       </li>
       <li class="nav-item active d-lg-none">
-        <a class="nav-link" href="{{ path('student_index') }}">Elèves <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ path('student_index') }}">Elèves (tous)</a>
       </li>
       <li class="nav-item active d-lg-none">
-        <a class="nav-link" href="{{ path('referent_index') }}">Référents <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ path('bordee_index') }}">Elèves (par bordee ou classe)</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ path('easyadmin')}}">Accès administrateur</a>
       </li>
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <li class="nav-item active d-lg-none">
+          <a class="nav-link" href="{{ path('app_logout')}}">Déconnexion</a>
+        </li>
+      {% endif %}
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
+  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <ul class="navbar nav d-none d-lg-flex">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ path('app_logout')}}">Déconnexion</a>
+      </li>
+    </ul>
+  {% endif %}
 </nav>
