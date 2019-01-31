@@ -71,13 +71,23 @@ class StudentController extends AbstractController
             $cellIterator->setIterateOnlyExistingCells(FALSE);
             foreach ($cellIterator as $cellIndex => $cell) {
                 if($cellIndex == 'A' && !$cell->getValue()){
-                    return $table;
+                    $header = array_shift($table);
+                    $datas = [];
+                    foreach($table as $element){
+                        $datas[] = array_combine($header, $element);
+                    }
+                    return $datas;
                 }
                 $studentDatas[] = $cell->getValue();
             }
             $table[] = $studentDatas;
         }
-        return $table;
+        $header = array_shift($table);
+        $datas = [];
+        foreach($table as $element){
+            $datas[] = array_combine($header, $element);
+        }
+        return $datas;
     }
 
     /**
