@@ -7,11 +7,13 @@
 
     <form action="{{ path('student_index') }}">
         <select name="bordee" id="">
+            <option value="">Choisir une bordée</option>
             {% for bordee in bordees %}
                 <option value="{{ bordee.id }}">{{ bordee.name }}</option>
             {% endfor %}
         </select>
         <select name="referent" id="">
+        <option value="">Choisir un prof. principal</option>
             {% for referent in referents %}
                 <option value="{{ referent.id }}">{{ referent.firstname ~ ' '  ~ referent.lastname }}</option>
             {% endfor %}

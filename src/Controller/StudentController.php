@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Bordee;
 use App\Entity\School;
 use App\Entity\Student;
+use App\Entity\Referent;
 use App\Form\StudentType;
 use App\Entity\Specialisation;
 use App\Repository\StudentRepository;
@@ -23,9 +25,18 @@ class StudentController extends AbstractController
     /**
      * @Route("/", name="student_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        return $this->render('student/index.html.twig');
+        $bordee = $request->query->get('bordee');
+        $referent = $request->query->get('referent');
+        $params = [];
+        if($bordee){
+            $params['bordee'] = $bordee;
+        }
+        if($referent){
+            $params['referent'] = $referent;
+        }
+        return $this->render('student/index.html.twig', ['referent' => $referent, 'bordee' => $bordee, 'params' => $params]);
     }
 
     /**
@@ -104,10 +115,21 @@ class StudentController extends AbstractController
      *     name="students_list",
      * )
      * @Rest\View(serializerGroups={"student"})
+     * @Rest\QueryParam(name="bordee", requirements="\d+", nullable=true, description="Id de la bordée")
+     * @Rest\QueryParam(name="referent", requirements="\d+", nullable=true, description="Id du prof. principal")
      */
-    public function getStudents(StudentRepository $studentRepository)
-    {     
-        return $studentRepository->findAll();
+    public function getStudents($bordee, $referent, StudentRepository $studentRepository)
+    {
+        $params = [];
+        if($referent){
+            $referent = $this->getDoctrine()->getRepository(Referent::class)->find($referent);
+            $params['referent'] = $referent;
+        }
+        if($bordee){
+            $bordee = $this->getDoctrine()->getRepository(Bordee::class)->find($bordee);
+            $params['bordee'] = $bordee;
+        }
+        return $studentRepository->findBy($params);
     }
 
     /**

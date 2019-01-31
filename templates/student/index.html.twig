@@ -11,8 +11,9 @@
 {% endblock %}
 
 {% block javascripts %}
+
     <script type="text/javascript">
-        var listUrl = '{{ path('students_list') }}';        
+        var listUrl = '{{ path('students_list', params )|escape('js') }}';        
     </script>
     <script type="text/javascript" src="{{ asset("js/studentDatatable.js") }}"></script>
 {% endblock %}
