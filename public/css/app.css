@@ -7,11 +7,14 @@ body {
     flex-direction: column;
 }
 
+header{
+    background-color: #011935;
+}
+
 #footer{
     border-top: 2px solid navy;
     flex-shrink: 0;
 }
-
 
 .content {
 flex: 1 0 auto;

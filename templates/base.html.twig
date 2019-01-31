@@ -14,8 +14,9 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        {{ include('/partials/__header.html.twig') }}
         <div class="content">
-            {{ include('/partials/__navbar.html.twig') }}
+            
             {% block body %}{% endblock %}
         </div>
             {{ include('/partials/__footer.html.twig') }}

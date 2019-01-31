@@ -7,6 +7,7 @@ use App\Entity\School;
 use App\Entity\Student;
 use App\Entity\Referent;
 use App\Form\StudentType;
+use App\Form\StudentsType;
 use App\Entity\Specialisation;
 use App\Repository\StudentRepository;
 use App\Repository\SpecialisationRepository;
@@ -58,6 +59,54 @@ class StudentController extends AbstractController
 
         return $this->render('student/new.html.twig', [
             'student' => $student,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    public function iterate($worksheet){
+        $table = [];
+        foreach ($worksheet->getRowIterator() as $rowIndex => $row) {
+            $studentDatas = [];
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            foreach ($cellIterator as $cellIndex => $cell) {
+                if($cellIndex == 'A' && !$cell->getValue()){
+                    return $table;
+                }
+                $studentDatas[] = $cell->getValue();
+            }
+            $table[] = $studentDatas;
+        }
+        return $table;
+    }
+
+    /**
+     * @Route("/add", name="students_add", methods={"GET","POST"})
+     */
+    public function add(Request $request): Response
+    {
+        $form = $this->createForm(StudentsType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $uploadedsheet = $form['spreadsheet']->getData();
+            $sheetname = $form['sheet']->getData();
+
+            $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReaderForFile($uploadedsheet);
+            $reader->setReadDataOnly(TRUE);
+            $reader->setLoadSheetsOnly([$sheetname]);
+            $spreadsheet = $reader->load($uploadedsheet);
+            $worksheet = $spreadsheet->getActiveSheet();
+
+            $table = $this->iterate($worksheet);
+
+            dd($table);
+
+            return $this->redirectToRoute('students_add');
+        }
+
+        return $this->render('student/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
