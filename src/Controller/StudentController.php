@@ -17,6 +17,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\Excel2Table;
+use App\Entity\Srm;
+use App\Entity\Cirfa;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @Route("/student")
@@ -63,37 +67,10 @@ class StudentController extends AbstractController
         ]);
     }
 
-    public function iterate($worksheet){
-        $table = [];
-        foreach ($worksheet->getRowIterator() as $rowIndex => $row) {
-            $studentDatas = [];
-            $cellIterator = $row->getCellIterator();
-            $cellIterator->setIterateOnlyExistingCells(FALSE);
-            foreach ($cellIterator as $cellIndex => $cell) {
-                if($cellIndex == 'A' && !$cell->getValue()){
-                    $header = array_shift($table);
-                    $datas = [];
-                    foreach($table as $element){
-                        $datas[] = array_combine($header, $element);
-                    }
-                    return $datas;
-                }
-                $studentDatas[] = $cell->getValue();
-            }
-            $table[] = $studentDatas;
-        }
-        $header = array_shift($table);
-        $datas = [];
-        foreach($table as $element){
-            $datas[] = array_combine($header, $element);
-        }
-        return $datas;
-    }
-
     /**
      * @Route("/add", name="students_add", methods={"GET","POST"})
      */
-    public function add(Request $request): Response
+    public function add(Request $request, Excel2Table $excelConverter, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(StudentsType::class);
 
@@ -103,15 +80,102 @@ class StudentController extends AbstractController
             $uploadedsheet = $form['spreadsheet']->getData();
             $sheetname = $form['sheet']->getData();
 
-            $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReaderForFile($uploadedsheet);
-            $reader->setReadDataOnly(TRUE);
-            $reader->setLoadSheetsOnly([$sheetname]);
-            $spreadsheet = $reader->load($uploadedsheet);
-            $worksheet = $spreadsheet->getActiveSheet();
+            $table = $excelConverter->convertSheet($uploadedsheet, $sheetname);
 
-            $table = $this->iterate($worksheet);
+            $bordee = $this->getDoctrine()->getRepository(Bordee::class)->findOneByName($sheetname);
+            if(!$bordee){
+                $bordee = new Bordee();
+                $bordee->setName($sheetname);
+                $entityManager->persist($bordee);
+            }
 
-            dd($table);
+            foreach($table as $data){
+
+                $student = $this->getDoctrine()->getRepository(Student::class)->findOneBy([
+                    'lastname' => $data['NOM'],
+                    'firstname' => $data['Prénom'],
+                    'birthdate' => $data['Date de naissance']
+                ]);
+
+                if (!$student) {
+                    $student = new Student();
+                }
+
+                $student->setLastname($data['NOM'])
+                        ->setFirstname($data['Prénom'])
+                        ->setBirthdate($data['Date de naissance'])
+                        ->setBirthplace($data['Lieu de naissance'])
+                        ->setCity($data['Ville LP'])
+                        ->setGender($data['Sexe'])
+                        ->setBordee($bordee);
+                ;
+
+                $specialisation = $this->getDoctrine()->getRepository(Specialisation::class)->findOneByName($data['SPE']);
+                if($specialisation){
+                    $student->setSpecialisation($specialisation);
+                } else {
+                    $this->addFlash(
+                        'danger',
+                        sprintf('La spécialisation %s, n\'existe pas, merci de l\'ajouter et recommencer', $data['SPE'])
+                    );
+                    return $this->redirectToRoute('students_add');
+                }
+
+                $srm = $this->getDoctrine()->getRepository(Srm::class)->findOneByName($data['SRM']);
+                if($srm){
+                    $student->setSrm($srm);
+                } else {
+                    $this->addFlash(
+                        'danger',
+                        sprintf('Le SRM %s, n\'existe pas, merci de l\'ajouter et recommencer', $data['SRM'])
+                    );
+                    return $this->redirectToRoute('students_add');
+                }
+
+                $school = $this->getDoctrine()->getRepository(School::class)->findOneBy([
+                    'name' => $data['Lycée Prof'],
+                    'academy' => $data['Académie']
+                ]);
+                if($school){
+                    $student->setSchool($school);
+                } else {
+                    $this->addFlash(
+                        'danger',
+                        sprintf('Le lycée %s (Académie de %s), n\'existe pas, merci de l\'ajouter et recommencer', $data['Lycée Prof'], $data['Académie'])
+                    );
+                    return $this->redirectToRoute('students_add');
+                }
+
+                $cirfa = $this->getDoctrine()->getRepository(Cirfa::class)->findOneByCity($data['CIRFA']);
+                if($cirfa){
+                    $student->setCirfa($cirfa);
+                } else {
+                    $this->addFlash(
+                        'danger',
+                        sprintf('Le CIRFA %s, n\'existe pas, merci de l\'ajouter et recommencer', $data['CIRFA'])
+                    );
+                    return $this->redirectToRoute('students_add');
+                }
+
+                $referentName = explode(" ", $data['Professeur Principale'])[1];
+                $referent = $this->getDoctrine()->getRepository(Referent::class)->findOneByLastname($referentName);
+                if($referent){
+                    $student->setReferent($referent);
+                } else {
+                    $this->addFlash(
+                        'danger',
+                        sprintf('Le prof. principal %s, n\'existe pas, merci de l\'ajouter et recommencer', $data['Professeur Principale'])
+                    );
+  
+                    return $this->redirectToRoute('students_add');
+                }
+                $entityManager->persist($student);
+
+            }
+
+            $entityManager->flush();
+
+            $this->addFlash('success', 'La bordée a été ajoutée avec succès');
 
             return $this->redirectToRoute('students_add');
         }
