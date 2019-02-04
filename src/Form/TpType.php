@@ -3,8 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Tp;
+use App\Entity\Competence;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TpType extends AbstractType
@@ -13,10 +17,20 @@ class TpType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('reviews')
-            ->add('competence')
-            ->add('specialisation')
         ;
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $tp = $event->getData();
+            $form = $event->getForm();
+
+            if ($tp){
+                $form->add('competence', EntityType::class,[
+                    'class' => Competence::class,
+                    'multiple' => true,
+                    'choices' => $tp->getSpecialisation()->getCompetence(),
+                ]);
+            }
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver)

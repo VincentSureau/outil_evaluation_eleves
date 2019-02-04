@@ -12,7 +12,7 @@
                     data: 'id',
                     sortable: false,
                     render: function(data){
-                        return '<a href="/tp/'+ data +'">gérer</a>'
+                        return '<a href="/tp/'+ data +'/edit">gérer</a>'
                 }}
             ],
         });
