@@ -16,7 +16,9 @@ class TpType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('name', null, [
+                'label' => 'Intitulé'
+            ])
         ;
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
@@ -25,6 +27,7 @@ class TpType extends AbstractType
 
             if ($tp){
                 $form->add('competence', EntityType::class,[
+                    'label' => 'Compétences',
                     'class' => Competence::class,
                     'multiple' => true,
                     'choices' => $tp->getSpecialisation()->getCompetence(),
