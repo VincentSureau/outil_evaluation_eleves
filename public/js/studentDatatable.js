@@ -10,8 +10,8 @@
                 { data:'lastname'},
                 { data:'specialisation.name'},
                 { data:'school.name'},
-                { data:'srm.name'},
-                { data:'cirfa.city'},
+                // { data:'srm.name'},
+                // { data:'cirfa.city'},
                 { data:'bordee.name'},
                 { data:'referent.name'},
                 {

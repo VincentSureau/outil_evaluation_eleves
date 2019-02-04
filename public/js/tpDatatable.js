@@ -18,7 +18,7 @@
         });
 
         $('#filter td').each( function (i) {
-            var title = $('#students_list thead th').eq( $(this).index() ).text();
+            var title = $('#tps_list thead th').eq( $(this).index() ).text();
             $(this).html( '<input type="text" placeholder="&#x1F50E; '+title+'" data-index="'+i+'" /><i class="fa fa-search" aria-hidden="true"></i>' );
         } );
 
