@@ -23,9 +23,7 @@ class TpController extends AbstractController
      */
     public function index(TpRepository $tpRepository): Response
     {
-        return $this->render('tp/index.html.twig', [
-            'tps' => $tpRepository->findAll(),
-        ]);
+        return $this->render('tp/index.html.twig');
     }
 
     /**
@@ -52,7 +50,7 @@ class TpController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="tp_show", methods={"GET"})
+     * @Route("/{id}", name="tp_show", methods={"GET"}, requirements={"id":"\d+"})
      */
     public function show(Tp $tp): Response
     {
@@ -111,5 +109,18 @@ class TpController extends AbstractController
         return $tpRepository->findBy([
             'specialisation' => $specialisation,
         ]);
+    }
+
+    /**
+     * @Get(
+     *     path = "/list",
+     *     name="tps_list",
+     * )
+     * @Rest\View(serializerGroups={"tp"})
+
+     */
+    public function getTps(TpRepository $tpRepository)
+    {
+        return $tpRepository->findAll();
     }
 }

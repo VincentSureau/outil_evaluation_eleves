@@ -1,35 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tp index{% endblock %}
+{% block title %}Liste des TP{% endblock %}
 
 {% block body %}
-    <h1>Tp index</h1>
+    <h1>Liste des TP</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for tp in tps %}
-            <tr>
-                <td>{{ tp.id }}</td>
-                <td>{{ tp.name }}</td>
-                <td>
-                    <a href="{{ path('tp_show', {'id': tp.id}) }}">show</a>
-                    <a href="{{ path('tp_edit', {'id': tp.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {{ include('/partials/__tplist.html.twig') }}
 
     <a href="{{ path('tp_new') }}">Create new</a>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        var listUrl = '{{ path('tps_list')|escape('js') }}';        
+    </script>
+    <script type="text/javascript" src="{{ asset("js/tpDatatable.js") }}"></script>
 {% endblock %}

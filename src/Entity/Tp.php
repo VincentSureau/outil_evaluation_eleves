@@ -20,6 +20,7 @@ class Tp
      * @ORM\Column(type="integer")
      * 
      * @Serializer\Expose()
+     * @Serializer\Groups({"tp"})
      */
     private $id;
 
@@ -27,6 +28,7 @@ class Tp
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
+     * @Serializer\Groups({"tp"})
      */
     private $name;
 
@@ -42,6 +44,9 @@ class Tp
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Specialisation", inversedBy="tps")
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"tp"})
      */
     private $specialisation;
 

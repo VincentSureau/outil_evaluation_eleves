@@ -10,6 +10,8 @@ use JMS\Serializer\Annotation AS Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SpecialisationRepository")
+ * 
+ * @Serializer\ExclusionPolicy("all")
  */
 class Specialisation
 {
@@ -17,6 +19,9 @@ class Specialisation
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * 
+     * @Serializer\Expose()
+     * @Serializer\Groups({"tp"})
      */
     private $id;
 
@@ -39,7 +44,7 @@ class Specialisation
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
-     * @Serializer\Groups({"student"})
+     * @Serializer\Groups({"student", "tp"})
      */
     private $name;
 
