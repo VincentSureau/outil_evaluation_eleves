@@ -17,7 +17,7 @@ class StudentsType extends AbstractType
                 'label' => 'Selectionner votre fichier'
             ])
             ->add('sheet', TextType::class, [
-                'label' => 'Entrez le nom de la feuille'
+                'label' => 'Entrez le nom de l\'onglet (doit correspondre au nom de la bordée)'
             ])
         ;
     }

@@ -14,6 +14,12 @@
                 { data:'cirfa.city'},
                 { data:'bordee.name'},
                 { data:'referent.name'},
+                {
+                    data: 'id',
+                    sortable: false,
+                    render: function(data){
+                        return '<a href="/student/'+ data +'">évaluer</a>'
+                }}
             ],
         });
 
