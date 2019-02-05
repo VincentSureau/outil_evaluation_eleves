@@ -2,14 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\Tp;
+use App\Entity\Srm;
+use App\Entity\Cirfa;
 use App\Entity\Bordee;
 use App\Entity\School;
 use App\Entity\Student;
 use App\Entity\Referent;
 use App\Form\StudentType;
 use App\Form\StudentsType;
+use App\Form\TpChoiceType;
+use App\Service\Excel2Table;
 use App\Entity\Specialisation;
 use App\Repository\StudentRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\SpecialisationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -17,10 +23,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Service\Excel2Table;
-use App\Entity\Srm;
-use App\Entity\Cirfa;
-use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @Route("/student")
@@ -192,6 +194,71 @@ class StudentController extends AbstractController
     {
         return $this->render('student/show.html.twig', [
             'student' => $student,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/tp", name="student_tp_list", methods={"GET","POST"}, requirements={"id":"\d+"})
+     */
+    public function showTp(Student $student, Request $request): Response
+    {
+        $form = $this->createForm(TpChoiceType::class, $student);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if(isset($request->request->get('tp_choice')['tp'])){
+                $tpId = $request->request->get('tp_choice')['tp'];
+                $review = $student->getReview();
+
+                $tp = $this->getDoctrine()->getRepository(Tp::class)->find($tpId);
+
+                $review->addTp($tp);
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+
+                return $this->redirectToRoute('student_tp_evaluate', [
+                    'id' => $student->getId(),
+                    'tpId' => $tpId,
+                ]);
+            }
+        }
+
+        return $this->render('student/tpchoice.html.twig', [
+            'student' => $student,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/tp/{tpId}", name="student_tp_evaluate", methods={"GET","POST"}, requirements={"id":"\d+", "tpId":"\d+"})
+     */
+    public function evaluateTp(Student $student, Tp $tp, Request $request): Response
+    {
+        $form = $this->createForm(TpEvaluationType::class, $student, ['tp' => $tp]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if(isset($request->request->get('tp_choice')['tp'])){
+                $tpId = $request->request->get('tp_choice')['tp'];
+                $review = $student->getReview();
+
+                $tp = $this->getDoctrine()->getRepository(Tp::class)->find($tpId);
+
+                $review->addTp($tp);
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+
+                dd($review);
+
+                return $this->redirectToRoute('student_index', [
+                    'id' => $student->getId(),
+                ]);
+            }
+        }
+
+        return $this->render('student/tpchoice.html.twig', [
+            'student' => $student,
+            'form' => $form->createView(),
         ]);
     }
 

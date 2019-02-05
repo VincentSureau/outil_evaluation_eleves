@@ -28,6 +28,11 @@ class Review
      */
     private $report;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $notes = [];
+
     public function __construct()
     {
         $this->tp = new ArrayCollection();
@@ -72,6 +77,18 @@ class Review
     public function setReport(?string $report): self
     {
         $this->report = $report;
+
+        return $this;
+    }
+
+    public function getNotes(): ?array
+    {
+        return $this->notes;
+    }
+
+    public function setNotes(array $notes): self
+    {
+        $this->notes = $notes;
 
         return $this;
     }

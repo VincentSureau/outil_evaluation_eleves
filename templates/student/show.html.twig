@@ -38,7 +38,7 @@
                 <h5 class="card-title">Evaluer</h5>
                 <p class="card-text">Choisir un TP et évaluer l'élève</p>
                 <p class="card-text text-right">
-                    <a href="{{ path('student_index') }}" class="btn btn-lg btn-primary">Choisir</a>
+                    <a href="{{ path('student_tp_list', {"id": student.id}) }}" class="btn btn-lg btn-primary">Choisir</a>
                 </p>
                 
             </div>
@@ -63,7 +63,7 @@
                 <h5 class="card-title">Voir le dossier de l'élève</h5>
                 <p class="card-text">Générer le cachier d'évaluation de l'élève</p>
                 <p class="card-text text-right">
-                    <a href="{{ path('student_index') }}" class="btn btn-lg btn-warning">Choisir</a>
+                    <a href="{{ path('student_tp_list', {"id": student.id}) }}" class="btn btn-lg btn-warning">Choisir</a>
                 </p>
                 
             </div>

@@ -32,16 +32,20 @@ easy_admin:
             form:
                 title: 'Eleve'
                 fields:
+                    - {type: tab, label: 'Informations générales'}
                     - {property: gender, label: 'Civilité'}
                     - {property: lastname, label: 'Nom'}
                     - {property: firstname, label: 'Prénom'}
                     - {property: birthdate, type: 'birthday', label: 'Date de naissance', type_options: { format: 'dd-MM-yyyy'}}
                     - {property: birthplace, label: 'Lieu de naissance'}
                     - {property: city, label: 'Ville'}
+                    - {type: tab, label: 'Formation'}
+                    - {property: specialisation, label: 'Spécialisation'}
                     - {property: school, label: 'Lycée'}
                     - {property: cirfa, label: 'CIRFA'}
                     - {property: srm, label: 'SRM'}
                     - {property: bordee, label: 'Bordée'}
+                    - {property: referent, label: 'Prof. Principal'}
             edit:
                 title: 'Modifier un elève'
             new:
@@ -188,8 +192,8 @@ easy_admin:
                     - {property: competence, label: 'Compétences'}
                     - {type: 'tab', label: 'Travaux pratiques'}
                     - {property: tps, label: 'Travaux pratiques'}
-                    - {type: 'tab', label: 'Eleves'}
-                    - {property: students, label: 'Eleves'}
+                    # - {type: 'tab', label: 'Eleves'}
+                    # - {property: students, label: 'Eleves'}
             edit:
                 title: 'Modifier une spécialisation'
             new:
