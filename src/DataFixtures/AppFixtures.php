@@ -11,7 +11,7 @@ use App\Entity\Bordee;
 use App\Entity\School;
 use App\Entity\Student;
 use App\Entity\Referent;
-use App\Entity\Competence;
+use App\Entity\Task;
 use App\Entity\Specialisation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -105,17 +105,17 @@ class AppFixtures extends Fixture
             $manager->persist($specialisation);
             $specialisations[] = $specialisation;
 
-            $competences = [];
+            $tasks = [];
             for($j = 1; $j <= 15; $j++){
                 
-                $competence = new Competence;
-                $competence->setReference('C' . $j)
+                $task = new Task;
+                $task->setReference('C' . $j)
                             ->setName($faker->catchPhrase)
                             ->setSpecialisation($specialisation)
                             ;
                 
-                $manager->persist($competence);
-                $competences[] = $competence;
+                $manager->persist($task);
+                $tasks[] = $task;
             }
 
             for($j = 1; $j <= 6; $j++)
@@ -123,9 +123,9 @@ class AppFixtures extends Fixture
                 $tp = new Tp;
                 $tp->setName($faker->word)
                     ->setSpecialisation($specialisation);
-                $cps = array_rand($competences, mt_rand(6, 12));
+                $cps = array_rand($tasks, mt_rand(6, 12));
                 foreach($cps as $cp){
-                    $tp->addCompetence($competences[$cp]);
+                    $tp->addTask($tasks[$cp]);
                 }
                 $manager->persist($tp);
             }

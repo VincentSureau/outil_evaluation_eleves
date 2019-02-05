@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Competence;
+use App\Entity\Task;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CompetenceType extends AbstractType
+class TaskType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -22,7 +22,7 @@ class CompetenceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Competence::class,
+            'data_class' => Task::class,
         ]);
     }
 }

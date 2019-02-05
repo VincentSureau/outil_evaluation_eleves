@@ -5,12 +5,9 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation AS Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompetenceRepository")
- * 
- * @Serializer\ExclusionPolicy("all")
  */
 class Competence
 {
@@ -18,38 +15,27 @@ class Competence
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * 
-     * @Serializer\Expose()
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
-     * @Serializer\Expose()
      */
     private $reference;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
-     * @Serializer\Expose()
      */
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tp", mappedBy="competence")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Task", inversedBy="competences")
      */
-    private $tps;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Specialisation", inversedBy="competence")
-     */
-    private $specialisation;
+    private $tasks;
 
     public function __construct()
     {
-        $this->tps = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -82,47 +68,28 @@ class Competence
     }
 
     /**
-     * @return Collection|Tp[]
+     * @return Collection|Task[]
      */
-    public function getTps(): Collection
+    public function getTasks(): Collection
     {
-        return $this->tps;
+        return $this->tasks;
     }
 
-    public function addTp(Tp $tp): self
+    public function addTask(Task $task): self
     {
-        if (!$this->tps->contains($tp)) {
-            $this->tps[] = $tp;
-            $tp->addCompetence($this);
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
         }
 
         return $this;
     }
 
-    public function removeTp(Tp $tp): self
+    public function removeTask(Task $task): self
     {
-        if ($this->tps->contains($tp)) {
-            $this->tps->removeElement($tp);
-            $tp->removeCompetence($this);
+        if ($this->tasks->contains($task)) {
+            $this->tasks->removeElement($task);
         }
 
         return $this;
-    }
-
-    public function getSpecialisation(): ?Specialisation
-    {
-        return $this->specialisation;
-    }
-
-    public function setSpecialisation(?Specialisation $specialisation): self
-    {
-        $this->specialisation = $specialisation;
-
-        return $this;
-    }
-
-    public function __toString(): string
-    {
-        return $this->reference . ' - ' . $this->name;
     }
 }

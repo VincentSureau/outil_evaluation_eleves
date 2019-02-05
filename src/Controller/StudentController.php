@@ -230,7 +230,7 @@ class StudentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/tp/{tpId}", name="student_tp_evaluate", methods={"GET","POST"}, requirements={"id":"\d+", "tpId":"\d+"})
+     * @Route("/{id}/tp/{tp}", name="student_tp_evaluate", methods={"GET","POST"}, requirements={"id":"\d+", "tp":"\d+"})
      */
     public function evaluateTp(Student $student, Tp $tp, Request $request): Response
     {

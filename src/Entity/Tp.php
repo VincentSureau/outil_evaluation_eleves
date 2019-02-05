@@ -38,9 +38,9 @@ class Tp
     private $reviews;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Competence", inversedBy="tps")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Task", inversedBy="tps")
      */
-    private $competence;
+    private $task;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Specialisation", inversedBy="tps")
@@ -53,7 +53,7 @@ class Tp
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
-        $this->competence = new ArrayCollection();
+        $this->task = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -102,26 +102,26 @@ class Tp
     }
 
     /**
-     * @return Collection|Competence[]
+     * @return Collection|Task[]
      */
-    public function getCompetence(): Collection
+    public function getTask(): Collection
     {
-        return $this->competence;
+        return $this->task;
     }
 
-    public function addCompetence(Competence $competence): self
+    public function addTask(Task $task): self
     {
-        if (!$this->competence->contains($competence)) {
-            $this->competence[] = $competence;
+        if (!$this->task->contains($task)) {
+            $this->task[] = $task;
         }
 
         return $this;
     }
 
-    public function removeCompetence(Competence $competence): self
+    public function removeTask(Task $task): self
     {
-        if ($this->competence->contains($competence)) {
-            $this->competence->removeElement($competence);
+        if ($this->task->contains($task)) {
+            $this->task->removeElement($task);
         }
 
         return $this;

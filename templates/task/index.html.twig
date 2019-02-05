@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Competence index{% endblock %}
+{% block title %}task index{% endblock %}
 
 {% block body %}
-    <h1>Competence index</h1>
+    <h1>task index</h1>
 
     <table class="table">
         <thead>
@@ -15,14 +15,14 @@
             </tr>
         </thead>
         <tbody>
-        {% for competence in competences %}
+        {% for task in tasks %}
             <tr>
-                <td>{{ competence.id }}</td>
-                <td>{{ competence.reference }}</td>
-                <td>{{ competence.name }}</td>
+                <td>{{ task.id }}</td>
+                <td>{{ task.reference }}</td>
+                <td>{{ task.name }}</td>
                 <td>
-                    <a href="{{ path('competence_show', {'id': competence.id}) }}">show</a>
-                    <a href="{{ path('competence_edit', {'id': competence.id}) }}">edit</a>
+                    <a href="{{ path('task_show', {'id': task.id}) }}">show</a>
+                    <a href="{{ path('task_edit', {'id': task.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('competence_new') }}">Create new</a>
+    <a href="{{ path('task_new') }}">Create new</a>
 {% endblock %}

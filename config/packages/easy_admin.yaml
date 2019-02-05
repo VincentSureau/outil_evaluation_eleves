@@ -180,7 +180,7 @@ easy_admin:
                 max_results: 20
                 fields:
                     - {property: name, label: 'Intitulé'}
-                    - {property: competence, label: 'Compétences'}
+                    - {property: tache, label: 'Tâches'}
                     - {property: tps, label: 'Travaux pratiques'}
                     - {property: students, label: 'Eleves'}
             form:
@@ -188,8 +188,8 @@ easy_admin:
                 fields:
                     - {type: 'tab', label: 'Informations'}
                     - {property: name, label: 'Intitulé'}
-                    - {type: 'tab', label: 'Compétences'}
-                    - {property: competence, label: 'Compétences'}
+                    - {type: 'tab', label: 'Tâches'}
+                    - {property: tache, label: 'Tâches'}
                     - {type: 'tab', label: 'Travaux pratiques'}
                     - {property: tps, label: 'Travaux pratiques'}
                     # - {type: 'tab', label: 'Eleves'}
@@ -212,37 +212,37 @@ easy_admin:
                 fields:
                     - {property: name, label: 'Intitulé'}
                     - {property: specialisation, label: 'Spécialisation'}
-                    - {property: competence, label: 'Compétences'}
+                    - {property: tache, label: 'Tâches'}
             form:
                 title: 'TP'
                 fields:
                     - {type: 'tab', label: 'Informations'}
                     - {property: name, label: 'Intitulé'}
                     - {property: specialisation, label: 'Spécialisation'}
-                    - {type: 'tab', label: 'Compétences'}
-                    - {property: competence, label: 'Compétences'}
+                    - {type: 'tab', label: 'Tâches'}
+                    - {property: tache, label: 'Tâches'}
             edit:
                 title: 'Modifier un TP'
             new:
                 title: 'Créer un TP'
-        Competence:
-            class: App\Entity\Competence
-            label: 'Compétences'
+        Task:
+            class: App\Entity\Task
+            label: 'Tâches'
             list:
-                title: 'Liste des compétences'
+                title: 'Liste des Tâches'
                 fields:
                     - {property: reference, label: 'Référence'}
                     - {property: name, label: 'Intitulé'}
                     - {property: specialisation, label: 'Spécialisation'}
             show:
-                title: 'Compétences'
+                title: 'Tâches'
                 fields:
                     - {property: reference, label: 'Référence'}
                     - {property: name, label: 'Intitulé'}
                     - {property: specialisation, label: 'Spécialisation'}
                     - {property: tps, label: 'Travaux pratiques'}
             form:
-                title: 'Compétences'
+                title: 'Tâches'
                 fields:
                     - {type: 'tab', label: 'Informations'}
                     - {property: reference, label: 'Référence'}
@@ -251,9 +251,9 @@ easy_admin:
                     - {type: 'tab', label: 'Travaux pratiques'}
                     - {property: tps, label: 'Travaux pratiques'}
             edit:
-                title: 'Modifier une compétences'
+                title: 'Modifier une Tâches'
             new:
-                title: 'Créer une compétences'
+                title: 'Créer une Tâches'
         Utilisateur:
             class: App\Entity\User
             label: 'Utilisateurs'
@@ -326,7 +326,7 @@ easy_admin:
             - {entity: CIRFA, icon: home}
             - {entity: SRM, icon: building-o}
             - {entity: Bordee}
-            - {entity: Competence, icon: puzzle-piece}
+            - {entity: Task, icon: puzzle-piece}
             - {entity: TP, icon: briefcase}
             - {entity: Specialisation, icon: book}
             - {entity: Utilisateur, icon: users}
