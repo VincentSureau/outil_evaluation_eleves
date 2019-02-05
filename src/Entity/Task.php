@@ -38,12 +38,12 @@ class Task
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tp", mappedBy="Task")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tp", mappedBy="task")
      */
     private $tps;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Specialisation", inversedBy="Task")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Specialisation", inversedBy="task")
      */
     private $specialisation;
 
