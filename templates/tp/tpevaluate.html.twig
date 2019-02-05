@@ -11,24 +11,24 @@
         <table class="table table-striped table-bordered">
             <thead class="text-center">
                 <tr>
-                    <th colspan="4">Intitulé du TP: {{ tp.name }}</th>
-                    <th>A</th>
-                    <th>A</th>
-                    <th>AP</th>
-                    <th>NA</th>
-                    <th>NO</th>
-                    <th colspan="3">Niveau d'autonomie</th>
+                    <th colspan="4" class="align-middle">Intitulé du TP: {{ tp.name }}</th>
+                    <th class="align-middle">A</th>
+                    <th class="align-middle">A</th>
+                    <th class="align-middle">AP</th>
+                    <th class="align-middle">NA</th>
+                    <th class="align-middle">NO</th>
+                    <th colspan="3" class="align-middle">Niveau d'autonomie</th>
                 </tr>
                 <tr>
-                    <th colspan="4">A: Acquis - AP: Acquis partiellement - NA: non acquis - NO: non observé</th>
-                    <th>Très bien</th>
-                    <th>Satisfaisant</th>
-                    <th>Insuffisant</th>
-                    <th>Très insuffisant</th>
-                    <th>Non mis en oeuvre</th>
-                    <th>Autonomie complète</th>
-                    <th>Aide partielle</th>
-                    <th>Aide totale</th>
+                    <th colspan="4" class="align-middle">A: Acquis - AP: Acquis partiellement - NA: non acquis - NO: non observé</th>
+                    <th class="align-middle">Très bien</th>
+                    <th class="align-middle">Satisfaisant</th>
+                    <th class="align-middle">Insuffisant</th>
+                    <th class="align-middle">Très insuffisant</th>
+                    <th class="align-middle">Non mis en oeuvre</th>
+                    <th class="align-middle">Autonomie complète</th>
+                    <th class="align-middle">Aide partielle</th>
+                    <th class="align-middle">Aide totale</th>
                 </tr>
             </thead>
         
@@ -39,19 +39,19 @@
                         <tr>
                         
                             {% if loop.first %}
-                                <th rowspan="{{ task.competences|length }}">{{ task.reference }}</th>
-                                <th rowspan="{{ task.competences|length }}">{{ task.name }}</th>
+                                <th class="text-center align-middle" rowspan="{{ task.competences|length }}">{{ task.reference }}</th>
+                                <th class="align-middle" rowspan="{{ task.competences|length }}">{{ task.name }}</th>
                             {% endif %}
-                            <th>{{ competence.reference }}</th>
-                            <th>{{ competence.name }}</th>
-                            <td class="text-center"><input type="radio" name="{{task.reference}}-note" id=""></td>
-                            <td class="text-center"><input type="radio" name="{{task.reference}}-note" id=""></td>
-                            <td class="text-center"><input type="radio" name="{{task.reference}}-note" id=""></td>
-                            <td class="text-center"><input type="radio" name="{{task.reference}}-note" id=""></td>
-                            <td class="text-center"><input type="radio" name="{{task.reference}}-note" id=""></td>
-                            <td class="text-center"><input type="radio" name="{{task.reference}}-autonomie" id=""></td>
-                            <td class="text-center"><input type="radio" name="{{task.reference}}-autonomie" id=""></td>
-                            <td class="text-center"><input type="radio" name="{{task.reference}}-autonomie" id=""></td>
+                            <th class="text-center align-middle">{{ competence.reference }}</th>
+                            <th class="align-middle">{{ competence.name }}</th>
+                            <td class="text-center align-middle"><input type="radio" name="{{task.reference}}-note" id=""></td>
+                            <td class="text-center align-middle"><input type="radio" name="{{task.reference}}-note" id=""></td>
+                            <td class="text-center align-middle"><input type="radio" name="{{task.reference}}-note" id=""></td>
+                            <td class="text-center align-middle"><input type="radio" name="{{task.reference}}-note" id=""></td>
+                            <td class="text-center align-middle"><input type="radio" name="{{task.reference}}-note" id=""></td>
+                            <td class="text-center align-middle"><input type="radio" name="{{task.reference}}-autonomie" id=""></td>
+                            <td class="text-center align-middle"><input type="radio" name="{{task.reference}}-autonomie" id=""></td>
+                            <td class="text-center align-middle"><input type="radio" name="{{task.reference}}-autonomie" id=""></td>
                         </tr>
 
                     {% endfor %}
