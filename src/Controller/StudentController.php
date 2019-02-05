@@ -14,6 +14,7 @@ use App\Form\StudentsType;
 use App\Form\TpChoiceType;
 use App\Service\Excel2Table;
 use App\Entity\Specialisation;
+use App\Form\TpEvaluationType;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\SpecialisationRepository;
@@ -218,7 +219,7 @@ class StudentController extends AbstractController
 
                 return $this->redirectToRoute('student_tp_evaluate', [
                     'id' => $student->getId(),
-                    'tpId' => $tpId,
+                    'tp' => $tpId,
                 ]);
             }
         }
@@ -234,31 +235,10 @@ class StudentController extends AbstractController
      */
     public function evaluateTp(Student $student, Tp $tp, Request $request): Response
     {
-        $form = $this->createForm(TpEvaluationType::class, $student, ['tp' => $tp]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            if(isset($request->request->get('tp_choice')['tp'])){
-                $tpId = $request->request->get('tp_choice')['tp'];
-                $review = $student->getReview();
-
-                $tp = $this->getDoctrine()->getRepository(Tp::class)->find($tpId);
-
-                $review->addTp($tp);
-                $em = $this->getDoctrine()->getManager();
-                $em->flush();
-
-                dd($review);
-
-                return $this->redirectToRoute('student_index', [
-                    'id' => $student->getId(),
-                ]);
-            }
-        }
-
-        return $this->render('student/tpchoice.html.twig', [
+        return $this->render('tp/tpevaluate.html.twig', [
             'student' => $student,
-            'form' => $form->createView(),
+            'tp' => $tp,
+            // 'form' => $form->createView(),
         ]);
     }
 

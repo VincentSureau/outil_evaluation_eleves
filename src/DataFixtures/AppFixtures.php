@@ -16,6 +16,7 @@ use App\Entity\Specialisation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Entity\Competence;
 
 class AppFixtures extends Fixture
 {
@@ -109,14 +110,29 @@ class AppFixtures extends Fixture
             for($j = 1; $j <= 15; $j++){
                 
                 $task = new Task;
-                $task->setReference('C' . $j)
+                $task->setReference('A' . $j)
                             ->setName($faker->catchPhrase)
                             ->setSpecialisation($specialisation)
                             ;
                 
                 $manager->persist($task);
                 $tasks[] = $task;
+
+                for($k = 1; $k <= mt_rand(2,4); $k++){
+                
+                    $competence = new Competence;
+                    $competence->setReference('C' . $k)
+                                ->setName($faker->catchPhrase)
+                                ->addTask($task)
+                                ;
+                    $manager->persist($competence);
+                    $competences[] = $competence;
+    
+                }
+
             }
+
+
 
             for($j = 1; $j <= 6; $j++)
             {
