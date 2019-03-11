@@ -28,29 +28,6 @@ class SchoolController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="school_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $school = new School();
-        $form = $this->createForm(SchoolType::class, $school);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($school);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('school_index');
-        }
-
-        return $this->render('school/new.html.twig', [
-            'school' => $school,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="school_show", methods={"GET"}, requirements={"id":"\d+"})
      */
     public function show(School $school): Response
@@ -58,42 +35,6 @@ class SchoolController extends AbstractController
         return $this->render('school/show.html.twig', [
             'school' => $school,
         ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="school_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, School $school): Response
-    {
-        $form = $this->createForm(SchoolType::class, $school);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('school_index', [
-                'id' => $school->getId(),
-            ]);
-        }
-
-        return $this->render('school/edit.html.twig', [
-            'school' => $school,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="school_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, School $school): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$school->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($school);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('school_index');
     }
 
     /**

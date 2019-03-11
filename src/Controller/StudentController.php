@@ -48,29 +48,6 @@ class StudentController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="student_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $student = new Student();
-        $form = $this->createForm(StudentType::class, $student);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($student);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('student_index');
-        }
-
-        return $this->render('student/new.html.twig', [
-            'student' => $student,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/add", name="students_add", methods={"GET","POST"})
      */
     public function add(Request $request, Excel2Table $excelConverter, EntityManagerInterface $entityManager): Response
@@ -243,43 +220,6 @@ class StudentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="student_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Student $student): Response
-    {
-        $form = $this->createForm(StudentType::class, $student);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('student_index', [
-                'id' => $student->getId(),
-            ]);
-        }
-
-        return $this->render('student/edit.html.twig', [
-            'student' => $student,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="student_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, Student $student): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$student->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($student);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('student_index');
-    }
-
-
-    /**
      * @Get(
      *     path = "/list",
      *     name="students_list",
@@ -316,6 +256,7 @@ class StudentController extends AbstractController
             'school' => $school
         ]);
     }
+    
     /**
      * @Get(
      *     path = "/specialisation/{id}",

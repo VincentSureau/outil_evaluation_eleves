@@ -26,29 +26,6 @@ class SpecialisationController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="specialisation_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $specialisation = new Specialisation();
-        $form = $this->createForm(SpecialisationType::class, $specialisation);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($specialisation);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('specialisation_index');
-        }
-
-        return $this->render('specialisation/new.html.twig', [
-            'specialisation' => $specialisation,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="specialisation_show", methods={"GET"})
      */
     public function show(Specialisation $specialisation): Response
@@ -56,41 +33,5 @@ class SpecialisationController extends AbstractController
         return $this->render('specialisation/show.html.twig', [
             'specialisation' => $specialisation,
         ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="specialisation_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Specialisation $specialisation): Response
-    {
-        $form = $this->createForm(SpecialisationType::class, $specialisation);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('specialisation_index', [
-                'id' => $specialisation->getId(),
-            ]);
-        }
-
-        return $this->render('specialisation/edit.html.twig', [
-            'specialisation' => $specialisation,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="specialisation_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, Specialisation $specialisation): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$specialisation->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($specialisation);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('specialisation_index');
     }
 }
