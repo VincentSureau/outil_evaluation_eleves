@@ -44,14 +44,14 @@
                             {% endif %}
                             <th class="text-center align-middle">{{ competence.reference }}</th>
                             <th class="align-middle">{{ competence.name }}</th>
-                            <td class="text-center align-middle"><input type="radio" name="{{competence.reference}}-note" id=""></td>
-                            <td class="text-center align-middle"><input type="radio" name="{{competence.reference}}-note" id=""></td>
-                            <td class="text-center align-middle"><input type="radio" name="{{competence.reference}}-note" id=""></td>
-                            <td class="text-center align-middle"><input type="radio" name="{{competence.reference}}-note" id=""></td>
-                            <td class="text-center align-middle"><input type="radio" name="{{competence.reference}}-note" id=""></td>
-                            <td class="text-center align-middle"><input type="radio" name="{{competence.reference}}-autonomie" id=""></td>
-                            <td class="text-center align-middle"><input type="radio" name="{{competence.reference}}-autonomie" id=""></td>
-                            <td class="text-center align-middle"><input type="radio" name="{{competence.reference}}-autonomie" id=""></td>
+                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-note" id=""></td>
+                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-note" id=""></td>
+                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-note" id=""></td>
+                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-note" id=""></td>
+                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-note" id=""></td>
+                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-autonomie" id=""></td>
+                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-autonomie" id=""></td>
+                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-autonomie" id=""></td>
                         </tr>
 
                     {% endfor %}
@@ -65,4 +65,8 @@
 
         <button type="submit" class="btn btn-lg btn-primary">Envoyer</button>
     </form>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/clickable.js') }}"></script>
 {% endblock %}
