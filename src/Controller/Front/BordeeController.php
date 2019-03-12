@@ -21,7 +21,7 @@ class BordeeController extends AbstractController
      */
     public function index(BordeeRepository $bordeeRepository, ReferentRepository $referentRepository): Response
     {
-        return $this->render('bordee/index.html.twig', [
+        return $this->render('front/bordee/index.html.twig', [
             'bordees' => $bordeeRepository->findAll(),
             'referents' => $referentRepository->findAll()
         ]);
@@ -33,7 +33,7 @@ class BordeeController extends AbstractController
      */
     public function show(Bordee $bordee): Response
     {
-        return $this->render('bordee/show.html.twig', [
+        return $this->render('front/bordee/show.html.twig', [
             'bordee' => $bordee,
         ]);
     }

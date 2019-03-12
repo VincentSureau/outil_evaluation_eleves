@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Edit Referent</h1>
 
-    {{ include('referent/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('front/referent/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('referent_index') }}">back to list</a>
 
-    {{ include('referent/_delete_form.html.twig') }}
+    {{ include('front/referent/_delete_form.html.twig') }}
 {% endblock %}

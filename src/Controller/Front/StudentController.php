@@ -44,7 +44,7 @@ class StudentController extends AbstractController
         if($referent){
             $params['referent'] = $referent;
         }
-        return $this->render('student/index.html.twig', ['referent' => $referent, 'bordee' => $bordee, 'params' => $params]);
+        return $this->render('front/student/index.html.twig', ['referent' => $referent, 'bordee' => $bordee, 'params' => $params]);
     }
 
     /**
@@ -160,7 +160,7 @@ class StudentController extends AbstractController
             return $this->redirectToRoute('students_add');
         }
 
-        return $this->render('student/new.html.twig', [
+        return $this->render('front/student/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -170,7 +170,7 @@ class StudentController extends AbstractController
      */
     public function show(Student $student): Response
     {
-        return $this->render('student/show.html.twig', [
+        return $this->render('front/student/show.html.twig', [
             'student' => $student,
         ]);
     }
@@ -201,7 +201,7 @@ class StudentController extends AbstractController
             }
         }
 
-        return $this->render('student/tpchoice.html.twig', [
+        return $this->render('front/student/tpchoice.html.twig', [
             'student' => $student,
             'form' => $form->createView(),
         ]);
@@ -212,7 +212,7 @@ class StudentController extends AbstractController
      */
     public function evaluateTp(Student $student, Tp $tp, Request $request): Response
     {
-        return $this->render('tp/tpevaluate.html.twig', [
+        return $this->render('front/tp/tpevaluate.html.twig', [
             'student' => $student,
             'tp' => $tp,
             // 'form' => $form->createView(),

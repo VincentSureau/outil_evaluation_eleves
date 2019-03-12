@@ -24,7 +24,7 @@ class ReferentController extends AbstractController
      */
     public function index(ReferentRepository $referentRepository): Response
     {
-        return $this->render('referent/index.html.twig', [
+        return $this->render('front/referent/index.html.twig', [
             'referents' => $referentRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class ReferentController extends AbstractController
      */
     public function show(Referent $referent): Response
     {
-        return $this->render('referent/show.html.twig', [
+        return $this->render('front/referent/show.html.twig', [
             'referent' => $referent,
         ]);
     }

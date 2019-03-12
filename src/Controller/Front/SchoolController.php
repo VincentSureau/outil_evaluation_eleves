@@ -22,7 +22,7 @@ class SchoolController extends AbstractController
      */
     public function index(SchoolRepository $schoolRepository): Response
     {
-        return $this->render('school/index.html.twig', [
+        return $this->render('front/school/index.html.twig', [
             'schools' => $schoolRepository->findAll(),
         ]);
     }
@@ -32,7 +32,7 @@ class SchoolController extends AbstractController
      */
     public function show(School $school): Response
     {
-        return $this->render('school/show.html.twig', [
+        return $this->render('front/school/show.html.twig', [
             'school' => $school,
         ]);
     }

@@ -20,7 +20,7 @@ class SrmController extends AbstractController
      */
     public function index(SrmRepository $srmRepository): Response
     {
-        return $this->render('srm/index.html.twig', [
+        return $this->render('front/srm/index.html.twig', [
             'srms' => $srmRepository->findAll(),
         ]);
     }
@@ -30,7 +30,7 @@ class SrmController extends AbstractController
      */
     public function show(Srm $srm): Response
     {
-        return $this->render('srm/show.html.twig', [
+        return $this->render('front/srm/show.html.twig', [
             'srm' => $srm,
         ]);
     }

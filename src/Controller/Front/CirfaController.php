@@ -20,7 +20,7 @@ class CirfaController extends AbstractController
      */
     public function index(CirfaRepository $cirfaRepository): Response
     {
-        return $this->render('cirfa/index.html.twig', [
+        return $this->render('front/cirfa/index.html.twig', [
             'cirfas' => $cirfaRepository->findAll(),
         ]);
     }
@@ -30,7 +30,7 @@ class CirfaController extends AbstractController
      */
     public function show(Cirfa $cirfa): Response
     {
-        return $this->render('cirfa/show.html.twig', [
+        return $this->render('front/cirfa/show.html.twig', [
             'cirfa' => $cirfa,
         ]);
     }

@@ -23,7 +23,7 @@ class TpController extends AbstractController
      */
     public function index(TpRepository $tpRepository): Response
     {
-        return $this->render('tp/index.html.twig');
+        return $this->render('front/tp/index.html.twig');
     }
 
     /**
@@ -43,7 +43,7 @@ class TpController extends AbstractController
             return $this->redirectToRoute('tp_index');
         }
 
-        return $this->render('tp/new.html.twig', [
+        return $this->render('front/tp/new.html.twig', [
             'tp' => $tp,
             'form' => $form->createView(),
         ]);
@@ -54,7 +54,7 @@ class TpController extends AbstractController
      */
     public function show(Tp $tp): Response
     {
-        return $this->render('tp/show.html.twig', [
+        return $this->render('front/tp/show.html.twig', [
             'tp' => $tp,
         ]);
     }
@@ -75,7 +75,7 @@ class TpController extends AbstractController
             ]);
         }
 
-        return $this->render('tp/edit.html.twig', [
+        return $this->render('front/tp/edit.html.twig', [
             'tp' => $tp,
             'form' => $form->createView(),
         ]);

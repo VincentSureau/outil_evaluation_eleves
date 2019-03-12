@@ -20,7 +20,7 @@ class SpecialisationController extends AbstractController
      */
     public function index(SpecialisationRepository $specialisationRepository): Response
     {
-        return $this->render('specialisation/index.html.twig', [
+        return $this->render('front/specialisation/index.html.twig', [
             'specialisations' => $specialisationRepository->findAll(),
         ]);
     }
@@ -30,7 +30,7 @@ class SpecialisationController extends AbstractController
      */
     public function show(Specialisation $specialisation): Response
     {
-        return $this->render('specialisation/show.html.twig', [
+        return $this->render('front/specialisation/show.html.twig', [
             'specialisation' => $specialisation,
         ]);
     }

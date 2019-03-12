@@ -23,7 +23,7 @@ class TaskController extends AbstractController
      */
     public function index(TaskRepository $taskRepository): Response
     {
-        return $this->render('task/index.html.twig', [
+        return $this->render('front/task/index.html.twig', [
             'tasks' => $taskRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class TaskController extends AbstractController
      */
     public function show(Task $task): Response
     {
-        return $this->render('task/show.html.twig', [
+        return $this->render('front/task/show.html.twig', [
             'task' => $task,
         ]);
     }
