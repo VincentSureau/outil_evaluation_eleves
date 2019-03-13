@@ -5,4 +5,5 @@ controllers:
 admin:
     resource: ../../src/Controller/Back/
     prefix: /admin
+    name_prefix: admin_
     type: annotation
