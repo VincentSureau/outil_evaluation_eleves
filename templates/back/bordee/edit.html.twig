@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Edit Bordee</h1>
 
-    {{ include('bordee/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('back/bordee/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('bordee_index') }}">back to list</a>
 
-    {{ include('bordee/_delete_form.html.twig') }}
+    {{ include('back/bordee/_delete_form.html.twig') }}
 {% endblock %}

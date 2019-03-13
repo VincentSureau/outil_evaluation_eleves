@@ -20,7 +20,7 @@ class BordeeController extends AbstractController
      */
     public function index(BordeeRepository $bordeeRepository): Response
     {
-        return $this->render('bordee/index.html.twig', [
+        return $this->render('back/bordee/index.html.twig', [
             'bordees' => $bordeeRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class BordeeController extends AbstractController
             return $this->redirectToRoute('bordee_index');
         }
 
-        return $this->render('bordee/new.html.twig', [
+        return $this->render('back/bordee/new.html.twig', [
             'bordee' => $bordee,
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class BordeeController extends AbstractController
      */
     public function show(Bordee $bordee): Response
     {
-        return $this->render('bordee/show.html.twig', [
+        return $this->render('back/bordee/show.html.twig', [
             'bordee' => $bordee,
         ]);
     }
@@ -74,7 +74,7 @@ class BordeeController extends AbstractController
             ]);
         }
 
-        return $this->render('bordee/edit.html.twig', [
+        return $this->render('back/bordee/edit.html.twig', [
             'bordee' => $bordee,
             'form' => $form->createView(),
         ]);
