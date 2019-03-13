@@ -8,14 +8,14 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Reference</th>
-                <th>Name</th>
+                <th {% if pagination.isSorted('id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Id', 'id') }}</th>
+                <th {% if pagination.isSorted('reference') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Référence', 'reference') }}</th>
+                <th {% if pagination.isSorted('name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nom', 'name') }}</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for task in tasks %}
+        {% for task in pagination %}
             <tr>
                 <td>{{ task.id }}</td>
                 <td>{{ task.reference }}</td>
@@ -33,5 +33,6 @@
         </tbody>
     </table>
 
+    {{ include('back/partials/_pagination.html.twig') }}
     <a href="{{ path('task_new') }}">Create new</a>
 {% endblock %}

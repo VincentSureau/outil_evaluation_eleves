@@ -8,15 +8,15 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>City</th>
-                <th>Number</th>
-                <th>Email</th>
+                <th {% if pagination.isSorted('id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Id', 'id') }}</th>
+                <th {% if pagination.isSorted('city') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Ville', 'city') }}</th>
+                <th {% if pagination.isSorted('number') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Numéro', 'number') }}</th>
+                <th {% if pagination.isSorted('email') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Email', 'email') }}</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for cirfa in cirfas %}
+        {% for cirfa in pagination %}
             <tr>
                 <td>{{ cirfa.id }}</td>
                 <td>{{ cirfa.city }}</td>
@@ -35,5 +35,6 @@
         </tbody>
     </table>
 
+    {{ include('back/partials/_pagination.html.twig') }}
     <a href="{{ path('cirfa_new') }}">Create new</a>
 {% endblock %}

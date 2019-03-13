@@ -8,16 +8,16 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Number</th>
-                <th>Email</th>
-                <th>Academy</th>
+                <th {% if pagination.isSorted('id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Id', 'id') }}</th>
+                <th {% if pagination.isSorted('name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nom', 'name') }}</th>
+                <th {% if pagination.isSorted('number') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Numéro', 'number') }}</th>
+                <th {% if pagination.isSorted('email') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Email', 'email') }}</th>
+                <th {% if pagination.isSorted('academy') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Académie', 'academy') }}</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for school in schools %}
+        {% for school in pagination %}
             <tr>
                 <td>{{ school.id }}</td>
                 <td>{{ school.name }}</td>
@@ -37,5 +37,6 @@
         </tbody>
     </table>
 
+    {{ include('back/partials/_pagination.html.twig') }}
     <a href="{{ path('school_new') }}">Create new</a>
 {% endblock %}

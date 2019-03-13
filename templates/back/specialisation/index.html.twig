@@ -8,13 +8,13 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th {% if pagination.isSorted('id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Id', 'id') }}</th>
+                <th {% if pagination.isSorted('name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nom', 'name') }}</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for specialisation in specialisations %}
+        {% for specialisation in pagination %}
             <tr>
                 <td>{{ specialisation.id }}</td>
                 <td>{{ specialisation.name }}</td>
@@ -31,5 +31,6 @@
         </tbody>
     </table>
 
+    {{ include('back/partials/_pagination.html.twig') }}
     <a href="{{ path('specialisation_new') }}">Create new</a>
 {% endblock %}
