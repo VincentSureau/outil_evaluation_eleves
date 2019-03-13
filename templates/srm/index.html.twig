@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Srm index{% endblock %}
+
+{% block body %}
+    <h1>Srm index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for srm in srms %}
+            <tr>
+                <td>{{ srm.id }}</td>
+                <td>{{ srm.name }}</td>
+                <td>{{ srm.email }}</td>
+                <td>
+                    <a href="{{ path('srm_show', {'id': srm.id}) }}">show</a>
+                    <a href="{{ path('srm_edit', {'id': srm.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('srm_new') }}">Create new</a>
+{% endblock %}

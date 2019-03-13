@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cirfa index{% endblock %}
+
+{% block body %}
+    <h1>Cirfa index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>City</th>
+                <th>Number</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cirfa in cirfas %}
+            <tr>
+                <td>{{ cirfa.id }}</td>
+                <td>{{ cirfa.city }}</td>
+                <td>{{ cirfa.number }}</td>
+                <td>{{ cirfa.email }}</td>
+                <td>
+                    <a href="{{ path('cirfa_show', {'id': cirfa.id}) }}">show</a>
+                    <a href="{{ path('cirfa_edit', {'id': cirfa.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('cirfa_new') }}">Create new</a>
+{% endblock %}
