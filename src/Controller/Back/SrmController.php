@@ -5,10 +5,11 @@ namespace App\Controller\Back;
 use App\Entity\Srm;
 use App\Form\Srm1Type;
 use App\Repository\SrmRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/srm")
@@ -18,10 +19,16 @@ class SrmController extends AbstractController
     /**
      * @Route("/", name="srm_index", methods={"GET"})
      */
-    public function index(SrmRepository $srmRepository): Response
+    public function index(SrmRepository $srmRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $query = $srmRepository->findAll();
+        $srms = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('back/srm/index.html.twig', [
-            'srms' => $srmRepository->findAll(),
+            'pagination' => $srms,
         ]);
     }
 

@@ -5,10 +5,11 @@ namespace App\Controller\Back;
 use App\Entity\School;
 use App\Form\School1Type;
 use App\Repository\SchoolRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/school")
@@ -18,10 +19,16 @@ class SchoolController extends AbstractController
     /**
      * @Route("/", name="school_index", methods={"GET"})
      */
-    public function index(SchoolRepository $schoolRepository): Response
+    public function index(SchoolRepository $schoolRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $query = $schoolRepository->findAll();
+        $schools = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('back/school/index.html.twig', [
-            'schools' => $schoolRepository->findAll(),
+            'pagination' => $schools,
         ]);
     }
 

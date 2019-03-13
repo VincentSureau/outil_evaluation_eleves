@@ -4,11 +4,12 @@ namespace App\Controller\Back;
 
 use App\Entity\Specialisation;
 use App\Form\Specialisation1Type;
+use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\SpecialisationRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/specialisation")
@@ -18,10 +19,16 @@ class SpecialisationController extends AbstractController
     /**
      * @Route("/", name="specialisation_index", methods={"GET"})
      */
-    public function index(SpecialisationRepository $specialisationRepository): Response
+    public function index(SpecialisationRepository $specialisationRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $query = $specialisationRepository->findAll();
+        $specialisations = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            5
+        );        
         return $this->render('back/specialisation/index.html.twig', [
-            'specialisations' => $specialisationRepository->findAll(),
+            'pagination' => $specialisations,
         ]);
     }
 

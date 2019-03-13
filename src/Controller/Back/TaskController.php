@@ -5,10 +5,11 @@ namespace App\Controller\Back;
 use App\Entity\Task;
 use App\Form\Task1Type;
 use App\Repository\TaskRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/task")
@@ -18,10 +19,16 @@ class TaskController extends AbstractController
     /**
      * @Route("/", name="task_index", methods={"GET"})
      */
-    public function index(TaskRepository $taskRepository): Response
+    public function index(TaskRepository $taskRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $query = $taskRepository->findAll();
+        $tasks = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('back/task/index.html.twig', [
-            'tasks' => $taskRepository->findAll(),
+            'pagination' => $tasks,
         ]);
     }
 

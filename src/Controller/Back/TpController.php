@@ -5,10 +5,11 @@ namespace App\Controller\Back;
 use App\Entity\Tp;
 use App\Form\Tp1Type;
 use App\Repository\TpRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/tp")
@@ -18,10 +19,16 @@ class TpController extends AbstractController
     /**
      * @Route("/", name="tp_index", methods={"GET"})
      */
-    public function index(TpRepository $tpRepository): Response
+    public function index(TpRepository $tpRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $query = $tpRepository->findAll();
+        $tps = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('back/tp/index.html.twig', [
-            'tps' => $tpRepository->findAll(),
+            'pagination' => $tps,
         ]);
     }
 

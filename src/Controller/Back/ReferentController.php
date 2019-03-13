@@ -5,10 +5,11 @@ namespace App\Controller\Back;
 use App\Entity\Referent;
 use App\Form\Referent1Type;
 use App\Repository\ReferentRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/referent")
@@ -18,10 +19,16 @@ class ReferentController extends AbstractController
     /**
      * @Route("/", name="referent_index", methods={"GET"})
      */
-    public function index(ReferentRepository $referentRepository): Response
+    public function index(ReferentRepository $referentRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $query = $referentRepository->findAll();
+        $referents = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('back/referent/index.html.twig', [
-            'referents' => $referentRepository->findAll(),
+            'pagination' => $referents,
         ]);
     }
 
