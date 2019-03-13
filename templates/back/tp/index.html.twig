@@ -19,8 +19,8 @@
                 <td>{{ tp.id }}</td>
                 <td>{{ tp.name }}</td>
                 <td>
-                    <a href="{{ path('tp_show', {'id': tp.id}) }}">show</a>
-                    <a href="{{ path('tp_edit', {'id': tp.id}) }}">edit</a>
+                    <a href="{{ path('admin_tp_show', {'id': tp.id}) }}">show</a>
+                    <a href="{{ path('admin_tp_edit', {'id': tp.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -32,5 +32,5 @@
     </table>
 
     {{ include('back/partials/_pagination.html.twig') }}
-    <a href="{{ path('tp_new') }}">Create new</a>
+    <a href="{{ path('admin_tp_new') }}">Create new</a>
 {% endblock %}

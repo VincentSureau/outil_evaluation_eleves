@@ -21,8 +21,8 @@
                 <td>{{ srm.name }}</td>
                 <td>{{ srm.email }}</td>
                 <td>
-                    <a href="{{ path('srm_show', {'id': srm.id}) }}">show</a>
-                    <a href="{{ path('srm_edit', {'id': srm.id}) }}">edit</a>
+                    <a href="{{ path('admin_srm_show', {'id': srm.id}) }}">show</a>
+                    <a href="{{ path('admin_srm_edit', {'id': srm.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -34,5 +34,5 @@
     </table>
 
     {{ include('back/partials/_pagination.html.twig') }}
-    <a href="{{ path('srm_new') }}">Create new</a>
+    <a href="{{ path('admin_srm_new') }}">Create new</a>
 {% endblock %}

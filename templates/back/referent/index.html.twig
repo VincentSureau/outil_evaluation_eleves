@@ -23,8 +23,8 @@
                 <td>{{ referent.lastname }}</td>
                 <td>{{ referent.gender }}</td>
                 <td>
-                    <a href="{{ path('referent_show', {'id': referent.id}) }}">show</a>
-                    <a href="{{ path('referent_edit', {'id': referent.id}) }}">edit</a>
+                    <a href="{{ path('admin_referent_show', {'id': referent.id}) }}">show</a>
+                    <a href="{{ path('admin_referent_edit', {'id': referent.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -36,5 +36,5 @@
     </table>
 
     {{ include('back/partials/_pagination.html.twig') }}
-    <a href="{{ path('referent_new') }}">Create new</a>
+    <a href="{{ path('admin_referent_new') }}">Create new</a>
 {% endblock %}

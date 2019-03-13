@@ -1,20 +1,113 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminHomeController!{% endblock %}
+{% block title %}Admin accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello! ✅</h1>
+    <h1>Bienvenue sur l'espace d'administration</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/outil-evaluation/src/Controller/Back/AdminHomeController.php'|file_link(0) }}">src/Controller/Back/AdminHomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/outil-evaluation/templates/back/admin_home/index.html.twig'|file_link(0) }}">templates/back/admin_home/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="card-columns m-5">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Rechercher par bordée / classe</h5>
+                <p class="card-text">Accéder à la liste des élèves par bordée et/ou classe</p>
+                <p class="card-text text-right">
+                    <a href="{{ path('admin_bordee_index') }}" class="btn btn-lg btn-primary">Choisir</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="card border-warning">
+            <div class="card-body">
+                <h5 class="card-title">Liste des centre d'information de recrutement forces armées</h5>
+                <p class="card-text">Accéder à la listes des CIRFA</p>
+                <p class="card-text text-right">
+                    <a href="{{ path('admin_cirfa_index') }}" class="btn btn-lg btn-warning">Choisir</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="card border-warning">
+            <div class="card-body">
+                <h5 class="card-title">Liste des professeurs principaux</h5>
+                <p class="card-text">Accéder à la listes des Professeurs principaux</p>
+                <p class="card-text text-right">
+                    <a href="{{ path('admin_referent_index') }}" class="btn btn-lg btn-warning">Choisir</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="card border-warning">
+            <div class="card-body">
+                <h5 class="card-title">Liste des lycées</h5>
+                <p class="card-text">Accéder à la listes des lycées</p>
+                <p class="card-text text-right">
+                    <a href="{{ path('admin_school_index') }}" class="btn btn-lg btn-warning">Choisir</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="card border-warning">
+            <div class="card-body">
+                <h5 class="card-title">Liste des spécialisations</h5>
+                <p class="card-text">Accéder à la listes des spécialisations</p>
+                <p class="card-text text-right">
+                    <a href="{{ path('admin_specialisation_index') }}" class="btn btn-lg btn-warning">Choisir</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="card border-warning">
+            <div class="card-body">
+                <h5 class="card-title">Liste des services de recrutement de la marine</h5>
+                <p class="card-text">Accéder à la listes des services de recrutement de la marine</p>
+                <p class="card-text text-right">
+                    <a href="{{ path('admin_srm_index') }}" class="btn btn-lg btn-warning">Choisir</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="card border-warning">
+            <div class="card-body">
+                <h5 class="card-title">Liste des étudiant</h5>
+                <p class="card-text">Accéder à la listes des étudiant</p>
+                <p class="card-text text-right">
+                    <a href="{{ path('admin_student_index') }}" class="btn btn-lg btn-warning">Choisir</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="card border-warning">
+            <div class="card-body">
+                <h5 class="card-title">Liste des tâches</h5>
+                <p class="card-text">Accéder à la listes des tâches</p>
+                <p class="card-text text-right">
+                    <a href="{{ path('admin_task_index') }}" class="btn btn-lg btn-warning">Choisir</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="card border-warning">
+            <div class="card-body">
+                <h5 class="card-title">Ajouter des élèves</h5>
+                <p class="card-text">Importer une bordée d'élève d'un fichier excel</p>
+                <p class="card-text text-right">
+                    <a href="{{ path('admin_students_add') }}" class="btn btn-lg btn-warning">Choisir</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="card border-warning">
+            <div class="card-body">
+                <h5 class="card-title">Administration</h5>
+                <p class="card-text">Accéder à l'interface d'aministration des tables</p>
+                <p class="card-text text-right">
+                    <a href="{{ path('easyadmin') }}" class="btn btn-lg btn-warning">Choisir</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
 {% endblock %}

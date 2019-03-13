@@ -19,8 +19,8 @@
                 <td>{{ specialisation.id }}</td>
                 <td>{{ specialisation.name }}</td>
                 <td>
-                    <a href="{{ path('specialisation_show', {'id': specialisation.id}) }}">show</a>
-                    <a href="{{ path('specialisation_edit', {'id': specialisation.id}) }}">edit</a>
+                    <a href="{{ path('admin_specialisation_show', {'id': specialisation.id}) }}">show</a>
+                    <a href="{{ path('admin_specialisation_edit', {'id': specialisation.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -32,5 +32,5 @@
     </table>
 
     {{ include('back/partials/_pagination.html.twig') }}
-    <a href="{{ path('specialisation_new') }}">Create new</a>
+    <a href="{{ path('admin_specialisation_new') }}">Create new</a>
 {% endblock %}

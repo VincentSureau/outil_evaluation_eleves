@@ -29,8 +29,8 @@
                 <td>{{ student.birthplace }}</td>
                 <td>{{ student.birthdate ? student.birthdate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('student_show', {'id': student.id}) }}">show</a>
-                    <a href="{{ path('student_edit', {'id': student.id}) }}">edit</a>
+                    <a href="{{ path('admin_student_show', {'id': student.id}) }}">show</a>
+                    <a href="{{ path('admin_student_edit', {'id': student.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -42,5 +42,5 @@
     </table>
 
     {{ include('back/partials/_pagination.html.twig') }}
-    <a href="{{ path('student_new') }}">Create new</a>
+    <a href="{{ path('admin_student_new') }}">Create new</a>
 {% endblock %}

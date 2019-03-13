@@ -23,8 +23,8 @@
                 <td>{{ cirfa.number }}</td>
                 <td>{{ cirfa.email }}</td>
                 <td>
-                    <a href="{{ path('cirfa_show', {'id': cirfa.id}) }}">show</a>
-                    <a href="{{ path('cirfa_edit', {'id': cirfa.id}) }}">edit</a>
+                    <a href="{{ path('admin_cirfa_show', {'id': cirfa.id}) }}">show</a>
+                    <a href="{{ path('admin_cirfa_edit', {'id': cirfa.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -36,5 +36,5 @@
     </table>
 
     {{ include('back/partials/_pagination.html.twig') }}
-    <a href="{{ path('cirfa_new') }}">Create new</a>
+    <a href="{{ path('admin_cirfa_new') }}">Create new</a>
 {% endblock %}

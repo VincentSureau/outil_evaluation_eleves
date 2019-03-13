@@ -18,8 +18,8 @@
                 <td>{{ bordee.id }}</td>
                 <td>{{ bordee.name }}</td>
                 <td>
-                    <a href="{{ path('bordee_show', {'id': bordee.id}) }}">show</a>
-                    <a href="{{ path('bordee_edit', {'id': bordee.id}) }}">edit</a>
+                    <a href="{{ path('admin_bordee_show', {'id': bordee.id}) }}">show</a>
+                    <a href="{{ path('admin_bordee_edit', {'id': bordee.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
     </table>
 
     {{ include('back/partials/_pagination.html.twig') }}
-    <a href="{{ path('bordee_new') }}">Create new</a>
+    <a href="{{ path('admin_bordee_new') }}">Create new</a>
 {% endblock %}
