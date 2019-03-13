@@ -8,18 +8,18 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>City</th>
-                <th>Lastname</th>
-                <th>Firstname</th>
-                <th>Gender</th>
-                <th>Birthplace</th>
-                <th>Birthdate</th>
+                <th {% if pagination.isSorted('id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Id', 'id') }}</th>
+                <th {% if pagination.isSorted('city') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Ville', 'city') }}</th>
+                <th {% if pagination.isSorted('lastname') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nom', 'lastname') }}</th>
+                <th {% if pagination.isSorted('firstname') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Prénom', 'firstname') }}</th>
+                <th {% if pagination.isSorted('gender') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Sexe', 'gender') }}</th>
+                <th {% if pagination.isSorted('birthplace') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Lieu de naissance', 'birthplace') }}</th>
+                <th {% if pagination.isSorted('birthdate') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Date de naissance', 'birthdate') }}</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for student in students %}
+        {% for student in pagination %}
             <tr>
                 <td>{{ student.id }}</td>
                 <td>{{ student.city }}</td>
@@ -41,5 +41,6 @@
         </tbody>
     </table>
 
+    {{ include('back/partials/_pagination.html.twig') }}
     <a href="{{ path('student_new') }}">Create new</a>
 {% endblock %}
