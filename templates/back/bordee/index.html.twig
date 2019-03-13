@@ -8,13 +8,12 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th {% if pagination.isSorted('name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nom', 'name') }}</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for bordee in bordees %}
+        {% for bordee in pagination %}
             <tr>
                 <td>{{ bordee.id }}</td>
                 <td>{{ bordee.name }}</td>
@@ -31,5 +30,6 @@
         </tbody>
     </table>
 
+    {{ include('back/partials/_pagination.html.twig') }}
     <a href="{{ path('bordee_new') }}">Create new</a>
 {% endblock %}

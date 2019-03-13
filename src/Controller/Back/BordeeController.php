@@ -5,10 +5,11 @@ namespace App\Controller\Back;
 use App\Entity\Bordee;
 use App\Form\Bordee1Type;
 use App\Repository\BordeeRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/bordee")
@@ -18,10 +19,16 @@ class BordeeController extends AbstractController
     /**
      * @Route("/", name="bordee_index", methods={"GET"})
      */
-    public function index(BordeeRepository $bordeeRepository): Response
+    public function index(BordeeRepository $bordeeRepository,  PaginatorInterface $paginator, Request $request): Response
     {
+        $query = $bordeeRepository->findAll();
+        $bordees = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('back/bordee/index.html.twig', [
-            'bordees' => $bordeeRepository->findAll(),
+            'pagination' => $bordees,
         ]);
     }
 
