@@ -3,28 +3,37 @@
 {% block title %}Bordee index{% endblock %}
 
 {% block body %}
-    <h1>Bordee index</h1>
+    <h1>Choisir une bordée</h1>
+    <div class="card col-lg-10 col-xl-6 my-3">
+        <div class="card-body">
+            <p class="card-text text-right">
 
-    <form action="{{ path('student_index') }}">
-    <div class="form-row">
-        <div class="form-group col-2">
-            <select name="bordee" id=""  class="form-control form-control-lg">
-                <option value="">Choisir une bordée</option>
-                {% for bordee in bordees %}
-                    <option value="{{ bordee.id }}">{{ bordee.name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group col-2">
-            <select name="referent" id=""  class="form-control form-control-lg">
-            <option value="">Choisir un prof. principal</option>
-                {% for referent in referents %}
-                    <option value="{{ referent.id }}">{{ referent.firstname ~ ' '  ~ referent.lastname }}</option>
-                {% endfor %}
-            </select>
+                <form action="{{ path('student_index') }}">
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <select name="bordee" id=""  class="form-control form-control-lg">
+                                <option value="">Choisir une bordée</option>
+                                {% for bordee in bordees %}
+                                    <option value="{{ bordee.id }}">{{ bordee.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-6">
+                            <select name="referent" id=""  class="form-control form-control-lg">
+                            <option value="">Choisir un prof. principal</option>
+                                {% for referent in referents %}
+                                    <option value="{{ referent.id }}">{{ referent.firstname ~ ' '  ~ referent.lastname }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <p class="text-right">
+                        <button type="submit" class="btn btn-primary btn-lg">Voir les élèves</button>
+                    </p>
+                </form>
+
+            </p>
         </div>
     </div>
 
-        <button type="submit" class="btn btn-primary btn-lg">Voir les élèves</button>
-    </form>
 {% endblock %}
