@@ -15,6 +15,7 @@ use App\Form\TpChoiceType;
 use App\Service\Excel2Table;
 use App\Entity\Specialisation;
 use App\Form\TpEvaluationType;
+use App\Form\ReviewCommentType;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\SpecialisationRepository;
@@ -271,4 +272,32 @@ class StudentController extends AbstractController
             'specialisation' => $specialisation
         ]);
     }
+
+
+    /**
+     * @Route("/{id}/review/comment", name="student_comment_review", methods={"GET","POST"}, requirements={"id":"\d+"})
+     */
+    public function commentReview(Student $student, Request $request): Response
+    {
+        $review = $student->getReview();
+        $form = $this->createForm(ReviewCommentType::class, $review);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            $this->addFlash('success', 'Votre commentaire a bien été enregistré');
+
+            return $this->redirectToRoute('student_show', [
+                'id' => $student->getId(),
+            ]);
+        }
+
+        return $this->render('front/student/tpchoice.html.twig', [
+            'student' => $student,
+            'form' => $form->createView(),
+        ]);
+    }
+
 }

@@ -33,6 +33,11 @@ class Review
      */
     private $notes = [];
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $comment;
+
     public function __construct()
     {
         $this->tp = new ArrayCollection();
@@ -89,6 +94,18 @@ class Review
     public function setNotes(array $notes): self
     {
         $this->notes = $notes;
+
+        return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?string $comment): self
+    {
+        $this->comment = $comment;
 
         return $this;
     }
