@@ -9,21 +9,15 @@ use App\Entity\Bordee;
 use App\Entity\School;
 use App\Entity\Student;
 use App\Entity\Referent;
-use App\Form\StudentType;
 use App\Form\StudentsType;
 use App\Form\TpChoiceType;
 use App\Service\Excel2Table;
 use App\Entity\Specialisation;
-use App\Form\TpEvaluationType;
 use App\Form\ReviewCommentType;
-use App\Repository\StudentRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\SpecialisationRepository;
 use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -219,61 +213,7 @@ class StudentController extends AbstractController
             // 'form' => $form->createView(),
         ]);
     }
-
-    /**
-     * @Get(
-     *     path = "/list",
-     *     name="students_list",
-     * )
-     * @Rest\View(serializerGroups={"student"})
-     * @Rest\QueryParam(name="bordee", requirements="\d+", nullable=true, description="Id de la bordée")
-     * @Rest\QueryParam(name="referent", requirements="\d+", nullable=true, description="Id du prof. principal")
-     */
-    public function getStudents($bordee, $referent, StudentRepository $studentRepository)
-    {
-        $params = [];
-        if($referent){
-            $referent = $this->getDoctrine()->getRepository(Referent::class)->find($referent);
-            $params['referent'] = $referent;
-        }
-        if($bordee){
-            $bordee = $this->getDoctrine()->getRepository(Bordee::class)->find($bordee);
-            $params['bordee'] = $bordee;
-        }
-        return $studentRepository->findBy($params);
-    }
-
-    /**
-     * @Get(
-     *     path = "/schools/{id}",
-     *     name="students_school_list",
-     *     requirements={"id":"\d+"}
-     * )
-     * @Rest\View(serializerGroups={"student"})
-     */
-    public function getStudentsBySchool(School $school, StudentRepository $studentRepository)
-    {     
-        return $studentRepository->findBy([
-            'school' => $school
-        ]);
-    }
     
-    /**
-     * @Get(
-     *     path = "/specialisation/{id}",
-     *     name="students_specialisation_list",
-     *     requirements={"id":"\d+"}
-     * )
-     * @Rest\View(serializerGroups={"student"})
-     */
-    public function getStudentsBySpecialisation(Specialisation $specialisation, StudentRepository $studentRepository)
-    {     
-        return $studentRepository->findBy([
-            'specialisation' => $specialisation
-        ]);
-    }
-
-
     /**
      * @Route("/{id}/review/comment", name="student_comment_review", methods={"GET","POST"}, requirements={"id":"\d+"})
      */
