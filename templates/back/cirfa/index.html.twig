@@ -4,37 +4,14 @@
 
 {% block body %}
     <h1>Cirfa index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th {% if pagination.isSorted('id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Id', 'id') }}</th>
-                <th {% if pagination.isSorted('city') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Ville', 'city') }}</th>
-                <th {% if pagination.isSorted('number') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Numéro', 'number') }}</th>
-                <th {% if pagination.isSorted('email') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Email', 'email') }}</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for cirfa in pagination %}
-            <tr>
-                <td>{{ cirfa.id }}</td>
-                <td>{{ cirfa.city }}</td>
-                <td>{{ cirfa.number }}</td>
-                <td>{{ cirfa.email }}</td>
-                <td>
-                    <a href="{{ path('admin_cirfa_show', {'id': cirfa.id}) }}">show</a>
-                    <a href="{{ path('admin_cirfa_edit', {'id': cirfa.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {{ include('back/partials/_pagination.html.twig') }}
+    
     <a href="{{ path('admin_cirfa_new') }}">Create new</a>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        var listUrl = '{{ path('api_cirfas_list')|escape('js') }}';        
+    </script>
+    <script type="text/javascript" src="{{ asset("js/back/cirfaDatatable.js") }}"></script>
 {% endblock %}

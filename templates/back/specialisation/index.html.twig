@@ -4,33 +4,14 @@
 
 {% block body %}
     <h1>Specialisation index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th {% if pagination.isSorted('id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Id', 'id') }}</th>
-                <th {% if pagination.isSorted('name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nom', 'name') }}</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for specialisation in pagination %}
-            <tr>
-                <td>{{ specialisation.id }}</td>
-                <td>{{ specialisation.name }}</td>
-                <td>
-                    <a href="{{ path('admin_specialisation_show', {'id': specialisation.id}) }}">show</a>
-                    <a href="{{ path('admin_specialisation_edit', {'id': specialisation.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {{ include('back/partials/_pagination.html.twig') }}
+    
     <a href="{{ path('admin_specialisation_new') }}">Create new</a>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        var listUrl = '{{ path('api_specialisations_list')|escape('js') }}';        
+    </script>
+    <script type="text/javascript" src="{{ asset("js/back/specialisationDatatable.js") }}"></script>
 {% endblock %}

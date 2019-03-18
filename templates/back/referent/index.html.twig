@@ -4,37 +4,14 @@
 
 {% block body %}
     <h1>Referent index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th {% if pagination.isSorted('id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Id', 'id') }}</th>
-                <th {% if pagination.isSorted('firstname') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Prénom', 'firstname') }}</th>
-                <th {% if pagination.isSorted('lastname') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nom', 'lastname') }}</th>
-                <th {% if pagination.isSorted('gender') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Sexe', 'gender') }}</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for referent in pagination %}
-            <tr>
-                <td>{{ referent.id }}</td>
-                <td>{{ referent.firstname }}</td>
-                <td>{{ referent.lastname }}</td>
-                <td>{{ referent.gender }}</td>
-                <td>
-                    <a href="{{ path('admin_referent_show', {'id': referent.id}) }}">show</a>
-                    <a href="{{ path('admin_referent_edit', {'id': referent.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {{ include('back/partials/_pagination.html.twig') }}
+    
     <a href="{{ path('admin_referent_new') }}">Create new</a>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        var listUrl = '{{ path('api_referents_list')|escape('js') }}';        
+    </script>
+    <script type="text/javascript" src="{{ asset("js/back/referentDatatable.js") }}"></script>
 {% endblock %}

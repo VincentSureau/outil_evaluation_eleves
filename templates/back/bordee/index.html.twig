@@ -5,31 +5,13 @@
 {% block body %}
     <h1>Bordee index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th {% if pagination.isSorted('name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Nom', 'name') }}</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for bordee in pagination %}
-            <tr>
-                <td>{{ bordee.id }}</td>
-                <td>{{ bordee.name }}</td>
-                <td>
-                    <a href="{{ path('admin_bordee_show', {'id': bordee.id}) }}">show</a>
-                    <a href="{{ path('admin_bordee_edit', {'id': bordee.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {{ include('back/partials/_pagination.html.twig') }}
     <a href="{{ path('admin_bordee_new') }}">Create new</a>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        var listUrl = '{{ path('api_bordees_list')|escape('js') }}';        
+    </script>
+    <script type="text/javascript" src="{{ asset("js/back/bordeeDatatable.js") }}"></script>
 {% endblock %}
