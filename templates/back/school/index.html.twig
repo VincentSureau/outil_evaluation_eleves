@@ -6,6 +6,22 @@
     <h1>School index</h1>
     
     <a href="{{ path('admin_school_new') }}">Create new</a>
+
+    <table id="schools_list" class="table">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Numéro</th>
+                <th>Email</th>
+                <th>Académie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_admin_home') }}">retour</a>
 {% endblock %}
 
 {% block javascripts %}

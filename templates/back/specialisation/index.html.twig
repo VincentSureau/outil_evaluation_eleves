@@ -6,6 +6,19 @@
     <h1>Specialisation index</h1>
     
     <a href="{{ path('admin_specialisation_new') }}">Create new</a>
+    
+    <table id="specialisations_list" class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_admin_home') }}">retour</a>
 {% endblock %}
 
 {% block javascripts %}

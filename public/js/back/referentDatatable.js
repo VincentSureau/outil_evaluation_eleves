@@ -1,6 +1,6 @@
 
     $(document).ready( function () {
-        var table = $('#tps_list').DataTable({
+        var table = $('#referents_list').DataTable({
             ajax: {
                 url: listUrl,
                 dataSrc: ''

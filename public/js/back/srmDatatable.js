@@ -1,6 +1,6 @@
 
     $(document).ready( function () {
-        var table = $('#srms_list').DataTable({
+        var table = $('#srm_list').DataTable({
             ajax: {
                 url: listUrl,
                 dataSrc: ''
@@ -18,7 +18,7 @@
         });
 
         // $('#filter td').each( function (i) {
-        //     var title = $('#srms_list thead th').eq( $(this).index() ).text();
+        //     var title = $('#srm_list thead th').eq( $(this).index() ).text();
         //     $(this).html( '<input type="text" placeholder="&#x1F50E; '+title+'" data-index="'+i+'" /><i class="fa fa-search" aria-hidden="true"></i>' );
         // } );
 

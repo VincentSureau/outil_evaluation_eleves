@@ -6,6 +6,20 @@
     <h1>Task index</h1>
     
     <a href="{{ path('admin_task_new') }}">Create new</a>
+    
+    <table id="tasks_list" class="table">
+        <thead>
+            <tr>
+                <th>Référent</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_admin_home') }}">retour</a>
 {% endblock %}
 
 {% block javascripts %}

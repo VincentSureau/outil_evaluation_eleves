@@ -6,6 +6,21 @@
     <h1>Referent index</h1>
     
     <a href="{{ path('admin_referent_new') }}">Create new</a>
+
+    <table id="referents_list" class="table">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Sexe</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_admin_home') }}">retour</a>
 {% endblock %}
 
 {% block javascripts %}

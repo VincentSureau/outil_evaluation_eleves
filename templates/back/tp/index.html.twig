@@ -6,6 +6,20 @@
     <h1>Liste des TP</h1>
 
     <a href="{{ path('tp_new') }}">Create new</a>
+    
+    <table id="tps_list" class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Spécialisation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_admin_home') }}">retour</a>
 {% endblock %}
 
 {% block javascripts %}

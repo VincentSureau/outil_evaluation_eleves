@@ -1,15 +1,13 @@
 
     $(document).ready( function () {
-        var table = $('#schools_list').DataTable({
+        var table = $('#competence_list').DataTable({
             ajax: {
                 url: listUrl,
                 dataSrc: ''
             },
             columns: [
+                { data:'reference'},
                 { data:'name'},
-                { data:'number'},
-                { data:'email'},
-                { data:'academy'},
                 {
                     data: 'id',
                     sortable: false,
@@ -20,7 +18,7 @@
         });
 
         // $('#filter td').each( function (i) {
-        //     var title = $('#schools_list thead th').eq( $(this).index() ).text();
+        //     var title = $('#competence_list thead th').eq( $(this).index() ).text();
         //     $(this).html( '<input type="text" placeholder="&#x1F50E; '+title+'" data-index="'+i+'" /><i class="fa fa-search" aria-hidden="true"></i>' );
         // } );
 
