@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\Task;
-use App\Form\Task1Type;
+use App\Form\TaskType;
 use App\Repository\TaskRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +38,7 @@ class TaskController extends AbstractController
     public function new(Request $request): Response
     {
         $task = new Task();
-        $form = $this->createForm(Task1Type::class, $task);
+        $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,7 +70,7 @@ class TaskController extends AbstractController
      */
     public function edit(Request $request, Task $task): Response
     {
-        $form = $this->createForm(Task1Type::class, $task);
+        $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

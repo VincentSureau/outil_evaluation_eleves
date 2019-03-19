@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\Srm;
-use App\Form\Srm1Type;
+use App\Form\SrmType;
 use App\Repository\SrmRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +38,7 @@ class SrmController extends AbstractController
     public function new(Request $request): Response
     {
         $srm = new Srm();
-        $form = $this->createForm(Srm1Type::class, $srm);
+        $form = $this->createForm(SrmType::class, $srm);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,7 +70,7 @@ class SrmController extends AbstractController
      */
     public function edit(Request $request, Srm $srm): Response
     {
-        $form = $this->createForm(Srm1Type::class, $srm);
+        $form = $this->createForm(SrmType::class, $srm);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

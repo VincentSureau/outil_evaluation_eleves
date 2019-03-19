@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\Bordee;
-use App\Form\Bordee1Type;
+use App\Form\BordeeType;
 use App\Repository\BordeeRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +38,7 @@ class BordeeController extends AbstractController
     public function new(Request $request): Response
     {
         $bordee = new Bordee();
-        $form = $this->createForm(Bordee1Type::class, $bordee);
+        $form = $this->createForm(BordeeType::class, $bordee);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,7 +70,7 @@ class BordeeController extends AbstractController
      */
     public function edit(Request $request, Bordee $bordee): Response
     {
-        $form = $this->createForm(Bordee1Type::class, $bordee);
+        $form = $this->createForm(BordeeType::class, $bordee);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

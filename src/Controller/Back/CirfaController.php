@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\Cirfa;
-use App\Form\Cirfa1Type;
+use App\Form\CirfaType;
 use App\Repository\CirfaRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +38,7 @@ class CirfaController extends AbstractController
     public function new(Request $request): Response
     {
         $cirfa = new Cirfa();
-        $form = $this->createForm(Cirfa1Type::class, $cirfa);
+        $form = $this->createForm(CirfaType::class, $cirfa);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,7 +70,7 @@ class CirfaController extends AbstractController
      */
     public function edit(Request $request, Cirfa $cirfa): Response
     {
-        $form = $this->createForm(Cirfa1Type::class, $cirfa);
+        $form = $this->createForm(CirfaType::class, $cirfa);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

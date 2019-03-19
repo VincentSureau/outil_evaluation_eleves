@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\School;
-use App\Form\School1Type;
+use App\Form\SchoolType;
 use App\Repository\SchoolRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +38,7 @@ class SchoolController extends AbstractController
     public function new(Request $request): Response
     {
         $school = new School();
-        $form = $this->createForm(School1Type::class, $school);
+        $form = $this->createForm(SchoolType::class, $school);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,7 +70,7 @@ class SchoolController extends AbstractController
      */
     public function edit(Request $request, School $school): Response
     {
-        $form = $this->createForm(School1Type::class, $school);
+        $form = $this->createForm(SchoolType::class, $school);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

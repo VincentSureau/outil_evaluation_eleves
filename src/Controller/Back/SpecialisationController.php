@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\Specialisation;
-use App\Form\Specialisation1Type;
+use App\Form\SpecialisationType;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\SpecialisationRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +38,7 @@ class SpecialisationController extends AbstractController
     public function new(Request $request): Response
     {
         $specialisation = new Specialisation();
-        $form = $this->createForm(Specialisation1Type::class, $specialisation);
+        $form = $this->createForm(SpecialisationType::class, $specialisation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,7 +70,7 @@ class SpecialisationController extends AbstractController
      */
     public function edit(Request $request, Specialisation $specialisation): Response
     {
-        $form = $this->createForm(Specialisation1Type::class, $specialisation);
+        $form = $this->createForm(SpecialisationType::class, $specialisation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\Referent;
-use App\Form\Referent1Type;
+use App\Form\ReferentType;
 use App\Repository\ReferentRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +38,7 @@ class ReferentController extends AbstractController
     public function new(Request $request): Response
     {
         $referent = new Referent();
-        $form = $this->createForm(Referent1Type::class, $referent);
+        $form = $this->createForm(ReferentType::class, $referent);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,7 +70,7 @@ class ReferentController extends AbstractController
      */
     public function edit(Request $request, Referent $referent): Response
     {
-        $form = $this->createForm(Referent1Type::class, $referent);
+        $form = $this->createForm(ReferentType::class, $referent);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\Tp;
-use App\Form\Tp1Type;
+use App\Form\TpType;
 use App\Repository\TpRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +38,7 @@ class TpController extends AbstractController
     public function new(Request $request): Response
     {
         $tp = new Tp();
-        $form = $this->createForm(Tp1Type::class, $tp);
+        $form = $this->createForm(TpType::class, $tp);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,7 +70,7 @@ class TpController extends AbstractController
      */
     public function edit(Request $request, Tp $tp): Response
     {
-        $form = $this->createForm(Tp1Type::class, $tp);
+        $form = $this->createForm(TpType::class, $tp);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
