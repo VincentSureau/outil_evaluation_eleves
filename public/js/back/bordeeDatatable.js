@@ -1,6 +1,9 @@
 
     $(document).ready( function () {
-        var table = $('#students_list').DataTable({
+        var table = $('#bordee_list').DataTable({
+            language: {
+                url: '../../json/fr_FR.json'
+            },
             // responsive: true,
             // scrollX: true,
             ajax: {

@@ -1,6 +1,9 @@
 
     $(document).ready( function () {
         var table = $('#schools_list').DataTable({
+            language: {
+                url: '../../json/fr_FR.json'
+            },
             ajax: {
                 url: listUrl,
                 dataSrc: ''

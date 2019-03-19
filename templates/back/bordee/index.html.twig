@@ -7,6 +7,8 @@
 
     <a href="{{ path('admin_bordee_new') }}">Create new</a>
 
+    <button class="btn btn-primary">importer une bordée</button>
+
     <table id="bordee_list" class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -27,7 +29,7 @@
 {% block javascripts %}
 
     <script type="text/javascript">
-        var listUrl = '{{ path('api_bordee_list')|escape('js') }}';        
+        var listUrl = '{{ path('api_bordees_list')|escape('js') }}';        
     </script>
     <script type="text/javascript" src="{{ asset("js/back/bordeeDatatable.js") }}"></script>
 {% endblock %}
