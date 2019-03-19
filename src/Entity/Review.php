@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation AS Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReviewRepository")
