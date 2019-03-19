@@ -30,7 +30,7 @@ class Referent
      * 
      * 
      * @Serializer\Expose()
-     * @Serializer\Groups({"student"})
+     * @Serializer\Groups({"student", "referent"})
      */
     private $id;
 

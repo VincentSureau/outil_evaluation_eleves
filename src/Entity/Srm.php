@@ -16,6 +16,8 @@ class Srm
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Expose()
+     * @Serializer\Groups({"srm"})
      */
     private $id;
 

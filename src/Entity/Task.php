@@ -20,6 +20,7 @@ class Task
      * @ORM\Column(type="integer")
      * 
      * @Serializer\Expose()
+     * @Serializer\Groups({"task"})
      */
     private $id;
 
