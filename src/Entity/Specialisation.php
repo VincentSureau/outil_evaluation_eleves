@@ -21,7 +21,7 @@ class Specialisation
      * @ORM\Column(type="integer")
      * 
      * @Serializer\Expose()
-     * @Serializer\Groups({"tp"})
+     * @Serializer\Groups({"specialisation"})
      */
     private $id;
 
