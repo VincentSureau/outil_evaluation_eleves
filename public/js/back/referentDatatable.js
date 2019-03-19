@@ -16,7 +16,7 @@
                     data: 'id',
                     sortable: false,
                     render: function(data){
-                        return '<a href="#">gérer</a>'
+                        return '<a href="/referent/'+ data +'">gérer</a>'
                 }}
             ],
         });

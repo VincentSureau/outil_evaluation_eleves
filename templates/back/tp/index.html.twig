@@ -25,7 +25,9 @@
 {% block javascripts %}
 
     <script type="text/javascript">
-        var listUrl = '{{ path('api_tps_list')|escape('js') }}';        
+        var listUrl = '{{ path('api_tps_list')|escape('js') }}';
+        var editUrl = '{{ path('admin_tp_edit')|escape('js') }}';
+        var deleteUrl = '{{ path('admin_tp_delete')|escape('js') }}';
     </script>
     <script type="text/javascript" src="{{ asset("js/back/tpDatatable.js") }}"></script>
 {% endblock %}

@@ -17,7 +17,7 @@
                     data: 'id',
                     sortable: false,
                     render: function(data){
-                        return '<a href="#">gérer</a>'
+                        return '<a href="/school/'+ data +'">gérer</a>'
                 }}
             ],
         });
