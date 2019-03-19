@@ -8,7 +8,7 @@
 
 {% block javascripts %}
     <script type="text/javascript">
-        var listUrl = '{{ path('api_students_list', params )|escape('js') }}';        
+        var listUrl = '{{ path('api_students_list')|escape('js') }}';        
     </script>
     <script type="text/javascript" src="{{ asset("js/back/studentDatatable.js") }}"></script>
 {% endblock %}

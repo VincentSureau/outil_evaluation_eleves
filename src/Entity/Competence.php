@@ -20,11 +20,15 @@ class Competence
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose()
+     * @Serializer\Groups({"competence"})
      */
     private $reference;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose()
+     * @Serializer\Groups({"competence"})
      */
     private $name;
 

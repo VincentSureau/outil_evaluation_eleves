@@ -2,26 +2,26 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Cirfa;
-use App\Repository\CirfaRepository;
+use App\Entity\Referent;
+use App\Repository\ReferentRepository;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\Routing\Annotation\Route;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/cirfas")
+ * @Route("/referents")
  */
-class CirfaController extends AbstractController
+class ReferentController extends AbstractController
 {
     /**
      * @Get(
-     *     path = "/cirfas",
-     *     name="cirfas_list",
+     *     path = "/referents",
+     *     name="referents_list",
      * )
-     * @Rest\View(serializerGroups={"cirfa"})
+     * @Rest\View(serializerGroups={"referent"})
      */
-    public function getCirfas(CirfaRepository $repository)
+    public function getCirfas(ReferentRepository $repository)
     {
         return $repository->findAll();
     }

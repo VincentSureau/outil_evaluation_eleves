@@ -21,7 +21,7 @@ class StudentController extends AbstractController
 {
     /**
      * @Get(
-     *     path = "/list",
+     *     path = "/students",
      *     name="students_list",
      * )
      * @Rest\View(serializerGroups={"student"})

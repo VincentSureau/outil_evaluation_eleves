@@ -44,7 +44,7 @@ class Specialisation
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
-     * @Serializer\Groups({"student", "tp"})
+     * @Serializer\Groups({"student", "tp", "specialisation"})
      */
     private $name;
 

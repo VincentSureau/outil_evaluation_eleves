@@ -2,26 +2,26 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Cirfa;
-use App\Repository\CirfaRepository;
+use App\Entity\Bordee;
+use App\Repository\BordeeRepository;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\Routing\Annotation\Route;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/cirfas")
+ * @Route("/bordees")
  */
-class CirfaController extends AbstractController
+class BordeeController extends AbstractController
 {
     /**
      * @Get(
-     *     path = "/cirfas",
-     *     name="cirfas_list",
+     *     path = "/bordees",
+     *     name="bordees_list",
      * )
-     * @Rest\View(serializerGroups={"cirfa"})
+     * @Rest\View(serializerGroups={"bordee"})
      */
-    public function getCirfas(CirfaRepository $repository)
+    public function getCirfas(BordeeRepository $repository)
     {
         return $repository->findAll();
     }

@@ -19,7 +19,7 @@ class Bordee
      * 
      * 
      * @Serializer\Expose()
-     * @Serializer\Groups({"student"})
+     * @Serializer\Groups({"student", "bordee"})
      */
     private $id;
 
@@ -27,7 +27,7 @@ class Bordee
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
-     * @Serializer\Groups({"student"})
+     * @Serializer\Groups({"student", "bordee"})
      */
     private $name;
 

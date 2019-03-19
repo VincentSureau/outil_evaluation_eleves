@@ -23,12 +23,14 @@ class Srm
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
-     * @Serializer\Groups({"student"})
+     * @Serializer\Groups({"student", "srm"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose()
+     * @Serializer\Groups({"srm"})
      */
     private $email;
 

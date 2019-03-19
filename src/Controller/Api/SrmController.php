@@ -2,8 +2,8 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Cirfa;
-use App\Repository\CirfaRepository;
+use App\Entity\Srm;
+use App\Repository\SrmRepository;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\Routing\Annotation\Route;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -12,16 +12,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
  * @Route("/cirfas")
  */
-class CirfaController extends AbstractController
+class SrmController extends AbstractController
 {
     /**
      * @Get(
-     *     path = "/cirfas",
-     *     name="cirfas_list",
+     *     path = "/srms",
+     *     name="srms_list",
      * )
-     * @Rest\View(serializerGroups={"cirfa"})
+     * @Rest\View(serializerGroups={"srm"})
      */
-    public function getCirfas(CirfaRepository $repository)
+    public function getCirfas(SrmRepository $repository)
     {
         return $repository->findAll();
     }
