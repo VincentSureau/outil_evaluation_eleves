@@ -19,7 +19,7 @@ class CompetenceController extends AbstractController
      *     path = "/competences",
      *     name="competences_list",
      * )
-     * @Rest\View(serializerGroups={"Competence"})
+     * @Rest\View(serializerGroups={"competence"})
      */
     public function getCirfas(CompetenceRepository $repository)
     {
