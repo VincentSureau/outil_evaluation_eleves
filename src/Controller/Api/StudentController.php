@@ -2,10 +2,12 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\Cirfa;
 use App\Entity\Bordee;
 use App\Entity\School;
 use App\Entity\Referent;
 use App\Entity\Specialisation;
+use App\Repository\CirfaRepository;
 use App\Repository\StudentRepository;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,18 +15,10 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/student")
+ * @Route("/students")
  */
 class StudentController extends AbstractController
 {
-
-    public function getStudentsBySpecialisation(Specialisation $specialisation, StudentRepository $studentRepository)
-    {     
-        return $studentRepository->findBy([
-            'specialisation' => $specialisation
-        ]);
-    }
-
     /**
      * @Get(
      *     path = "/list",
