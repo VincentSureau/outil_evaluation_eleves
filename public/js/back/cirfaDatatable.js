@@ -18,7 +18,7 @@
                     data: 'id',
                     sortable: false,
                     render: function(data){
-                        return '<a href="/admin/student/'+ data +'/edit">Editer</a>'
+                        return '<a href="/admin/cirfa/'+ data +'/edit">Editer</a>'
                 }}
             ],
         });
