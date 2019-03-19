@@ -3,9 +3,21 @@
 {% block title %}New Tp{% endblock %}
 
 {% block body %}
-    <h1>Create new Tp</h1>
 
-    {{ include('back/tp/_form.html.twig') }}
+    <div class="container">
 
-    <a href="{{ path('admin_tp_index') }}">back to list</a>
+        <h1>Create new Tp</h1>
+
+        <div class="card my-3">
+            <div class="card-body">
+                <p class="card-text text-right">
+                    {{ include('back/tp/_form.html.twig') }}
+                </p>
+            </div>
+        </div>
+
+        <a href="{{ path('admin_tp_index') }}">back to list</a>
+
+    </div>
+
 {% endblock %}
