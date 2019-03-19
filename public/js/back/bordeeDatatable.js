@@ -16,7 +16,7 @@
                     data: 'id',
                     sortable: false,
                     render: function(data){
-                        return '<a href="#">gérer</a>'
+                        return '<a href="/admin/bordee/'+ data +'/edit">Editer</a>'
                 }}
             ],
         });

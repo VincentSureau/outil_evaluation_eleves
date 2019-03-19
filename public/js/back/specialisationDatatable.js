@@ -14,7 +14,7 @@
                     data: 'id',
                     sortable: false,
                     render: function(data){
-                        return '<a href="/specialisation/'+ data +'">gérer</a>'
+                        return '<a href="/admin/specialisation/'+ data +'/edit">Editer</a>'
                 }}
             ],
         });

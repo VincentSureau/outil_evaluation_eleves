@@ -15,7 +15,7 @@
                     data: 'id',
                     sortable: false,
                     render: function(data){
-                        return '<a href="/task/'+ data +'">gérer</a>'
+                        return '<a href="/admin/task/'+ data +'/edit">Editer</a>'
                 }}
             ],
         });

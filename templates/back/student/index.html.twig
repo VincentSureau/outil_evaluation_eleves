@@ -27,8 +27,6 @@
 {% block javascripts %}
     <script type="text/javascript">
         var listUrl = '{{ path('students_list')|escape('js') }}';
-        var editUrl = '{{ path('admin_student_edit')|escape('js') }}';
-        var deleteUrl = '{{ path('admin_student_delete')|escape('js') }}'; 
     </script>
     <script type="text/javascript" src="{{ asset("js/back/studentDatatable.js") }}"></script>
 {% endblock %}

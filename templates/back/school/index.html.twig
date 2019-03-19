@@ -27,9 +27,7 @@
 {% block javascripts %}
 
     <script type="text/javascript">
-        var listUrl = '{{ path('api_schools_list')|escape('js') }}';   
-        var editUrl = '{{ path('admin_school_edit')|escape('js') }}';
-        var deleteUrl = '{{ path('admin_school_delete')|escape('js') }}';     
+        var listUrl = '{{ path('api_schools_list')|escape('js') }}';     
     </script>
     <script type="text/javascript" src="{{ asset("js/back/schoolDatatable.js") }}"></script>
 {% endblock %}

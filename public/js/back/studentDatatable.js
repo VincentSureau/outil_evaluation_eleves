@@ -23,7 +23,7 @@
                     data: 'id',
                     sortable: false,
                     render: function(data){
-                        return '<a href="/student/'+ data +'">gérer</a>'
+                        return '<a href="/admin/student/'+ data +'/edit">Editer</a>'
                 }}
             ],
         });

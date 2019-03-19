@@ -15,7 +15,7 @@
                     data: 'id',
                     sortable: false,
                     render: function(data){
-                        return '<a href="/srm/'+ data +'">gérer</a>'
+                        return '<a href="/admin/srm/'+ data +'/edit">Editer</a>'
                 }}
             ],
         });

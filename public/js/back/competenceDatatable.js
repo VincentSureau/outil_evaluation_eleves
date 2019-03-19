@@ -15,7 +15,7 @@
                     data: 'id',
                     sortable: false,
                     render: function(data){
-                        return '<a href="/competence/'+ data +'">gérer</a>'
+                        return '<a href="/admin/competence/'+ data +'/edit">Editer</a>'
                 }}
             ],
         });

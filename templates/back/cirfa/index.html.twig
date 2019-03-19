@@ -30,9 +30,7 @@
 {% block javascripts %}
 
     <script type="text/javascript">
-        var listUrl = '{{ path('api_cirfas_list')|escape('js') }}';
-        var editUrl = '{{ path('admin_cirfa_edit')|escape('js') }}';
-        var deleteUrl = '{{ path('admin_cirfa_delete')|escape('js') }}';        
+        var listUrl = '{{ path('api_cirfas_list')|escape('js') }}';     
     </script>
     <script type="text/javascript" src="{{ asset("js/back/cirfaDatatable.js") }}"></script>
 {% endblock %}
