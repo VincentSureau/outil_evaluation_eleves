@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Bordee{% endblock %}
+
+{% block body %}
+    <h1>Create new Bordee</h1>
+
+    {{ include('bordee/_form.html.twig') }}
+
+    <a href="{{ path('bordee_index') }}">back to list</a>
+{% endblock %}
