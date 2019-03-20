@@ -60,3 +60,15 @@ header{
         column-count: 1;
     }
 }
+
+@media (min-width: 1600px) {
+    .cc-xxl-4 {
+        column-count: 4;
+    }
+}
+
+@media (min-width: 1920px) {
+    .cc-xxxl-and-up-5 {
+        column-count: 5;
+    }
+}

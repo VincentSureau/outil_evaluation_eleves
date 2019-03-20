@@ -3,11 +3,25 @@
 {% block title %}Edit Cirfa{% endblock %}
 
 {% block body %}
-    <h1>Edit Cirfa</h1>
 
-    {{ include('back/cirfa/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="container">
 
-    <a href="{{ path('admin_cirfa_index') }}">back to list</a>
+        <h1>Editer un Cirfa</h1>
 
-    {{ include('back/cirfa/_delete_form.html.twig') }}
+        <div class="card my-3">
+            <div class="card-body">
+                <p class="card-text text-right">
+                    {{ include('back/cirfa/_form.html.twig', {'button_label': 'Update'}) }}
+                </p>
+
+                <p class="card-text text-right">
+                    {{ include('back/cirfa/_delete_form.html.twig') }}
+                </p>
+            </div>
+        </div>
+
+        <a href="{{ path('admin_cirfa_index') }}">retour à la liste</a>
+
+    </div>
+
 {% endblock %}

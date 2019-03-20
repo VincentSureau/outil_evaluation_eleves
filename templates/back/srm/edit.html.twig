@@ -3,11 +3,24 @@
 {% block title %}Edit Srm{% endblock %}
 
 {% block body %}
-    <h1>Edit Srm</h1>
 
-    {{ include('back/srm/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="container">
 
-    <a href="{{ path('admin_srm_index') }}">back to list</a>
+        <h1>Editer un SRM</h1>
 
-    {{ include('back/srm/_delete_form.html.twig') }}
+        <div class="card my-3">
+            <div class="card-body">
+                <p class="card-text text-right">
+                    {{ include('back/srm/_form.html.twig', {'button_label': 'Update'}) }}
+                </p>
+
+                <p class="card-text text-right">
+                    {{ include('back/srm/_delete_form.html.twig') }}
+                </p>
+            </div>
+        </div>
+
+        <a href="{{ path('admin_srm_index') }}">retour à la liste</a>
+
+    </div>
 {% endblock %}
