@@ -48,3 +48,15 @@ header{
 }
 
 
+
+@media (max-width: 769px) {
+    .cc-md-2 {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 577px) {
+    .cc-sm-1 {
+        column-count: 1;
+    }
+}
