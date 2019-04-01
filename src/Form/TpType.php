@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Tp;
-use App\Entity\Task;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
@@ -26,6 +25,25 @@ class TpType extends AbstractType
             $form = $event->getForm();
 
             if ($tp){
+                switch($tp->getSpecialisation()->getName()){
+                    case "MEI":
+                        foreach($tp->getSpecialisation()->getMEICompetences() as $competences) {
+                            //traitement
+                        }
+                        break;  
+
+                    case "MELEC":
+                        foreach($tp->getSpecialisation()->getMELECCompetences() as $competences) {
+                            //traitement
+                        }
+                        break;
+
+                    case "SN":
+                        foreach($tp->getSpecialisation()->getSNCompetences() as $competences) {
+                            //traitement
+                        }
+                        break;                    
+                }
                 $form->add('task', EntityType::class,[
                     'label' => 'Tâche',
                     'class' => Task::class,
