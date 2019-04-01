@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des TP{% endblock %}
+
+{% block body %}
+    <h1>Liste des TP</h1>
+
+    <a href="{{ path('tp_new') }}">Create new</a>
+    
+    <table id="tps_list" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Spécialisation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_admin_home') }}">retour</a>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        var listUrl = '{{ path('api_tps_list')|escape('js') }}';
+    </script>
+    <script type="text/javascript" src="{{ asset("js/back/tpDatatable.js") }}"></script>
+{% endblock %}

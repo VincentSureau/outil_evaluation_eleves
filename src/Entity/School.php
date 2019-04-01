@@ -16,7 +16,7 @@ class School
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * 
+     * @Serializer\Expose()
      * @Serializer\Groups({"student", "school"})
      */
     private $id;

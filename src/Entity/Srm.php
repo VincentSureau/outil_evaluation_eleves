@@ -16,6 +16,8 @@ class Srm
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Expose()
+     * @Serializer\Groups({"srm"})
      */
     private $id;
 
@@ -23,12 +25,14 @@ class Srm
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
-     * @Serializer\Groups({"student"})
+     * @Serializer\Groups({"student", "srm"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose()
+     * @Serializer\Groups({"srm"})
      */
     private $email;
 

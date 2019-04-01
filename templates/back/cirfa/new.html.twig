@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Cirfa{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+    <h1>Créer un nouveau Cirfa</h1>
+
+    <div class="card my-3">
+        <div class="card-body">
+            <p class="card-text text-right">
+                {{ include('back/cirfa/_form.html.twig') }}
+            </p>
+        </div>
+    </div>
+
+    <a href="{{ path('admin_cirfa_index') }}">retour à la liste</a>
+
+    </div>
+
+{% endblock %}

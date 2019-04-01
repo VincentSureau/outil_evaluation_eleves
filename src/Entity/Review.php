@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation AS Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReviewRepository")
@@ -32,6 +33,11 @@ class Review
      * @ORM\Column(type="array")
      */
     private $notes = [];
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $comment;
 
     public function __construct()
     {
@@ -89,6 +95,18 @@ class Review
     public function setNotes(array $notes): self
     {
         $this->notes = $notes;
+
+        return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?string $comment): self
+    {
+        $this->comment = $comment;
 
         return $this;
     }

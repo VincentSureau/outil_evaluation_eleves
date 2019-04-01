@@ -1,3 +1,15 @@
 controllers:
     resource: ../../src/Controller/
     type: annotation
+
+admin:
+    resource: ../../src/Controller/Back/
+    prefix: /admin
+    name_prefix: admin_
+    type: annotation
+
+api:
+    resource: ../../src/Controller/Api/
+    prefix: /api
+    name_prefix: api_
+    type: annotation

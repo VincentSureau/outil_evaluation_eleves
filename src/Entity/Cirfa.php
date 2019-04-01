@@ -16,6 +16,8 @@ class Cirfa
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Expose()
+     * @Serializer\Groups({"cirfa"})
      */
     private $id;
 
@@ -23,17 +25,21 @@ class Cirfa
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
-     * @Serializer\Groups({"student"})
+     * @Serializer\Groups({"student","cirfa"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Serializer\Expose()
+     * @Serializer\Groups({"cirfa"})
      */
     private $number;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose()
+     * @Serializer\Groups({"cirfa"})
      */
     private $email;
 

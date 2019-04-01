@@ -20,6 +20,7 @@ class Task
      * @ORM\Column(type="integer")
      * 
      * @Serializer\Expose()
+     * @Serializer\Groups({"task"})
      */
     private $id;
 
@@ -27,6 +28,7 @@ class Task
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
+     * @Serializer\Groups({"task"})
      */
     private $reference;
 
@@ -34,6 +36,7 @@ class Task
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
+     * @Serializer\Groups({"task"})
      */
     private $name;
 

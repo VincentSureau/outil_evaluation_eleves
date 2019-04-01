@@ -5,6 +5,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
+    background-color: #e3e7ed;
 }
 
 header{
@@ -17,5 +18,57 @@ header{
 }
 
 .content {
-flex: 1 0 auto;
+    flex: 1 0 auto;
+    padding: 1em;
+}
+
+.card {
+    background-color: #ffffff;
+    box-shadow: 0 7px 14px 0 rgba(59,64,94,0.1), 0 3px 6px 0 rgba(0,0,0,0.07);
+}
+
+.dataTables_wrapper {
+    background-color: #ffffff;
+    box-shadow: 0 7px 14px 0 rgba(59,64,94,0.1), 0 3px 6px 0 rgba(0,0,0,0.07);
+    padding: 1em;
+    overflow-x: scroll;
+}
+
+.scrollable {
+    overflow-x: scroll;
+}
+
+.white_shadow--container {
+    background-color: #ffffff;
+    box-shadow: 0 7px 14px 0 rgba(59,64,94,0.1), 0 3px 6px 0 rgba(0,0,0,0.07);
+}
+
+.logo_footer {
+    height: 5em;
+}
+
+
+
+@media (max-width: 769px) {
+    .cc-md-2 {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 577px) {
+    .cc-sm-1 {
+        column-count: 1;
+    }
+}
+
+@media (min-width: 1600px) {
+    .cc-xxl-4 {
+        column-count: 4;
+    }
+}
+
+@media (min-width: 1920px) {
+    .cc-xxxl-and-up-5 {
+        column-count: 5;
+    }
 }

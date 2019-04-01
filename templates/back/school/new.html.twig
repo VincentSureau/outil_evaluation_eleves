@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New School{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h1>Créer une nouvelle école</h1>
+
+        <div class="card my-3">
+            <div class="card-body">
+                <p class="card-text text-right">
+                    {{ include('back/school/_form.html.twig') }}
+                </p>
+            </div>
+        </div>
+
+        <a href="{{ path('admin_school_index') }}">retour à la liste</a>
+
+    </div>
+
+{% endblock %}

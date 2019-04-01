@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des élèves{% endblock %}
+
+{% block body %}
+    <h1>Liste des élèves</h1>
+    
+    <table id="students_list" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Spécialisation</th>
+                <th>Ecole</th>
+                <th>Bordée</th>
+                <th>Référent</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_admin_home') }}">retour</a>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        var listUrl = '{{ path('students_list')|escape('js') }}';
+    </script>
+    <script type="text/javascript" src="{{ asset("js/back/studentDatatable.js") }}"></script>
+{% endblock %}

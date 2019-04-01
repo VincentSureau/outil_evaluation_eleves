@@ -6,7 +6,7 @@
 
     <h1>Bienvenue sur l'espace d'évaluation des élèves</h1>
 
-    <div class="card-columns m-5">
+    <div class="card-columns cc-sm-1 cc-md-2 cc-xxl-4 cc-xxxl-and-up-5 m-lg-5">
     
         <div class="card">
             <div class="card-body">
@@ -31,36 +31,16 @@
 
         {% if is_granted('ROLE_ADMIN') %}
 
-        <div class="card border-warning">
-            <div class="card-body">
-                <h5 class="card-title">Ajouter des élèves</h5>
-                <p class="card-text">Importer une bordée d'élève d'un fichier excel</p>
-                <p class="card-text text-right">
-                    <a href="{{ path('students_add') }}" class="btn btn-lg btn-warning">Choisir</a>
-                </p>
-            </div>
-        </div>
-
-        <div class="card border-warning">
-            <div class="card-body">
-                <h5 class="card-title">Travaux Pratiques</h5>
-                <p class="card-text">Gérer / modifier les TPs</p>
-                <p class="card-text text-right">
-                    <a href="{{ path('tp_index') }}" class="btn btn-lg btn-warning">Choisir</a>
-                </p>
-            </div>
-        </div>
-
-        <div class="card border-warning">
+        <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Administration</h5>
-                <p class="card-text">Accéder à l'interface d'aministration des tables</p>
+                <p class="card-text">Accéder à l'interface administrateur</p>
                 <p class="card-text text-right">
-                    <a href="{{ path('easyadmin') }}" class="btn btn-lg btn-warning">Choisir</a>
+                    <a href="{{ path('back_admin_home') }}" class="btn btn-lg btn-warning">Choisir</a>
                 </p>
             </div>
         </div>
-    
+
         {% endif %}
 
     </div>

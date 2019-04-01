@@ -30,7 +30,7 @@ class Referent
      * 
      * 
      * @Serializer\Expose()
-     * @Serializer\Groups({"student"})
+     * @Serializer\Groups({"student", "referent"})
      */
     private $id;
 
@@ -38,6 +38,7 @@ class Referent
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
+     * @Serializer\Groups({"referent"})
      */
     private $firstname;
 
@@ -45,6 +46,7 @@ class Referent
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
+     * @Serializer\Groups({"referent"})
      */
     private $lastname;
 
@@ -52,6 +54,7 @@ class Referent
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
+     * @Serializer\Groups({"referent"})
      */
     private $gender;
 
