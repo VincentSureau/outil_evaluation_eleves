@@ -101,7 +101,8 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 3; $i++){
             $specialisation = new Specialisation;
-            $specialisation->setName(strtoupper($faker->word));
+            $specialisationNames = ["SN", "MEI", "MELEC"];
+            $specialisation->setName(array_rand($specialisationNames));
 
             $manager->persist($specialisation);
             $specialisations[] = $specialisation;
@@ -109,7 +110,7 @@ class AppFixtures extends Fixture
             /*$tasks = [];
             for($j = 1; $j <= 15; $j++){
                 
-                /task = new Task;
+                task = new Task;
                 $task->setReference('A' . $j)
                             ->setName($faker->catchPhrase)
                             ->setSpecialisation($specialisation)
