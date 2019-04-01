@@ -2,7 +2,7 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Competence;
+// use App\Entity\Competence;
 use App\Repository\CompetenceRepository;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,8 +21,8 @@ class CompetenceController extends AbstractController
      * )
      * @Rest\View(serializerGroups={"competence"})
      */
-    public function getCirfas(CompetenceRepository $repository)
-    {
-        return $repository->findAll();
-    }
+    // public function getCirfas(CompetenceRepository $repository)
+    // {
+    //     return $repository->findAll();
+    // }
 }

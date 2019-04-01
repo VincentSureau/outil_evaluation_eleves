@@ -36,11 +36,6 @@ class Specialisation
     private $tps;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Task", mappedBy="specialisation")
-     */
-    private $task;
-
-    /**
      * @ORM\Column(type="string", length=255)
      * 
      * @Serializer\Expose()
@@ -48,11 +43,16 @@ class Specialisation
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SNCompetence", mappedBy="specialisation")
+     */
+    private $sNCompetences;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
         $this->tps = new ArrayCollection();
-        $this->task = new ArrayCollection();
+        $this->sNCompetences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -122,37 +122,6 @@ class Specialisation
         return $this;
     }
 
-    /**
-     * @return Collection|Task[]
-     */
-    public function getTask(): Collection
-    {
-        return $this->task;
-    }
-
-    public function addTask(Task $task): self
-    {
-        if (!$this->task->contains($task)) {
-            $this->task[] = $task;
-            $task->setSpecialisation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTask(Task $task): self
-    {
-        if ($this->task->contains($task)) {
-            $this->task->removeElement($task);
-            // set the owning side to null (unless already changed)
-            if ($task->getSpecialisation() === $this) {
-                $task->setSpecialisation(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function __toString(): string
     {
         return $this->name;
@@ -166,6 +135,37 @@ class Specialisation
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SNCompetence[]
+     */
+    public function getSNCompetences(): Collection
+    {
+        return $this->sNCompetences;
+    }
+
+    public function addSNCompetence(SNCompetence $sNCompetence): self
+    {
+        if (!$this->sNCompetences->contains($sNCompetence)) {
+            $this->sNCompetences[] = $sNCompetence;
+            $sNCompetence->setSpecialisation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSNCompetence(SNCompetence $sNCompetence): self
+    {
+        if ($this->sNCompetences->contains($sNCompetence)) {
+            $this->sNCompetences->removeElement($sNCompetence);
+            // set the owning side to null (unless already changed)
+            if ($sNCompetence->getSpecialisation() === $this) {
+                $sNCompetence->setSpecialisation(null);
+            }
+        }
 
         return $this;
     }
