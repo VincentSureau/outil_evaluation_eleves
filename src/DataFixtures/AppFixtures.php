@@ -11,12 +11,12 @@ use App\Entity\Bordee;
 use App\Entity\School;
 use App\Entity\Student;
 use App\Entity\Referent;
-use App\Entity\Task;
+//use App\Entity\Task;
 use App\Entity\Specialisation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use App\Entity\Competence;
+//use App\Entity\Competence;
 
 class AppFixtures extends Fixture
 {
@@ -101,15 +101,16 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 3; $i++){
             $specialisation = new Specialisation;
-            $specialisation->setName(strtoupper($faker->word));
+            $specialisationNames = ["SN", "MEI", "MELEC"];
+            $specialisation->setName($specialisationNames[array_rand($specialisationNames)]);
 
             $manager->persist($specialisation);
             $specialisations[] = $specialisation;
 
-            $tasks = [];
+            /*$tasks = [];
             for($j = 1; $j <= 15; $j++){
                 
-                $task = new Task;
+                task = new Task;
                 $task->setReference('A' . $j)
                             ->setName($faker->catchPhrase)
                             ->setSpecialisation($specialisation)
@@ -130,7 +131,7 @@ class AppFixtures extends Fixture
     
                 }
 
-            }
+            }*/
 
 
 
@@ -139,14 +140,14 @@ class AppFixtures extends Fixture
                 $tp = new Tp;
                 $tp->setName($faker->word)
                     ->setSpecialisation($specialisation);
-                $cps = array_rand($tasks, mt_rand(6, 12));
+                /*$cps = array_rand($tasks, mt_rand(6, 12));
                 foreach($cps as $cp){
                     $tp->addTask($tasks[$cp]);
-                }
+                }*/
                 $manager->persist($tp);
             }
 
-        } 
+        }
 
         for($i = 0; $i < 500; $i++){
             $student = new Student;
