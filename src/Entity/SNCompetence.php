@@ -34,19 +34,19 @@ class SNCompetence
     private $isActive;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SNTask", mappedBy="competence")
-     */
-    private $sNTasks;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Specialisation", inversedBy="sNCompetences")
      * @ORM\JoinColumn(nullable=false)
      */
     private $specialisation;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SNSubCompetence", mappedBy="competence")
+     */
+    private $sNSubCompetences;
+
     public function __construct()
     {
-        $this->sNTasks = new ArrayCollection();
+        $this->sNSubCompetences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -90,37 +90,6 @@ class SNCompetence
         return $this;
     }
 
-    /**
-     * @return Collection|SNTask[]
-     */
-    public function getSNTasks(): Collection
-    {
-        return $this->sNTasks;
-    }
-
-    public function addSNTask(SNTask $sNTask): self
-    {
-        if (!$this->sNTasks->contains($sNTask)) {
-            $this->sNTasks[] = $sNTask;
-            $sNTask->setCompetence($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSNTask(SNTask $sNTask): self
-    {
-        if ($this->sNTasks->contains($sNTask)) {
-            $this->sNTasks->removeElement($sNTask);
-            // set the owning side to null (unless already changed)
-            if ($sNTask->getCompetence() === $this) {
-                $sNTask->setCompetence(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getSpecialisation(): ?Specialisation
     {
         return $this->specialisation;
@@ -129,6 +98,37 @@ class SNCompetence
     public function setSpecialisation(?Specialisation $specialisation): self
     {
         $this->specialisation = $specialisation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SNSubCompetence[]
+     */
+    public function getSNSubCompetences(): Collection
+    {
+        return $this->sNSubCompetences;
+    }
+
+    public function addSNSubCompetence(SNSubCompetence $sNSubCompetence): self
+    {
+        if (!$this->sNSubCompetences->contains($sNSubCompetence)) {
+            $this->sNSubCompetences[] = $sNSubCompetence;
+            $sNSubCompetence->setCompetence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSNSubCompetence(SNSubCompetence $sNSubCompetence): self
+    {
+        if ($this->sNSubCompetences->contains($sNSubCompetence)) {
+            $this->sNSubCompetences->removeElement($sNSubCompetence);
+            // set the owning side to null (unless already changed)
+            if ($sNSubCompetence->getCompetence() === $this) {
+                $sNSubCompetence->setCompetence(null);
+            }
+        }
 
         return $this;
     }

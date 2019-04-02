@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class MELECCompetence
      * @ORM\JoinColumn(nullable=false)
      */
     private $specialisation;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MELECSubCompetence", mappedBy="competence")
+     */
+    private $mELECSubCompetences;
+
+    public function __construct()
+    {
+        $this->mELECSubCompetences = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,37 @@ class MELECCompetence
     public function setSpecialisation(?Specialisation $specialisation): self
     {
         $this->specialisation = $specialisation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MELECSubCompetence[]
+     */
+    public function getMELECSubCompetences(): Collection
+    {
+        return $this->mELECSubCompetences;
+    }
+
+    public function addMELECSubCompetence(MELECSubCompetence $mELECSubCompetence): self
+    {
+        if (!$this->mELECSubCompetences->contains($mELECSubCompetence)) {
+            $this->mELECSubCompetences[] = $mELECSubCompetence;
+            $mELECSubCompetence->setCompetence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMELECSubCompetence(MELECSubCompetence $mELECSubCompetence): self
+    {
+        if ($this->mELECSubCompetences->contains($mELECSubCompetence)) {
+            $this->mELECSubCompetences->removeElement($mELECSubCompetence);
+            // set the owning side to null (unless already changed)
+            if ($mELECSubCompetence->getCompetence() === $this) {
+                $mELECSubCompetence->setCompetence(null);
+            }
+        }
 
         return $this;
     }
