@@ -48,11 +48,23 @@ class Specialisation
      */
     private $sNCompetences;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MELECCompetence", mappedBy="specialisation")
+     */
+    private $mELECCompetences;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MELECTask", mappedBy="specialisation")
+     */
+    private $mELECTasks;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
         $this->tps = new ArrayCollection();
         $this->sNCompetences = new ArrayCollection();
+        $this->mELECCompetences = new ArrayCollection();
+        $this->mELECTasks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -164,6 +176,68 @@ class Specialisation
             // set the owning side to null (unless already changed)
             if ($sNCompetence->getSpecialisation() === $this) {
                 $sNCompetence->setSpecialisation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MELECCompetence[]
+     */
+    public function getMELECCompetences(): Collection
+    {
+        return $this->mELECCompetences;
+    }
+
+    public function addMELECCompetence(MELECCompetence $mELECCompetence): self
+    {
+        if (!$this->mELECCompetences->contains($mELECCompetence)) {
+            $this->mELECCompetences[] = $mELECCompetence;
+            $mELECCompetence->setSpecialisation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMELECCompetence(MELECCompetence $mELECCompetence): self
+    {
+        if ($this->mELECCompetences->contains($mELECCompetence)) {
+            $this->mELECCompetences->removeElement($mELECCompetence);
+            // set the owning side to null (unless already changed)
+            if ($mELECCompetence->getSpecialisation() === $this) {
+                $mELECCompetence->setSpecialisation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MELECTask[]
+     */
+    public function getMELECTasks(): Collection
+    {
+        return $this->mELECTasks;
+    }
+
+    public function addMELECTask(MELECTask $mELECTask): self
+    {
+        if (!$this->mELECTasks->contains($mELECTask)) {
+            $this->mELECTasks[] = $mELECTask;
+            $mELECTask->setSpecialisation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMELECTask(MELECTask $mELECTask): self
+    {
+        if ($this->mELECTasks->contains($mELECTask)) {
+            $this->mELECTasks->removeElement($mELECTask);
+            // set the owning side to null (unless already changed)
+            if ($mELECTask->getSpecialisation() === $this) {
+                $mELECTask->setSpecialisation(null);
             }
         }
 
