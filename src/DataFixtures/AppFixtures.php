@@ -11,7 +11,7 @@ use App\Entity\Bordee;
 use App\Entity\School;
 use App\Entity\Student;
 use App\Entity\Referent;
-use App\Entity\SNTask;
+use App\Entity\SNSubCompetence;
 use App\Entity\Specialisation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -27,6 +27,77 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $specialisationNames = ["SN", "MEI", "MELEC"];
+        $competencesData = [
+            [
+                'reference' => 'C4-3',
+                'label' => 'Effectuer les tests, certifier le support physique',
+                'subCompetences' => [
+                    'Les résultats des tests sont conformes aux normes en vigueur',
+                    'Les règles de sécurité, habilitation électrique, raccordement fluidique sont respectées',
+                    'Un rapport est fourni, dans lequel sont indiqués, en adéquation avec les constraintes d\'environnement et les normes :' +
+                        '* le schème du plan de câblage avec des modifications éventuelles (raccordement)' +
+                        '* la fiche de recette de câblage' +
+                        '* l\'analyse de l\'adéquation entre les mesurages effectués et l\'installation considérée' +
+                        '* l\'interprétation des tests effectués',
+                ]
+            ],
+            [
+                'reference' => 'C4-4',
+                'label' => 'Installer, configurer les éléments du système et vérifier la conformité du fonctionnement',
+                'subCompetences' => [
+                    'Le fonctionnement des appareils à installer est vérifié préalablement',
+                    'L\'accès aux paramètres est vérifié préalablement',
+                    'Les équipements (appareils et composants logiciels) sont installés en respectant :' +
+                        '* les indications et procédures d\'installation' +
+                        '* la planification de l\'interventation et l\'ordre de mise en place' +
+                        '* les contraintes techniques et fonctionnelles sur tout ou partie d\'un système',
+                    'Les éléments de l\'installation sont configurés (matériel et logiciel)',
+                    'Les opérations de test sont mise en œuvre et les résultats interprétés',
+                    'La conformité fonctionnelle est vérifiée',
+                    'Le client est formé à l\'utilisation et à l\'entretien de l\'installation',
+                    'Un compte rendu de test est établi et transmis'
+                ]
+            ],
+            [
+                'reference' => 'C5-2',
+                'label' => 'Vérifier la conformité du support et des alimentations en énergie, le fonctionnement des matériels et logiciels en interaction',
+                'subCompetences' => [
+                    'Un rapport est fourni dans lequel sont indiqués, en adéquation avec les contraintes d\'environnement et les normes :' +
+                        '* le schème des plans de câblage avec les modifications éventuelles (énergie et réseau)' +
+                        '* la fiche de recette de câblage' +
+                        '* l\'analyse de l\'adéquation entre les mesures effectuées et l\'installation considérée',
+                    'Les tests effectués sont interprétés',
+                    'L\'alimentation, la prise de terre électrique, la prise de terre informatique sont vérifiées et sont conformes',
+                    'Les opérations de tests sur les matériels sont mise en œuvre',
+                    'La bonne exécution des logiciels est vérifiée',
+                    'Le fonctionnement de chaque équipement est vérifié'
+                ]
+            ],
+            [
+                'reference' => 'C5-4',
+                'label' => 'Réaliser l\'intervention',
+                'subCompetences' => [
+                    'L\'intervention est menée en corrélation avec le diagnostic',
+                    'Le composant (traversant ou CMS) ou la carte défectueuse est remplacé(e)',
+                    'L\'installation est remise en état, les éléments défectueux sont remis en état, changés ou modifiés',
+                    'Les éléments en fin de vie sont triés selon la réglementation en vigueur en vue du recyclage'
+                ]
+            ],
+            [
+                'reference' => 'C5-5',
+                'label' => 'Vérifier la conformité du fonctionnement des matériels des logiciels idéntifiés puis de l\'installation',
+                'subCompetences' => [
+                    'Le système est mis en service',
+                    'L\'installation est remise en service',
+                    'Les procédures de tests spécifiques sont mise en place',
+                    'Les résultats sont interprétés',
+                    'Le fonctionnement du système est vérifié',
+                    'La fiche d\'intervention est renseignée'
+                ]
+            ]
+        ];
+
         $faker = Factory::create('fr_FR');
 
         $user = new User;
@@ -101,15 +172,59 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 3; $i++){
             $specialisation = new Specialisation;
-            $specialisationNames = ["SN", "MEI", "MELEC"];
             $specialisation->setName($specialisationNames[$i]);
 
             $manager->persist($specialisation);
             $specialisations[] = $specialisation;
 
-            $tasks = [];
+            $subCompetences = [];
 
-            for($k = 1; $k <= mt_rand(2,4); $k++){
+            foreach($competencesData as $value){
+                $competence;
+
+                switch ($specialisation->getName()) {
+                    case "SN":
+                        $competence = new SNCompetence;
+                        break;
+                    case "MEI":
+                        //$task = new MEICompetence;
+                        break;
+                    case "MELEC":
+                        //$task = new MELECCompetence;
+                        break;
+                }
+
+                foreach($competencesData['subCompetences'] as $subCompetenceLabel){
+                    $subCompetence;
+
+                    switch ($specialisation->getName()) {
+                        case "SN":
+                            $task = new SNSubCompetence;
+                            break;
+                        case "MEI":
+                            //$task = new MEICompetence;
+                            break;
+                        case "MELEC":
+                            //$task = new MELECCompetence;
+                            break;
+                    }
+
+                    $subCompetence->setLabel($subCompetenceLabel)->setCompetence($competence);
+                    $manager->persist($subCompetence);
+                    $subCompetences[] = $subCompetence;
+                }
+
+                $competence->setReference($value['reference'])
+                            ->setLabel($value['label'])
+                            ->addSNSubCompetence($subCompetence)
+                            ->setSpecialisation($specialisation)
+                            ->setIsActive(true)
+                            ;
+                $manager->persist($competence);
+                $competences[] = $competence;
+            }
+
+            /*for($k = 1; $k <= mt_rand(2,4); $k++){
                 
                 $competence;
 
@@ -141,10 +256,8 @@ class AppFixtures extends Fixture
                             break;
                     }
                     
-                    $task//->setReference('A' . $j) // throw the error
-                                ->setLabel($faker->catchPhrase)
+                    $task->setLabel($faker->catchPhrase)
                                 ->setCompetence($competence)
-                                //->setSpecialisation($specialisation)
                                 ;
                     
                     $manager->persist($task);
@@ -159,7 +272,7 @@ class AppFixtures extends Fixture
                             ;
                 $manager->persist($competence);
                 $competences[] = $competence;
-            }
+            }*/
 
             for($j = 1; $j <= 6; $j++)
             {
