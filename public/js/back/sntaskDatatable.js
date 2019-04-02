@@ -1,6 +1,6 @@
 
     $(document).ready( function () {
-        var table = $('#competence_list').DataTable({
+        var table = $('#sn_tasks_list').DataTable({
             language: {
                 url: '../../json/fr_FR.json'
             },
@@ -15,13 +15,13 @@
                     data: 'id',
                     sortable: false,
                     render: function(data){
-                        return '<a href="/admin/competence/'+ data +'/edit">Editer</a>'
+                        return '<a href="/admin/sntask/'+ data +'/edit">Editer</a>'
                 }}
             ],
         });
 
         // $('#filter td').each( function (i) {
-        //     var title = $('#competence_list thead th').eq( $(this).index() ).text();
+        //     var title = $('#sn_tasks_list thead th').eq( $(this).index() ).text();
         //     $(this).html( '<input type="text" placeholder="&#x1F50E; '+title+'" data-index="'+i+'" /><i class="fa fa-search" aria-hidden="true"></i>' );
         // } );
 

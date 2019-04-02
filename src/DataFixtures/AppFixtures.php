@@ -190,7 +190,7 @@ class AppFixtures extends Fixture
                         //$task = new MEICompetence;
                         break;
                     case "MELEC":
-                        //$task = new MELECCompetence;
+                        $task = new MELECCompetence;
                         break;
                 }
 
@@ -199,13 +199,13 @@ class AppFixtures extends Fixture
 
                     switch ($specialisation->getName()) {
                         case "SN":
-                            $task = new SNSubCompetence;
+                            $subCompetence = new SNSubCompetence;
                             break;
                         case "MEI":
-                            //$task = new MEICompetence;
+                            //$subCompetence = new MEISubCompetence;
                             break;
                         case "MELEC":
-                            //$task = new MELECCompetence;
+                            $subCompetence = new MELECSubCompetence;
                             break;
                     }
 

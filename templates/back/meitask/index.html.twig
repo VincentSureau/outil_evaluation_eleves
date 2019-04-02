@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}mei Task index{% endblock %}
+
+{% block body %}
+    <h1>Task index</h1>
+    
+    {#<a href="{{ path('admin_mei_task_new') }}">Créer un nouveau</a>#}
+    
+    <table id="mei_tasks_list" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Référent</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_admin_home') }}">retour</a>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        var listUrl = '{{ path('api_mei_tasks_list')|escape('js') }}';
+    </script>
+    <script type="text/javascript" src="{{ asset("js/back/meitaskDatatable.js") }}"></script>
+{% endblock %}
