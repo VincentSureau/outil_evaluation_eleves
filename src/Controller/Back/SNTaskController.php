@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SNTaskController extends AbstractController
 {
     /**
-     * @Route("/back/s/n/task", name="back_s_n_task")
+     * @Route("/sn/task", name="sn_task")
      */
     public function index()
     {

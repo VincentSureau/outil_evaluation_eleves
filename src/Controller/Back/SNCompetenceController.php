@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SNCompetenceController extends AbstractController
 {
     /**
-     * @Route("/back/s/n/competence", name="back_s_n_competence")
+     * @Route("/sn/competence", name="sn_competence")
      */
     public function index()
     {

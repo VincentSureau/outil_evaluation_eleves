@@ -5,10 +5,10 @@ namespace App\Controller\Back;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class MelecTaskController extends AbstractController
+class MELECTaskController extends AbstractController
 {
     /**
-     * @Route("/back/melec/task", name="back_melec_task")
+     * @Route("/melec/task", name="melec_task")
      */
     public function index()
     {
