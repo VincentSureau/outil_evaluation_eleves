@@ -11,12 +11,12 @@ use App\Entity\Bordee;
 use App\Entity\School;
 use App\Entity\Student;
 use App\Entity\Referent;
-//use App\Entity\Task;
+use App\Entity\SNTask;
 use App\Entity\Specialisation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-//use App\Entity\Competence;
+use App\Entity\SNCompetence;
 
 class AppFixtures extends Fixture
 {
@@ -102,38 +102,64 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 3; $i++){
             $specialisation = new Specialisation;
             $specialisationNames = ["SN", "MEI", "MELEC"];
-            $specialisation->setName($specialisationNames[array_rand($specialisationNames)]);
+            $specialisation->setName($specialisationNames[$i]);
 
             $manager->persist($specialisation);
             $specialisations[] = $specialisation;
 
-            /*$tasks = [];
-            for($j = 1; $j <= 15; $j++){
-                
-                task = new Task;
-                $task->setReference('A' . $j)
-                            ->setName($faker->catchPhrase)
-                            ->setSpecialisation($specialisation)
-                            ;
-                
-                $manager->persist($task);
-                $tasks[] = $task;
+            $tasks = [];
 
-                for($k = 1; $k <= mt_rand(2,4); $k++){
+            for($k = 1; $k <= mt_rand(2,4); $k++){
                 
-                    $competence = new Competence;
-                    $competence->setReference('C' . $k)
-                                ->setName($faker->catchPhrase)
-                                ->addTask($task)
-                                ;
-                    $manager->persist($competence);
-                    $competences[] = $competence;
-    
+                $competence;
+
+                switch ($specialisation->getName()) {
+                    case "SN":
+                        $competence = new SNCompetence;
+                        break;
+                    case "MEI":
+                        //$task = new MEICompetence;
+                        break;
+                    case "MELEC":
+                        //$task = new MELECCompetence;
+                        break;
                 }
 
-            }*/
+                for($j = 1; $j <= 15; $j++){
 
+                    $task;
+    
+                    switch ($specialisation->getName()) {
+                        case "SN":
+                            $task = new SNTask;
+                            break;
+                        case "MEI":
+                            //$task = new MEITask;
+                            break;
+                        case "MELEC":
+                            //$task = new MELECTask;
+                            break;
+                    }
+                    
+                    $task//->setReference('A' . $j) // throw the error
+                                ->setLabel($faker->catchPhrase)
+                                ->setCompetence($competence)
+                                //->setSpecialisation($specialisation)
+                                ;
+                    
+                    $manager->persist($task);
+                    $tasks[] = $task;
+                }
 
+                $competence->setReference('C' . $k)
+                            ->setLabel($faker->catchPhrase)
+                            ->addSNTask($task)
+                            ->setSpecialisation($specialisation)
+                            ->setIsActive(true)
+                            ;
+                $manager->persist($competence);
+                $competences[] = $competence;
+            }
 
             for($j = 1; $j <= 6; $j++)
             {
