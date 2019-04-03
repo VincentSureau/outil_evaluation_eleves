@@ -2,18 +2,19 @@
 
 namespace App\Controller\Back;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Specialisation;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SNTaskController extends AbstractController
 {
     /**
-     * @Route("/sn/task", name="sn_task")
+     * @Route("/sn/task/{id}", name="sn_task")
      */
-    public function index()
+    public function index(Specialisation $specialisation)
     {
         return $this->render('back/sn_task/index.html.twig', [
-            'controller_name' => 'SNTaskController',
+            'specialisation' => $specialisation,
         ]);
     }
 }
