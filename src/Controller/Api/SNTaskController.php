@@ -2,27 +2,27 @@
 
 namespace App\Controller\Api;
 
-// use App\Entity\Task;
-// use App\Repository\TaskRepository;
+use App\Entity\SNTask;
+use App\Repository\SNTaskRepository;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\Routing\Annotation\Route;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/sasks")
+ * @Route("/sn/tasks")
  */
 class TaskController extends AbstractController
 {
     /**
      * @Get(
-     *     path = "/tasks",
-     *     name="tasks_list",
+     *     path = "/",
+     *     name="sn_tasks_list",
      * )
-     * @Rest\View(serializerGroups={"task"})
+     * @Rest\View(serializerGroups={"sntask"})
      */
-    // public function getCirfas(TaskRepository $repository)
-    // {
-    //     return $repository->findAll();
-    // }
+    public function getTasks(SNTaskRepository $repository)
+    {
+        return $repository->findAll();
+    }
 }
