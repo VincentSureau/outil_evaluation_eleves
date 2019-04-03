@@ -16,6 +16,8 @@ use App\Entity\Specialisation;
 use App\Entity\MELECCompetence;
 use App\Entity\SNSubCompetence;
 use App\Entity\MELECSubCompetence;
+use App\Entity\SNTask;
+use App\Entity\MELECTask;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -96,6 +98,149 @@ class AppFixtures extends Fixture
                     'Les résultats sont interprétés',
                     'Le fonctionnement du système est vérifié',
                     'La fiche d\'intervention est renseignée'
+                ]
+            ]
+        ];
+
+        $tasksData = [
+            'MELEC' => [
+                [
+                    'reference' => 'T 1-1/TA 1-1',
+                    'label' => 'prendre connaissance du dossier relatif aux opérations à réaliser, le constituer pour une opération simple / prendre connaissance du dossier relatif aux opérations à réaliser dans leur environnement'
+                ],
+                [
+                    'reference' => 'T 1-2',
+                    'label' => 'rechercher et expliquer les informations relatives aux opération et aux conditions d\'éxécution'
+                ],
+                [
+                    'reference' => 'T 1-3=TA 1-2',
+                    'label' => 'vérifier et compléter si besoin la liste des matériels, équipements et outillages nécessaires aux opérations'
+                ],
+                [
+                    'reference' => 'T 1-4',
+                    'label' => 'répartir les tâches en fonction des habilitations, des certifications  des équipiers et du planning des autres intervenants'
+                ],
+                [
+                    'reference' => 'T 2-1=TA 2-1',
+                    'label' => 'organiser le poste de travail'
+                ],
+                [
+                    'reference' => 'T 2-2=TA 2-2',
+                    'label' => 'implanter, poser, installer les matériels électriques'
+                ],
+                [
+                    'reference' => 'T 2-3=TA 2-3',
+                    'label' => 'câbler, raccorder les matériels électriques'
+                ],
+                [
+                    'reference' => 'T 2-4',
+                    'label' => 'gérer les activités de son équipe'
+                ],
+                [
+                    'reference' => 'T 2-5',
+                    'label' => 'coordonner son activité par rapport à celles des autres intervenants'
+                ],
+                [
+                    'reference' => 'T 2-6=TA 2-6',
+                    'label' => 'mener son activité de manière eco-responsable'
+                ],
+                [
+                    'reference' => 'T 3-1/TA 3-1',
+                    'label' => 'réaliser les vérifications, les réglages, les paramétrages, les essais nécessaires à la mise en service de l\'installation / réaliser les vérifications, les réglages, les essais nécessaire à la mise en service de l\'installation'
+                ],
+                [
+                    'reference' => 'T 3-2/TA 3-2',
+                    'label' => 'participer à la réception technique et aux levées de reserves de l\'installation / participer aux opérations nécessaires aux levées de réserves de l\'installation'
+                ],
+                [
+                    'reference' => 'T 4-1',
+                    'label' => 'réaliser une opération de maintenance préventive'
+                ],
+                [
+                    'reference' => 'T 4-2/TA 4-1',
+                    'label' => 'réaliser une opération de dépannage / réaliser une opération de maintenance simple'
+                ],
+                [
+                    'reference' => 'T 5-1',
+                    'label' => 'participer à la mise à jour du dossier technique de l\'installation'
+                ],
+                [
+                    'reference' => 'T 5-2=TA 5-1',
+                    'label' => 'échanger sur le déroulement des opérations, expliquer le fonctionnement de l\'installation à l\'interne et à l\'externe'
+                ],
+                [
+                    'reference' => 'T 5-3',
+                    'label' => 'conseiller le client, lui proposer une prestation complémentaire, une modification ou une amélioration'
+                ]
+            ],
+            'SN' => [
+                [
+                    'reference' => 'A1-1',
+                    'label' => 'Préparation des opérations'
+                ],
+                [
+                    'reference' => 'A1-2',
+                    'label' => 'Intégration, assemblage interconnexion des matériels'
+                ],
+                [
+                    'reference' => 'A1-3',
+                    'label' => 'Intégration logiciels'
+                ],
+                [
+                    'reference' => 'A1-4',
+                    'label' => 'Test et validation'
+                ],
+                [
+                    'reference' => 'A2-1',
+                    'label' => 'Participation à la préparation sur le site d\'installation'
+                ],
+                [
+                    'reference' => 'A2-2',
+                    'label' => 'Identification des éléments'
+                ],
+                [
+                    'reference' => 'A2-3',
+                    'label' => 'Façonnage des conduits, des supports de transmission et d\'energie'
+                ],
+                [
+                    'reference' => 'A2-4',
+                    'label' => 'Implantation, pose des appareillages et équipements d’interconnexion'
+                ],
+                [
+                    'reference' => 'A2-5',
+                    'label' => 'Réalisation des activités de câblage et de raccordement'
+                ],
+                [
+                    'reference' => 'A2-6',
+                    'label' => 'Test et validation des supports de transmission et d’énergie'
+                ],
+                [
+                    'reference' => 'A2-7',
+                    'label' => 'Mise en place, configuration, paramétrage, test, validation  et mise en service'
+                ],
+                [
+                    'reference' => 'A3-1',
+                    'label' => 'Maintenance préventive'
+                ],
+                [
+                    'reference' => 'A3-2',
+                    'label' => 'Maintenance corrective'
+                ],
+                [
+                    'reference' => 'A4-1',
+                    'label' => 'Participation à la gestion de son activité'
+                ],
+                [
+                    'reference' => 'A4-2',
+                    'label' => 'Actualisation de ses connaissances et mise à jour de la documentation'
+                ],
+                [
+                    'reference' => 'A4-3',
+                    'label' => 'Participation à la relation clientèle'
+                ],
+                [
+                    'reference' => 'A4-4',
+                    'label' => 'Respect des obligations légales et réglementaires'
                 ]
             ]
         ];
@@ -221,6 +366,27 @@ class AppFixtures extends Fixture
                             ;
                 $manager->persist($competence);
                 $competences[] = $competence;
+            }
+
+            switch($specialisation->getName()){
+                case 'MELEC':
+                    foreach($tasksData['MELEC'] as $value) {
+                        $task = new MELECTask;
+        
+                        $task->setSpecialisation($specialisation)->setLabel($value['label'])->setReference($value['reference']);
+                        $manager->persist($task);
+                        $tasks[] = $task;
+                    }
+                    break;
+                case 'SN':
+                foreach($tasksData['SN'] as $value) {
+                    $task = new MELECTask;
+    
+                    $task->setSpecialisation($specialisation)->setLabel($value['label'])->setReference($value['reference']);
+                    $manager->persist($task);
+                    $tasks[] = $task;
+                }
+                    break;
             }
 
             /*for($k = 1; $k <= mt_rand(2,4); $k++){

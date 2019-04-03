@@ -10,7 +10,7 @@
             },
             columns: [
                 { data:'reference'},
-                { data:'name'},
+                { data:'label'},
                 {
                     data: 'id',
                     sortable: false,

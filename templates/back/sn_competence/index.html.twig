@@ -5,13 +5,13 @@
 {% block body %}
     <h1>Competence index</h1>
 
-    <a href="{{ path('sn_competence_new') }}">Créer un nouveau</a>
+    {#<a href="{{ path('sn_competence_new') }}">Créer un nouveau</a>#}
     
     <table id="sn_competence_list" class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>Reference</th>
-                <th>Name</th>
+                <th>Intitulé</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,7 +19,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('back_sn_admin_home') }}">retour</a>
+    <a href="{{ path('back_admin_home') }}">retour</a>
 {% endblock %}
 
 
