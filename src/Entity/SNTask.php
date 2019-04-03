@@ -36,6 +36,8 @@ class SNTask
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose()
+     * @Serializer\Groups({"sntask"})
      */
     private $reference;
 
