@@ -1,20 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SNTaskController!{% endblock %}
+{% block title %}SN Task index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Task index</h1>
+    
+    {#<a href="{{ path('admin_sn_task_new') }}">Créer un nouveau</a>#}
+    
+    <table id="sn_tasks_list" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Référent</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <a href="{{ path('back_admin_home') }}">retour</a>
+{% endblock %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/outil_evaluation_eleves/src/Controller/Back/SNTaskController.php'|file_link(0) }}">src/Controller/Back/SNTaskController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/outil_evaluation_eleves/templates/back/sn_task/index.html.twig'|file_link(0) }}">templates/back/sn_task/index.html.twig</a></code></li>
-    </ul>
-</div>
+{% block javascripts %}
+
+    <script type="text/javascript">
+        var listUrl = '{{ path('api_sn_tasks_list')|escape('js') }}';
+    </script>
+    <script type="text/javascript" src="{{ asset("js/back/sntaskDatatable.js") }}"></script>
 {% endblock %}
