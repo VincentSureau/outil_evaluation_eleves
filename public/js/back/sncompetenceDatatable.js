@@ -2,7 +2,7 @@
     $(document).ready( function () {
         var table = $('#sn_competence_list').DataTable({
             language: {
-                url: '../../json/fr_FR.json'
+                url: 'http://127.0.0.1:8000/json/fr_FR.json'
             },
             ajax: {
                 url: listUrl,
