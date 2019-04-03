@@ -35,10 +35,10 @@ class AppFixtures extends Fixture
                 'subCompetences' => [
                     'Les résultats des tests sont conformes aux normes en vigueur',
                     'Les règles de sécurité, habilitation électrique, raccordement fluidique sont respectées',
-                    'Un rapport est fourni, dans lequel sont indiqués, en adéquation avec les constraintes d\'environnement et les normes :' +
-                        '* le schème du plan de câblage avec des modifications éventuelles (raccordement)' +
-                        '* la fiche de recette de câblage' +
-                        '* l\'analyse de l\'adéquation entre les mesurages effectués et l\'installation considérée' +
+                    'Un rapport est fourni, dans lequel sont indiqués, en adéquation avec les constraintes d\'environnement et les normes :' .
+                        '* le schème du plan de câblage avec des modifications éventuelles (raccordement)' .
+                        '* la fiche de recette de câblage' .
+                        '* l\'analyse de l\'adéquation entre les mesurages effectués et l\'installation considérée' .
                         '* l\'interprétation des tests effectués',
                 ]
             ],
@@ -48,9 +48,9 @@ class AppFixtures extends Fixture
                 'subCompetences' => [
                     'Le fonctionnement des appareils à installer est vérifié préalablement',
                     'L\'accès aux paramètres est vérifié préalablement',
-                    'Les équipements (appareils et composants logiciels) sont installés en respectant :' +
-                        '* les indications et procédures d\'installation' +
-                        '* la planification de l\'interventation et l\'ordre de mise en place' +
+                    'Les équipements (appareils et composants logiciels) sont installés en respectant :' .
+                        '* les indications et procédures d\'installation' .
+                        '* la planification de l\'interventation et l\'ordre de mise en place' .
                         '* les contraintes techniques et fonctionnelles sur tout ou partie d\'un système',
                     'Les éléments de l\'installation sont configurés (matériel et logiciel)',
                     'Les opérations de test sont mise en œuvre et les résultats interprétés',
@@ -63,9 +63,9 @@ class AppFixtures extends Fixture
                 'reference' => 'C5-2',
                 'label' => 'Vérifier la conformité du support et des alimentations en énergie, le fonctionnement des matériels et logiciels en interaction',
                 'subCompetences' => [
-                    'Un rapport est fourni dans lequel sont indiqués, en adéquation avec les contraintes d\'environnement et les normes :' +
-                        '* le schème des plans de câblage avec les modifications éventuelles (énergie et réseau)' +
-                        '* la fiche de recette de câblage' +
+                    'Un rapport est fourni dans lequel sont indiqués, en adéquation avec les contraintes d\'environnement et les normes :' .
+                        '* le schème des plans de câblage avec les modifications éventuelles (énergie et réseau)' .
+                        '* la fiche de recette de câblage' .
                         '* l\'analyse de l\'adéquation entre les mesures effectuées et l\'installation considérée',
                     'Les tests effectués sont interprétés',
                     'L\'alimentation, la prise de terre électrique, la prise de terre informatique sont vérifiées et sont conformes',
