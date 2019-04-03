@@ -11,12 +11,14 @@ use App\Entity\Bordee;
 use App\Entity\School;
 use App\Entity\Student;
 use App\Entity\Referent;
-use App\Entity\SNSubCompetence;
+use App\Entity\SNCompetence;
 use App\Entity\Specialisation;
+use App\Entity\MELECCompetence;
+use App\Entity\SNSubCompetence;
+use App\Entity\MELECSubCompetence;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use App\Entity\SNCompetence;
 
 class AppFixtures extends Fixture
 {
@@ -179,7 +181,7 @@ class AppFixtures extends Fixture
 
             $subCompetences = [];
 
-            foreach($competencesData as $value){
+            foreach($competencesData as $competenceData){
                 $competence;
 
                 switch ($specialisation->getName()) {
@@ -190,11 +192,10 @@ class AppFixtures extends Fixture
                         //$task = new MEICompetence;
                         break;
                     case "MELEC":
-                        $task = new MELECCompetence;
+                        $competence = new MELECCompetence;
                         break;
                 }
-
-                foreach($competencesData['subCompetences'] as $subCompetenceLabel){
+                foreach($competenceData['subCompetences'] as $subCompetenceLabel){
                     $subCompetence;
 
                     switch ($specialisation->getName()) {
@@ -214,11 +215,9 @@ class AppFixtures extends Fixture
                     $subCompetences[] = $subCompetence;
                 }
 
-                $competence->setReference($value['reference'])
-                            ->setLabel($value['label'])
-                            ->addSNSubCompetence($subCompetence)
+                $competence->setReference($competenceData['reference'])
+                            ->setLabel($competenceData['label'])
                             ->setSpecialisation($specialisation)
-                            ->setIsActive(true)
                             ;
                 $manager->persist($competence);
                 $competences[] = $competence;

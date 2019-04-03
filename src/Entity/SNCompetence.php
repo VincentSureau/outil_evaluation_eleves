@@ -29,11 +29,6 @@ class SNCompetence
     private $label;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isActive;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Specialisation", inversedBy="sNCompetences")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -74,18 +69,6 @@ class SNCompetence
     public function setLabel(string $label): self
     {
         $this->label = $label;
-
-        return $this;
-    }
-
-    public function getIsActive(): ?bool
-    {
-        return $this->isActive;
-    }
-
-    public function setIsActive(bool $isActive): self
-    {
-        $this->isActive = $isActive;
 
         return $this;
     }
