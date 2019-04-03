@@ -34,6 +34,11 @@ class SNTask
      */
     private $specialisation;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $reference;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +64,18 @@ class SNTask
     public function setSpecialisation(?Specialisation $specialisation): self
     {
         $this->specialisation = $specialisation;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
 
         return $this;
     }

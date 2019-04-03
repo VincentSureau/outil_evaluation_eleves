@@ -380,7 +380,7 @@ class AppFixtures extends Fixture
                     break;
                 case 'SN':
                 foreach($tasksData['SN'] as $value) {
-                    $task = new MELECTask;
+                    $task = new SNTask;
     
                     $task->setSpecialisation($specialisation)->setLabel($value['label'])->setReference($value['reference']);
                     $manager->persist($task);
