@@ -2,26 +2,26 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\SNTask;
-use App\Repository\SNTaskRepository;
+use App\Entity\MELECTask;
+use App\Repository\MELECTaskRepository;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\Routing\Annotation\Route;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/sn/tasks")
+ * @Route("/melec/tasks")
  */
-class SNTaskController extends AbstractController
+class MELECTaskController extends AbstractController
 {
     /**
      * @Get(
      *     path = "/",
-     *     name="sn_tasks_list",
+     *     name="melec_tasks_list",
      * )
-     * @Rest\View(serializerGroups={"sntask"})
+     * @Rest\View(serializerGroups={"melectask"})
      */
-    public function getTasks(SNTaskRepository $repository)
+    public function getTasks(MELECTaskRepository $repository)
     {
         return $repository->findAll();
     }

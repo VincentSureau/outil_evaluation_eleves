@@ -58,6 +58,11 @@ class Specialisation
      */
     private $mELECTasks;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SNTask", mappedBy="specialisation")
+     */
+    private $sNTasks;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
@@ -65,6 +70,7 @@ class Specialisation
         $this->sNCompetences = new ArrayCollection();
         $this->mELECCompetences = new ArrayCollection();
         $this->mELECTasks = new ArrayCollection();
+        $this->sNTasks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -238,6 +244,37 @@ class Specialisation
             // set the owning side to null (unless already changed)
             if ($mELECTask->getSpecialisation() === $this) {
                 $mELECTask->setSpecialisation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SNTask[]
+     */
+    public function getSNTasks(): Collection
+    {
+        return $this->sNTasks;
+    }
+
+    public function addSNTask(SNTask $sNTask): self
+    {
+        if (!$this->sNTasks->contains($sNTask)) {
+            $this->sNTasks[] = $sNTask;
+            $sNTask->setSpecialisation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSNTask(SNTask $sNTask): self
+    {
+        if ($this->sNTasks->contains($sNTask)) {
+            $this->sNTasks->removeElement($sNTask);
+            // set the owning side to null (unless already changed)
+            if ($sNTask->getSpecialisation() === $this) {
+                $sNTask->setSpecialisation(null);
             }
         }
 

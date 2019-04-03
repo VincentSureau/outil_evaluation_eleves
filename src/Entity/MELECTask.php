@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation AS Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MELECTaskRepository")
@@ -13,22 +14,30 @@ class MELECTask
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Expose()
+     * @Serializer\Groups({"melectask"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose()
+     * @Serializer\Groups({"melectask"})
      */
     private $reference;
 
     /**
      * @ORM\Column(type="text")
+     * @Serializer\Expose()
+     * @Serializer\Groups({"melectask"})
      */
     private $label;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Specialisation", inversedBy="mELECTasks")
      * @ORM\JoinColumn(nullable=false)
+     * @Serializer\Expose()
+     * @Serializer\Groups({"melectask"})
      */
     private $specialisation;
 
