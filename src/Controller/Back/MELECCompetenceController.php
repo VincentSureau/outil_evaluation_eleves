@@ -2,18 +2,19 @@
 
 namespace App\Controller\Back;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Specialisation;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MELECCompetenceController extends AbstractController
 {
     /**
-     * @Route("/melec/competence", name="melec_competence")
+     * @Route("/melec/competence/{id}", name="melec_competence")
      */
-    public function index()
+    public function index(Specialisation $specialisation)
     {
         return $this->render('back/melec_competence/index.html.twig', [
-            'controller_name' => 'MELECCompetenceController',
+            'specialisation' => $specialisation,
         ]);
     }
 }
