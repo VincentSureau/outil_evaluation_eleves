@@ -6,15 +6,20 @@ use App\Entity\Competence;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class CompetenceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('reference')
-            ->add('name')
-            ->add('tasks')
+            ->add('reference', TextType::class, [
+                'label' => 'Référence'
+            ])
+            ->add('name', TextType::class, [
+                'label' => 'Intitulé'
+            ])
+            // ->add('tasks')
         ;
     }
 
