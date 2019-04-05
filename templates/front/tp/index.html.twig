@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Liste des TP</h1>
-    <a href="{{ path('tp_new') }}">Create new</a>
+    <a href="{{ path('tp_new') }}">Créer un TP</a>
     {{ include('/front/partials/__tplist.html.twig') }}
 
     <a href="{{ path('admin_specialisation_edit', { 'id': specialisation.id }) }}">Retour</a>
