@@ -1,25 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}School index{% endblock %}
+{% block title %}Liste des lycées{% endblock %}
 
 {% block body %}
-    <h1>School index</h1>
+    <h1>Liste des lycées</h1>
 
     <table id="schools_list" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Academie</th>
                 <th>Téléphone</th>
                 <th>Email</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
         </tbody>
     </table>
 
-    <a href="{{ path('school_new') }}">Create new</a>
+    <a href="{{ path('school_new') }}">Ajouter un lycée</a>
 {% endblock %}
 
 {% block javascripts %}
@@ -32,13 +32,6 @@
                 },
                 columns: [
                     {
-                        data:'id',
-                        render: function(data, type, row, meta){
-                            data = '<a href="' + row.id + '">' + data + '</a>';
-                            return data;
-                        }
-                    },
-                    {
                         data:'name',
                         render: function(data, type, row, meta){
                             data = '<a href="' + row.id + '">' + data + '</a>';
@@ -48,6 +41,13 @@
                     { data:'academy'},
                     { data:'number'},
                     { data:'email'},
+                    {
+                        data:'id',
+                        render: function(data, type, row, meta){
+                            data = '<a href="/school/' + row.id + '/edit">gérer</a>';
+                            return data;
+                        }
+                    },
                 ],
             });
         } );
