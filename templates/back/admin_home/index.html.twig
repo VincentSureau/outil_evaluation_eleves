@@ -4,7 +4,10 @@
 
 {% block body %}
 
-    <h1>Bienvenue sur l'espace d'administration</h1>
+    {{ include('back/admin_home/melec.html.twig') }}
+    {{ include('back/admin_home/sn.html.twig') }}
+
+    {#<h1>Bienvenue sur l'espace d'administration</h1>
 
     <div class="card-columns cc-sm-1 cc-md-2 cc-xxl-4 cc-xxxl-and-up-5 m-lg-5">
 
@@ -108,6 +111,6 @@
             </div>
         </div>
 
-    </div>
+    </div>#}
 
 {% endblock %}
