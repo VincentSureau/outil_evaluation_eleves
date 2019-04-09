@@ -42,13 +42,13 @@ class SNCompetence
     private $specialisation;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SNSubCompetence", mappedBy="competence")
+     * @ORM\OneToMany(targetEntity="App\Entity\SNTask", mappedBy="competence")
      */
-    private $sNSubCompetences;
+    private $tasks;
 
     public function __construct()
     {
-        $this->sNSubCompetences = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -93,30 +93,30 @@ class SNCompetence
     }
 
     /**
-     * @return Collection|SNSubCompetence[]
+     * @return Collection|SNTask[]
      */
-    public function getSNSubCompetences(): Collection
+    public function getTasks(): Collection
     {
-        return $this->sNSubCompetences;
+        return $this->tasks;
     }
 
-    public function addSNSubCompetence(SNSubCompetence $sNSubCompetence): self
+    public function addTask(SNTask $task): self
     {
-        if (!$this->sNSubCompetences->contains($sNSubCompetence)) {
-            $this->sNSubCompetences[] = $sNSubCompetence;
-            $sNSubCompetence->setCompetence($this);
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->setCompetence($this);
         }
 
         return $this;
     }
 
-    public function removeSNSubCompetence(SNSubCompetence $sNSubCompetence): self
+    public function removeTask(SNTask $task): self
     {
-        if ($this->sNSubCompetences->contains($sNSubCompetence)) {
-            $this->sNSubCompetences->removeElement($sNSubCompetence);
+        if ($this->tasks->contains($task)) {
+            $this->tasks->removeElement($task);
             // set the owning side to null (unless already changed)
-            if ($sNSubCompetence->getCompetence() === $this) {
-                $sNSubCompetence->setCompetence(null);
+            if ($task->getCompetence() === $this) {
+                $task->setCompetence(null);
             }
         }
 

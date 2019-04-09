@@ -41,6 +41,12 @@ class SNTask
      */
     private $reference;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SNCompetence", inversedBy="tasks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $competence;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -78,6 +84,18 @@ class SNTask
     public function setReference(string $reference): self
     {
         $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getCompetence(): ?SNCompetence
+    {
+        return $this->competence;
+    }
+
+    public function setCompetence(?SNCompetence $competence): self
+    {
+        $this->competence = $competence;
 
         return $this;
     }
