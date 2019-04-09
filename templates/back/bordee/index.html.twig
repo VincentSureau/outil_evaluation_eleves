@@ -3,9 +3,14 @@
 {% block title %}Bordee index{% endblock %}
 
 {% block body %}
-    <h1>Bordee index</h1>
+    <h1>Liste des bordées</h1>
 
-    <a href="{{ path('admin_bordee_new') }}">Create new</a>
+    <div class="text-right">
+        <button class="btn btn-primary m-bot-10">
+            <i class="fas fa-plus"></i>
+            <a class="text-white" href="{{ path('admin_bordee_new') }}">Ajouter une bordée</a>
+        </button>
+    </div>
 
     <a class="btn btn-primary" href="{{ path('students_add') }}">
         importer une bordée
