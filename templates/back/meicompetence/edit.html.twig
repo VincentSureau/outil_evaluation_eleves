@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Competence{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h1>Editer une Compétence</h1>
+
+        <div class="card my-3">
+            <div class="card-body">
+                <p class="card-text text-right">
+                    {{ include('back/meicompetence/_form.html.twig', {'button_label': 'Update'}) }}
+                </p>
+
+                <p class="card-text text-right">
+                    {{ include('back/meicompetence/_delete_form.html.twig') }}
+                </p>
+            </div>
+        </div>
+
+        <a href="{{ path('admin_mei_competence_index') }}">retour à la liste</a>
+
+    </div>
+{% endblock %}

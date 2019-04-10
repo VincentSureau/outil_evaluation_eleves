@@ -11,12 +11,15 @@ use App\Entity\Bordee;
 use App\Entity\School;
 use App\Entity\Student;
 use App\Entity\Referent;
-use App\Entity\Task;
+use App\Entity\SNCompetence;
 use App\Entity\Specialisation;
+use App\Entity\MELECCompetence;
+use App\Entity\MELECSubCompetence;
+use App\Entity\SNTask;
+use App\Entity\MELECTask;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use App\Entity\Competence;
 
 class AppFixtures extends Fixture
 {
@@ -27,6 +30,297 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $specialisationsDatas = [
+            [
+                "name" => "SN",
+                "competences" => [
+                    [
+                        'reference' => 'C4-3',
+                        'label' => 'Effectuer les tests, certifier le support physique',
+                        'subCompetences' => [
+                            'Les résultats des tests sont conformes aux normes en vigueur',
+                            'Les règles de sécurité, habilitation électrique, raccordement fluidique sont respectées',
+                            'Un rapport est fourni, dans lequel sont indiqués, en adéquation avec les constraintes d\'environnement et les normes :' .
+                                '* le schème du plan de câblage avec des modifications éventuelles (raccordement)' .
+                                '* la fiche de recette de câblage' .
+                                '* l\'analyse de l\'adéquation entre les mesurages effectués et l\'installation considérée' .
+                                '* l\'interprétation des tests effectués',
+                        ]
+                    ],
+                    [
+                        'reference' => 'C4-4',
+                        'label' => 'Installer, configurer les éléments du système et vérifier la conformité du fonctionnement',
+                        'subCompetences' => [
+                            'Le fonctionnement des appareils à installer est vérifié préalablement',
+                            'L\'accès aux paramètres est vérifié préalablement',
+                            'Les équipements (appareils et composants logiciels) sont installés en respectant :' .
+                                '* les indications et procédures d\'installation' .
+                                '* la planification de l\'interventation et l\'ordre de mise en place' .
+                                '* les contraintes techniques et fonctionnelles sur tout ou partie d\'un système',
+                            'Les éléments de l\'installation sont configurés (matériel et logiciel)',
+                            'Les opérations de test sont mise en œuvre et les résultats interprétés',
+                            'La conformité fonctionnelle est vérifiée',
+                            'Le client est formé à l\'utilisation et à l\'entretien de l\'installation',
+                            'Un compte rendu de test est établi et transmis'
+                        ]
+                    ],
+                    [
+                        'reference' => 'C5-2',
+                        'label' => 'Vérifier la conformité du support et des alimentations en énergie, le fonctionnement des matériels et logiciels en interaction',
+                        'subCompetences' => [
+                            'Un rapport est fourni dans lequel sont indiqués, en adéquation avec les contraintes d\'environnement et les normes :' .
+                                '* le schème des plans de câblage avec les modifications éventuelles (énergie et réseau)' .
+                                '* la fiche de recette de câblage' .
+                                '* l\'analyse de l\'adéquation entre les mesures effectuées et l\'installation considérée',
+                            'Les tests effectués sont interprétés',
+                            'L\'alimentation, la prise de terre électrique, la prise de terre informatique sont vérifiées et sont conformes',
+                            'Les opérations de tests sur les matériels sont mise en œuvre',
+                            'La bonne exécution des logiciels est vérifiée',
+                            'Le fonctionnement de chaque équipement est vérifié'
+                        ]
+                    ],
+                    [
+                        'reference' => 'C5-4',
+                        'label' => 'Réaliser l\'intervention',
+                        'subCompetences' => [
+                            'L\'intervention est menée en corrélation avec le diagnostic',
+                            'Le composant (traversant ou CMS) ou la carte défectueuse est remplacé(e)',
+                            'L\'installation est remise en état, les éléments défectueux sont remis en état, changés ou modifiés',
+                            'Les éléments en fin de vie sont triés selon la réglementation en vigueur en vue du recyclage'
+                        ]
+                    ],
+                    [
+                        'reference' => 'C5-5',
+                        'label' => 'Vérifier la conformité du fonctionnement des matériels des logiciels idéntifiés puis de l\'installation',
+                        'subCompetences' => [
+                            'Le système est mis en service',
+                            'L\'installation est remise en service',
+                            'Les procédures de tests spécifiques sont mise en place',
+                            'Les résultats sont interprétés',
+                            'Le fonctionnement du système est vérifié',
+                            'La fiche d\'intervention est renseignée'
+                        ]
+                    ]
+                ],
+                "tasks" => [
+                    [
+                        'reference' => 'A1-1',
+                        'label' => 'Préparation des opérations'
+                    ],
+                    [
+                        'reference' => 'A1-2',
+                        'label' => 'Intégration, assemblage interconnexion des matériels'
+                    ],
+                    [
+                        'reference' => 'A1-3',
+                        'label' => 'Intégration logiciels'
+                    ],
+                    [
+                        'reference' => 'A1-4',
+                        'label' => 'Test et validation'
+                    ],
+                    [
+                        'reference' => 'A2-1',
+                        'label' => 'Participation à la préparation sur le site d\'installation'
+                    ],
+                    [
+                        'reference' => 'A2-2',
+                        'label' => 'Identification des éléments'
+                    ],
+                    [
+                        'reference' => 'A2-3',
+                        'label' => 'Façonnage des conduits, des supports de transmission et d\'energie'
+                    ],
+                    [
+                        'reference' => 'A2-4',
+                        'label' => 'Implantation, pose des appareillages et équipements d’interconnexion'
+                    ],
+                    [
+                        'reference' => 'A2-5',
+                        'label' => 'Réalisation des activités de câblage et de raccordement'
+                    ],
+                    [
+                        'reference' => 'A2-6',
+                        'label' => 'Test et validation des supports de transmission et d’énergie'
+                    ],
+                    [
+                        'reference' => 'A2-7',
+                        'label' => 'Mise en place, configuration, paramétrage, test, validation  et mise en service'
+                    ],
+                    [
+                        'reference' => 'A3-1',
+                        'label' => 'Maintenance préventive'
+                    ],
+                    [
+                        'reference' => 'A3-2',
+                        'label' => 'Maintenance corrective'
+                    ],
+                    [
+                        'reference' => 'A4-1',
+                        'label' => 'Participation à la gestion de son activité'
+                    ],
+                    [
+                        'reference' => 'A4-2',
+                        'label' => 'Actualisation de ses connaissances et mise à jour de la documentation'
+                    ],
+                    [
+                        'reference' => 'A4-3',
+                        'label' => 'Participation à la relation clientèle'
+                    ],
+                    [
+                        'reference' => 'A4-4',
+                        'label' => 'Respect des obligations légales et réglementaires'
+                    ]
+                ]
+            ],
+            [
+                "name" => "MEI"
+            ],
+            [
+                "name" => "MELEC",
+                "competences" => [
+                    [
+                        'reference' => 'C4-3',
+                        'label' => 'Effectuer les tests, certifier le support physique',
+                        'subCompetences' => [
+                            'Les résultats des tests sont conformes aux normes en vigueur',
+                            'Les règles de sécurité, habilitation électrique, raccordement fluidique sont respectées',
+                            'Un rapport est fourni, dans lequel sont indiqués, en adéquation avec les constraintes d\'environnement et les normes :' .
+                                '* le schème du plan de câblage avec des modifications éventuelles (raccordement)' .
+                                '* la fiche de recette de câblage' .
+                                '* l\'analyse de l\'adéquation entre les mesurages effectués et l\'installation considérée' .
+                                '* l\'interprétation des tests effectués',
+                        ]
+                    ],
+                    [
+                        'reference' => 'C4-4',
+                        'label' => 'Installer, configurer les éléments du système et vérifier la conformité du fonctionnement',
+                        'subCompetences' => [
+                            'Le fonctionnement des appareils à installer est vérifié préalablement',
+                            'L\'accès aux paramètres est vérifié préalablement',
+                            'Les équipements (appareils et composants logiciels) sont installés en respectant :' .
+                                '* les indications et procédures d\'installation' .
+                                '* la planification de l\'interventation et l\'ordre de mise en place' .
+                                '* les contraintes techniques et fonctionnelles sur tout ou partie d\'un système',
+                            'Les éléments de l\'installation sont configurés (matériel et logiciel)',
+                            'Les opérations de test sont mise en œuvre et les résultats interprétés',
+                            'La conformité fonctionnelle est vérifiée',
+                            'Le client est formé à l\'utilisation et à l\'entretien de l\'installation',
+                            'Un compte rendu de test est établi et transmis'
+                        ]
+                    ],
+                    [
+                        'reference' => 'C5-2',
+                        'label' => 'Vérifier la conformité du support et des alimentations en énergie, le fonctionnement des matériels et logiciels en interaction',
+                        'subCompetences' => [
+                            'Un rapport est fourni dans lequel sont indiqués, en adéquation avec les contraintes d\'environnement et les normes :' .
+                                '* le schème des plans de câblage avec les modifications éventuelles (énergie et réseau)' .
+                                '* la fiche de recette de câblage' .
+                                '* l\'analyse de l\'adéquation entre les mesures effectuées et l\'installation considérée',
+                            'Les tests effectués sont interprétés',
+                            'L\'alimentation, la prise de terre électrique, la prise de terre informatique sont vérifiées et sont conformes',
+                            'Les opérations de tests sur les matériels sont mise en œuvre',
+                            'La bonne exécution des logiciels est vérifiée',
+                            'Le fonctionnement de chaque équipement est vérifié'
+                        ]
+                    ],
+                    [
+                        'reference' => 'C5-4',
+                        'label' => 'Réaliser l\'intervention',
+                        'subCompetences' => [
+                            'L\'intervention est menée en corrélation avec le diagnostic',
+                            'Le composant (traversant ou CMS) ou la carte défectueuse est remplacé(e)',
+                            'L\'installation est remise en état, les éléments défectueux sont remis en état, changés ou modifiés',
+                            'Les éléments en fin de vie sont triés selon la réglementation en vigueur en vue du recyclage'
+                        ]
+                    ],
+                    [
+                        'reference' => 'C5-5',
+                        'label' => 'Vérifier la conformité du fonctionnement des matériels des logiciels idéntifiés puis de l\'installation',
+                        'subCompetences' => [
+                            'Le système est mis en service',
+                            'L\'installation est remise en service',
+                            'Les procédures de tests spécifiques sont mise en place',
+                            'Les résultats sont interprétés',
+                            'Le fonctionnement du système est vérifié',
+                            'La fiche d\'intervention est renseignée'
+                        ]
+                    ]
+                ],
+                "tasks" => [
+                    [
+                        'reference' => 'T 1-1/TA 1-1',
+                        'label' => 'prendre connaissance du dossier relatif aux opérations à réaliser, le constituer pour une opération simple / prendre connaissance du dossier relatif aux opérations à réaliser dans leur environnement'
+                    ],
+                    [
+                        'reference' => 'T 1-2',
+                        'label' => 'rechercher et expliquer les informations relatives aux opération et aux conditions d\'éxécution'
+                    ],
+                    [
+                        'reference' => 'T 1-3 = TA 1-2',
+                        'label' => 'vérifier et compléter si besoin la liste des matériels, équipements et outillages nécessaires aux opérations'
+                    ],
+                    [
+                        'reference' => 'T 1-4',
+                        'label' => 'répartir les tâches en fonction des habilitations, des certifications  des équipiers et du planning des autres intervenants'
+                    ],
+                    [
+                        'reference' => 'T 2-1 = TA 2-1',
+                        'label' => 'organiser le poste de travail'
+                    ],
+                    [
+                        'reference' => 'T 2-2 = TA 2-2',
+                        'label' => 'implanter, poser, installer les matériels électriques'
+                    ],
+                    [
+                        'reference' => 'T 2-3 = TA 2-3',
+                        'label' => 'câbler, raccorder les matériels électriques'
+                    ],
+                    [
+                        'reference' => 'T 2-4',
+                        'label' => 'gérer les activités de son équipe'
+                    ],
+                    [
+                        'reference' => 'T 2-5',
+                        'label' => 'coordonner son activité par rapport à celles des autres intervenants'
+                    ],
+                    [
+                        'reference' => 'T 2-6 = TA 2-6',
+                        'label' => 'mener son activité de manière eco-responsable'
+                    ],
+                    [
+                        'reference' => 'T 3-1/TA 3-1',
+                        'label' => 'réaliser les vérifications, les réglages, les paramétrages, les essais nécessaires à la mise en service de l\'installation / réaliser les vérifications, les réglages, les essais nécessaire à la mise en service de l\'installation'
+                    ],
+                    [
+                        'reference' => 'T 3-2/TA 3-2',
+                        'label' => 'participer à la réception technique et aux levées de reserves de l\'installation / participer aux opérations nécessaires aux levées de réserves de l\'installation'
+                    ],
+                    [
+                        'reference' => 'T 4-1',
+                        'label' => 'réaliser une opération de maintenance préventive'
+                    ],
+                    [
+                        'reference' => 'T 4-2/TA 4-1',
+                        'label' => 'réaliser une opération de dépannage / réaliser une opération de maintenance simple'
+                    ],
+                    [
+                        'reference' => 'T 5-1',
+                        'label' => 'participer à la mise à jour du dossier technique de l\'installation'
+                    ],
+                    [
+                        'reference' => 'T 5-2 = TA 5-1',
+                        'label' => 'échanger sur le déroulement des opérations, expliquer le fonctionnement de l\'installation à l\'interne et à l\'externe'
+                    ],
+                    [
+                        'reference' => 'T 5-3',
+                        'label' => 'conseiller le client, lui proposer une prestation complémentaire, une modification ou une amélioration'
+                    ]
+                ],
+
+            ],
+        ];
+
         $faker = Factory::create('fr_FR');
 
         $user = new User;
@@ -98,55 +392,67 @@ class AppFixtures extends Fixture
             $referents[] = $referent;
         }
 
-
-        for ($i = 0; $i < 3; $i++){
-            $specialisation = new Specialisation;
-            $specialisation->setName(strtoupper($faker->word));
-
+        foreach ($specialisationsDatas as $specialisationData){
+            $specialisation = new Specialisation();
+            $specialisation->setName($specialisationData['name']);
             $manager->persist($specialisation);
             $specialisations[] = $specialisation;
 
-            $tasks = [];
-            for($j = 1; $j <= 15; $j++){
-                
-                $task = new Task;
-                $task->setReference('A' . $j)
-                            ->setName($faker->catchPhrase)
-                            ->setSpecialisation($specialisation)
-                            ;
-                
-                $manager->persist($task);
-                $tasks[] = $task;
-
-                for($k = 1; $k <= mt_rand(2,4); $k++){
-                
-                    $competence = new Competence;
-                    $competence->setReference('C' . $k)
-                                ->setName($faker->catchPhrase)
-                                ->addTask($task)
-                                ;
-                    $manager->persist($competence);
-                    $competences[] = $competence;
-    
-                }
-
+            switch ($specialisation->getName()) {
+                case "SN":
+                    foreach($specialisationData['competences'] as $competence){
+                        $specialisationCompetence = new SNCompetence();
+                        $specialisationCompetence->setReference($competence['reference'])
+                                                ->setLabel($competence['label'])
+                                                ->setSpecialisation($specialisation);
+                        $manager->persist($specialisationCompetence);
+                    }
+                    foreach($specialisationData['tasks'] as $task){
+                        $specialisationTask = new SNtask();
+                        $specialisationTask->setReference($task['reference'])
+                                                ->setLabel($task['label'])
+                                                ->setSpecialisation($specialisation)
+                                                ->setCompetence($specialisationCompetence)
+                                                ;
+                        $manager->persist($specialisationTask);
+                    }
+                    break;
+                case "MEI":
+                    //$task = new MEICompetence;
+                    break;
+                case "MELEC":
+                    foreach($specialisationData['competences'] as $competence){
+                        $specialisationCompetence = new MelecCompetence();
+                        $specialisationCompetence->setReference($competence['reference'])
+                                                ->setLabel($competence['label'])
+                                                ->setSpecialisation($specialisation);
+                        $manager->persist($specialisationCompetence);
+                    }
+                    foreach($specialisationData['tasks'] as $task){
+                        $specialisationTask = new MelecTask();
+                        $specialisationTask->setReference($task['reference'])
+                                                ->setLabel($task['label'])
+                                                // ->setCompetence($specialisationCompetence)
+                                                ->setSpecialisation($specialisation)
+                                                ;
+                        $manager->persist($specialisationTask);
+                    }
+                    break;
             }
 
+        }
 
-
-            for($j = 1; $j <= 6; $j++)
-            {
-                $tp = new Tp;
-                $tp->setName($faker->word)
-                    ->setSpecialisation($specialisation);
-                $cps = array_rand($tasks, mt_rand(6, 12));
-                foreach($cps as $cp){
-                    $tp->addTask($tasks[$cp]);
-                }
-                $manager->persist($tp);
-            }
-
-        } 
+        // for($j = 1; $j <= 6; $j++)
+        // {
+        //     $tp = new Tp;
+        //     $tp->setName($faker->word)
+        //         ->setSpecialisation($specialisation);
+        //     /*$cps = array_rand($tasks, mt_rand(6, 12));
+        //     foreach($cps as $cp){
+        //         $tp->addTask($tasks[$cp]);
+        //     }*/
+        //     $manager->persist($tp);
+        // }
 
         for($i = 0; $i < 500; $i++){
             $student = new Student;

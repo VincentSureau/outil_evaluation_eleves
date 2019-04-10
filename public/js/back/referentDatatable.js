@@ -9,9 +9,9 @@
                 dataSrc: ''
             },
             columns: [
+                { data:'gender'},
                 { data:'firstname'},
                 { data:'lastname'},
-                { data:'gender'},
                 {
                     data: 'id',
                     sortable: false,

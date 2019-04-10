@@ -38,11 +38,6 @@ class Tp
     private $reviews;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Task", inversedBy="tps")
-     */
-    private $task;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Specialisation", inversedBy="tps")
      * 
      * @Serializer\Expose()
@@ -50,10 +45,14 @@ class Tp
      */
     private $specialisation;
 
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $datas = [];
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
-        $this->task = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,32 +100,6 @@ class Tp
         return $this;
     }
 
-    /**
-     * @return Collection|Task[]
-     */
-    public function getTask(): Collection
-    {
-        return $this->task;
-    }
-
-    public function addTask(Task $task): self
-    {
-        if (!$this->task->contains($task)) {
-            $this->task[] = $task;
-        }
-
-        return $this;
-    }
-
-    public function removeTask(Task $task): self
-    {
-        if ($this->task->contains($task)) {
-            $this->task->removeElement($task);
-        }
-
-        return $this;
-    }
-
     public function getSpecialisation(): ?Specialisation
     {
         return $this->specialisation;
@@ -143,5 +116,17 @@ class Tp
     public function __toString(): ?string
     {
         return $this->name;
+    }
+
+    public function getDatas(): ?array
+    {
+        return $this->datas;
+    }
+
+    public function setDatas(?array $datas): self
+    {
+        $this->datas = $datas;
+
+        return $this;
     }
 }

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Tp{% endblock %}
+{% block title %}Créer un TP{% endblock %}
 
 {% block body %}
-    <h1>Create new Tp</h1>
+    <h1>Créer un TP</h1>
 
     {{ include('front/tp/_form.html.twig') }}
 
-    <a href="{{ path('tp_index') }}">back to list</a>
+    <a href="{{ path('tp_index') }}">retour</a>
 {% endblock %}

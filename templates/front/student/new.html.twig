@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Student{% endblock %}
+{% block title %}Importer une bordée{% endblock %}
 
 {% block body %}
 
@@ -19,5 +19,18 @@
         <a href="{{ path('back_admin_home') }}">Retour à l'interface administrateur</a>
 
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $('#students_spreadsheet').on('change',function(){
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
 
 {% endblock %}

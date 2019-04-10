@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Competence index{% endblock %}
+
+{% block body %}
+    <h1>Competence index</h1>
+
+    <a href="{{ path('mei_competence_new') }}">Créer un nouveau</a>
+    
+    <table id="mei_competence_list" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Intitulé</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('back_mei_admin_home') }}">retour</a>
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        var listUrl = '{{ path('api_mei_competences_list')|escape('js') }}';
+    </script>
+    <script type="text/javascript" src="{{ asset("js/back/meicompetenceDatatable.js") }}"></script>
+{% endblock %}

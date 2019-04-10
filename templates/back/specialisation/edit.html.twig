@@ -13,12 +13,14 @@
                 <p class="card-text text-right">
                     {{ include('back/specialisation/_form.html.twig', {'button_label': 'Update'}) }}
                 </p>
-
-                <p class="card-text text-right">
-                    {{ include('back/specialisation/_delete_form.html.twig') }}
-                </p>
             </div>
         </div>
+
+        {% if specialisation.name != "MEI" %}
+            {{ include('back/specialisation/cards.html.twig') }}
+        {% else %}
+            <div> en cours de création </div>
+        {% endif %}
 
         <a href="{{ path('admin_specialisation_index') }}">retour à la liste</a>
 
