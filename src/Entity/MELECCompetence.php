@@ -17,21 +17,21 @@ class MELECCompetence
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * @Serializer\Expose()
-     * @Serializer\Groups({"sncompetence"})
+     * @Serializer\Groups({"meleccompetence"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Serializer\Expose()
-     * @Serializer\Groups({"sncompetence"})
+     * @Serializer\Groups({"meleccompetence"})
      */
     private $reference;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Serializer\Expose()
-     * @Serializer\Groups({"sncompetence"})
+     * @Serializer\Groups({"meleccompetence"})
      */
     private $label;
 
