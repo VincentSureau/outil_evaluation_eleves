@@ -73,8 +73,8 @@ class TpController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('tp_index', [
-                'id' => $tp->getId(),
+            return $this->redirectToRoute('admin_tp_index', [
+                'id' => $tp->getSpecialisation()->getId(),
             ]);
         }
 

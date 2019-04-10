@@ -3,12 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Tp;
+use App\Entity\SNTask;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Entity\SNCompetence;
 
 class TpType extends AbstractType
 {
@@ -40,16 +42,19 @@ class TpType extends AbstractType
 
                     case "SN":
                         foreach($tp->getSpecialisation()->getSNCompetences() as $competences) {
-                            //traitement
+                            $form->add('competence', EntityType::class,[
+                                'label' => 'Compétences',
+                                'class' => SNCompetence::class,
+                                'multiple' => true,
+                                'choices' => $tp->getSpecialisation()->getSNCompetences(),
+                                'choice_label' => function ($choice) {
+                                    return $choice->getReference() . ' - ' . $choice->getLabel();
+                                },
+                                'mapped' => false
+                            ]);
                         }
                         break;                    
                 }
-                $form->add('task', EntityType::class,[
-                    'label' => 'Tâche',
-                    'class' => Task::class,
-                    'multiple' => true,
-                    'choices' => $tp->getSpecialisation()->getTask(),
-                ]);
             }
         });
     }

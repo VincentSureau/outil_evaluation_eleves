@@ -4,8 +4,13 @@
 
 {% block body %}
     <h1>Modifier un TP</h1>
-
-    {{ include('front/tp/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="card my-3">
+        <div class="card-body">
+            <p class="card-text text-right">
+                {{ include('front/tp/_form.html.twig', {'button_label': 'Update'}) }}
+            </p>
+        </div>
+    </div>
 
     <a href="{{ path('tp_index') }}">retour</a>
 
