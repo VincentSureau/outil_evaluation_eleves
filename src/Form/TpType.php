@@ -24,7 +24,7 @@ class TpType extends AbstractType
             $tp = $event->getData();
             $form = $event->getForm();
 
-            if ($tp){
+            if ($tp->getId()){
                 switch($tp->getSpecialisation()->getName()){
                     case "MEI":
                         foreach($tp->getSpecialisation()->getMEICompetences() as $competences) {

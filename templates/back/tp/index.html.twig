@@ -8,7 +8,7 @@
     <div class="text-right">
         <button class="btn btn-primary m-bot-10">
             <i class="fas fa-plus"></i>
-            <a class="text-white" href="{{ path('tp_new') }}">Ajouter une TP</a>
+            <a class="text-white" href="{{ path('admin_tp_new', { "id": specialisation.id }) }}">Ajouter un TP</a>
         </button>
     </div>
     
@@ -30,7 +30,7 @@
 {% block javascripts %}
 
     <script type="text/javascript">
-        var listUrl = '{{ path('api_tps_list')|escape('js') }}';
+        var listUrl = '{{ path('api_tps_list', {'id': specialisation.id })|escape('js') }}';
     </script>
     <script type="text/javascript" src="{{ asset("js/back/tpDatatable.js") }}"></script>
 {% endblock %}
