@@ -71,8 +71,30 @@ class TpController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            switch($tp->getSpecialisation()->getName()){
+                case 'MELEC':
+                    $datas = [
+                        'tasks' => $form->get('tasks')->getData(),
+                        'subCompetences' => $form->get('subCompetences')->getData(),
+                    ];
+                    break;
+                
+                case 'MEI':
+                    $datas = [
+                        'tasks' => $form->get('tasks')->getData(),
+                    ];
+                    break;
 
+                case 'SN':
+                    $datas = [
+                        'tasks' => $form->get('tasks')->getData(),
+                    ];
+                    break;
+            }
+
+            $tp->setDatas($datas);
+            $this->getDoctrine()->getManager()->flush();
+            dd($tp->getDatas());
             return $this->redirectToRoute('admin_tp_index', [
                 'id' => $tp->getSpecialisation()->getId(),
             ]);
