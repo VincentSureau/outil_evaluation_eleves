@@ -427,6 +427,17 @@ class AppFixtures extends Fixture
                                                 ->setLabel($competence['label'])
                                                 ->setSpecialisation($specialisation);
                         $manager->persist($specialisationCompetence);
+
+                        foreach($competence['subCompetences'] as $subCompetenceDatas){
+                            $subCompetence = new MELECSubCompetence();
+                            $subCompetence
+                                ->setSpecialisation($specialisation)
+                                ->setCompetence($specialisationCompetence)
+                                ->setLabel($subCompetenceDatas)
+                                ;
+                            
+                                $manager->persist($subCompetence);
+                        }
                     }
                     foreach($specialisationData['tasks'] as $task){
                         $specialisationTask = new MelecTask();

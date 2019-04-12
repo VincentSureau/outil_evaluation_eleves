@@ -4,13 +4,15 @@ namespace App\Form;
 
 use App\Entity\Tp;
 use App\Entity\SNTask;
+use App\Entity\MELECTask;
+use App\Entity\SNCompetence;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Entity\SNCompetence;
+use App\Entity\MELECSubCompetence;
 
 class TpType extends AbstractType
 {
@@ -26,33 +28,46 @@ class TpType extends AbstractType
             $tp = $event->getData();
             $form = $event->getForm();
 
-            if ($tp->getId()){
+            if ($tp->getSpecialisation()){
                 switch($tp->getSpecialisation()->getName()){
                     case "MEI":
-                        foreach($tp->getSpecialisation()->getMEICompetences() as $competences) {
-                            //traitement
-                        }
+                        //traitement
                         break;  
 
                     case "MELEC":
-                        foreach($tp->getSpecialisation()->getMELECCompetences() as $competences) {
-                            //traitement
-                        }
+                        $form->add('tasks', EntityType::class,[
+                            'label' => 'Activités',
+                            'class' => MELECTask::class,
+                            'multiple' => true,
+                            'choices' => $tp->getSpecialisation()->getMELECTasks(),
+                            'choice_label' => function ($choice) {
+                                return $choice->getReference() . ' - ' . $choice->getLabel();
+                            },
+                            'mapped' => false
+                        ]);
+                        $form->add('subCompetences', EntityType::class,[
+                            'label' => 'Compétences',
+                            'class' => MELECSubCompetence::class,
+                            'multiple' => true,
+                            'choices' => $tp->getSpecialisation()->getMelecSubCompetences(),
+                            'choice_label' => function ($choice) {
+                                return $choice->getLabel();
+                            },
+                            'mapped' => false
+                        ]);
                         break;
 
                     case "SN":
-                        foreach($tp->getSpecialisation()->getSNCompetences() as $competences) {
-                            $form->add('competence', EntityType::class,[
-                                'label' => 'Compétences',
-                                'class' => SNCompetence::class,
-                                'multiple' => true,
-                                'choices' => $tp->getSpecialisation()->getSNCompetences(),
-                                'choice_label' => function ($choice) {
-                                    return $choice->getReference() . ' - ' . $choice->getLabel();
-                                },
-                                'mapped' => false
-                            ]);
-                        }
+                        $form->add('tasks', EntityType::class,[
+                            'label' => 'Activités',
+                            'class' => SNTask::class,
+                            'multiple' => true,
+                            'choices' => $tp->getSpecialisation()->getSNTasks(),
+                            'choice_label' => function ($choice) {
+                                return $choice->getReference() . ' - ' . $choice->getLabel();
+                            },
+                            'mapped' => false
+                        ]);
                         break;                    
                 }
             }

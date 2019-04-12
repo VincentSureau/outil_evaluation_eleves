@@ -63,6 +63,11 @@ class Specialisation
      */
     private $sNTasks;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MELECSubCompetence", mappedBy="specialisation")
+     */
+    private $melecSubCompetences;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
@@ -71,6 +76,7 @@ class Specialisation
         $this->mELECCompetences = new ArrayCollection();
         $this->mELECTasks = new ArrayCollection();
         $this->sNTasks = new ArrayCollection();
+        $this->melecSubCompetences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -275,6 +281,37 @@ class Specialisation
             // set the owning side to null (unless already changed)
             if ($sNTask->getSpecialisation() === $this) {
                 $sNTask->setSpecialisation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MELECSubCompetence[]
+     */
+    public function getMelecSubCompetences(): Collection
+    {
+        return $this->melecSubCompetences;
+    }
+
+    public function addMelecSubCompetence(MELECSubCompetence $melecSubCompetence): self
+    {
+        if (!$this->melecSubCompetences->contains($melecSubCompetence)) {
+            $this->melecSubCompetences[] = $melecSubCompetence;
+            $melecSubCompetence->setSpecialisation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMelecSubCompetence(MELECSubCompetence $melecSubCompetence): self
+    {
+        if ($this->melecSubCompetences->contains($melecSubCompetence)) {
+            $this->melecSubCompetences->removeElement($melecSubCompetence);
+            // set the owning side to null (unless already changed)
+            if ($melecSubCompetence->getSpecialisation() === $this) {
+                $melecSubCompetence->setSpecialisation(null);
             }
         }
 

@@ -28,6 +28,12 @@ class MELECSubCompetence
      */
     private $competence;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Specialisation", inversedBy="melecSubCompetences")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $specialisation;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +59,18 @@ class MELECSubCompetence
     public function setCompetence(?MELECCompetence $competence): self
     {
         $this->competence = $competence;
+
+        return $this;
+    }
+
+    public function getSpecialisation(): ?Specialisation
+    {
+        return $this->specialisation;
+    }
+
+    public function setSpecialisation(?Specialisation $specialisation): self
+    {
+        $this->specialisation = $specialisation;
 
         return $this;
     }
