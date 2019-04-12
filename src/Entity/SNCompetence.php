@@ -42,7 +42,7 @@ class SNCompetence
     private $specialisation;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SNTask", mappedBy="competence")
+     * @ORM\ManyToMany(targetEntity="App\Entity\SNTask", inversedBy="competences")
      */
     private $tasks;
 
@@ -104,7 +104,6 @@ class SNCompetence
     {
         if (!$this->tasks->contains($task)) {
             $this->tasks[] = $task;
-            $task->setCompetence($this);
         }
 
         return $this;
@@ -114,12 +113,9 @@ class SNCompetence
     {
         if ($this->tasks->contains($task)) {
             $this->tasks->removeElement($task);
-            // set the owning side to null (unless already changed)
-            if ($task->getCompetence() === $this) {
-                $task->setCompetence(null);
-            }
         }
 
         return $this;
     }
+
 }

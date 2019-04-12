@@ -56,4 +56,5 @@ class MELECSubCompetence
 
         return $this;
     }
+
 }

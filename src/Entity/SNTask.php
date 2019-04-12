@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation AS Serializer;
 
@@ -42,10 +44,14 @@ class SNTask
     private $reference;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\SNCompetence", inversedBy="tasks")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity="App\Entity\SNCompetence", mappedBy="tasks")
      */
-    private $competence;
+    private $competences;
+
+    public function __construct()
+    {
+        $this->competences = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -88,14 +94,30 @@ class SNTask
         return $this;
     }
 
-    public function getCompetence(): ?SNCompetence
+    /**
+     * @return Collection|SNCompetence[]
+     */
+    public function getCompetences(): Collection
     {
-        return $this->competence;
+        return $this->competences;
     }
 
-    public function setCompetence(?SNCompetence $competence): self
+    public function addCompetence(SNCompetence $competence): self
     {
-        $this->competence = $competence;
+        if (!$this->competences->contains($competence)) {
+            $this->competences[] = $competence;
+            $competence->addTask($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompetence(SNCompetence $competence): self
+    {
+        if ($this->competences->contains($competence)) {
+            $this->competences->removeElement($competence);
+            $competence->removeTask($this);
+        }
 
         return $this;
     }

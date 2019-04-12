@@ -412,7 +412,7 @@ class AppFixtures extends Fixture
                         $specialisationTask->setReference($task['reference'])
                                                 ->setLabel($task['label'])
                                                 ->setSpecialisation($specialisation)
-                                                ->setCompetence($specialisationCompetence)
+                                                ->addCompetence($specialisationCompetence)
                                                 ;
                         $manager->persist($specialisationTask);
                     }
