@@ -43,6 +43,9 @@ class TpType extends AbstractType
                             'choice_label' => function ($choice) {
                                 return $choice->getReference() . ' - ' . $choice->getLabel();
                             },
+                            'choice_attr' => function ($choice) use ($tp) {
+                                return ['selected' => in_array($choice->getId(), $tp->getDatas()['tasks'])];
+                            },
                             'mapped' => false
                         ]);
                         $form->add('subCompetences', EntityType::class,[
@@ -53,6 +56,9 @@ class TpType extends AbstractType
                             'choice_label' => function ($choice) {
                                 return $choice->getLabel();
                             },
+                            'choice_attr' => function ($choice) use ($tp) {
+                                                return ['selected' => in_array($choice->getId(), $tp->getDatas()['subCompetences'])];
+                                            },
                             'mapped' => false
                         ]);
                         break;

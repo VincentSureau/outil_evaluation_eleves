@@ -73,9 +73,20 @@ class TpController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             switch($tp->getSpecialisation()->getName()){
                 case 'MELEC':
+                    $tasks = [];
+                    $subCompetences = [];
+
+                    foreach($form->get('tasks')->getData() as $task){
+                        $tasks[] = $task->getId();
+                    }
+
+                    foreach($form->get('subCompetences')->getData() as $subCompetence){
+                        $subCompetences[] = $subCompetence->getId();
+                    }
+
                     $datas = [
-                        'tasks' => $form->get('tasks')->getData(),
-                        'subCompetences' => $form->get('subCompetences')->getData(),
+                        'tasks' => $tasks,
+                        'subCompetences' => $subCompetences,
                     ];
                     break;
                 
@@ -94,7 +105,6 @@ class TpController extends AbstractController
 
             $tp->setDatas($datas);
             $this->getDoctrine()->getManager()->flush();
-            dd($tp->getDatas());
             return $this->redirectToRoute('admin_tp_index', [
                 'id' => $tp->getSpecialisation()->getId(),
             ]);
