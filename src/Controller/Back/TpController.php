@@ -97,8 +97,14 @@ class TpController extends AbstractController
                     break;
 
                 case 'SN':
+                    $tasks = [];
+
+                    foreach($form->get('tasks')->getData() as $task){
+                        $tasks[] = $task->getId();
+                    }
+
                     $datas = [
-                        'tasks' => $form->get('tasks')->getData(),
+                        'tasks' => $tasks,
                     ];
                     break;
             }
