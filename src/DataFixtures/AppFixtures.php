@@ -465,6 +465,7 @@ class AppFixtures extends Fixture
         //     $manager->persist($tp);
         // }
 
+
         for($i = 0; $i < 500; $i++){
             $student = new Student;
             $student->setCity($faker->city)
