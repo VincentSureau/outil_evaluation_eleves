@@ -38,6 +38,46 @@ class TpController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            switch($tp->getSpecialisation()->getName()){
+                case 'MELEC':
+                    $tasks = [];
+                    $subCompetences = [];
+
+                    foreach($form->get('tasks')->getData() as $task){
+                        $tasks[] = $task->getId();
+                    }
+
+                    foreach($form->get('subCompetences')->getData() as $subCompetence){
+                        $subCompetences[] = $subCompetence->getId();
+                    }
+
+                    $datas = [
+                        'tasks' => $tasks,
+                        'subCompetences' => $subCompetences,
+                    ];
+                    break;
+                
+                case 'MEI':
+                    $datas = [
+                        'tasks' => $form->get('tasks')->getData(),
+                    ];
+                    break;
+
+                case 'SN':
+                    $tasks = [];
+
+                    foreach($form->get('tasks')->getData() as $task){
+                        $tasks[] = $task->getId();
+                    }
+
+                    $datas = [
+                        'tasks' => $tasks,
+                    ];
+                    break;
+            }
+
+            $tp->setDatas($datas);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($tp);
             $entityManager->flush();

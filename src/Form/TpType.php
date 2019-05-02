@@ -73,7 +73,7 @@ class TpType extends AbstractType
                                 return $choice->getReference() . ' - ' . $choice->getLabel();
                             },
                             'choice_attr' => function ($choice) use ($tp) {
-                                return ['selected' => in_array($choice->getId(), $tp->getDatas()['tasks'])];
+                                return ($tp->getId())? ['selected' => in_array($choice->getId(), $tp->getDatas()['tasks'])] : [];
                             },
                             'mapped' => false
                         ]);
