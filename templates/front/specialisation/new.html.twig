@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Specialisation{% endblock %}
+{% block title %}Ajouter une spécialisation{% endblock %}
 
 {% block body %}
-    <h1>Create new Specialisation</h1>
+    <h1>Ajouter une spécialisation</h1>
 
     {{ include('front/specialisation/_form.html.twig') }}
 
-    <a href="{{ path('specialisation_index') }}">back to list</a>
+    <a href="{{ path('specialisation_index') }}">retour</a>
 {% endblock %}

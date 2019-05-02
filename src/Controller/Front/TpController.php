@@ -19,11 +19,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TpController extends AbstractController
 {
     /**
-     * @Route("/", name="tp_index", methods={"GET"})
+     * @Route("/specialisation/{id}", name="tp_index", methods={"GET"})
      */
-    public function index(TpRepository $tpRepository): Response
+    public function index(Specialisation $specialisation, TpRepository $tpRepository): Response
     {
-        return $this->render('front/tp/index.html.twig');
+        return $this->render('front/tp/index.html.twig', [
+            'specialisation' => $specialisation
+        ]);
     }
 
     /**

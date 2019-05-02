@@ -7,70 +7,17 @@
 
 <div class="white_shadow--container scrollable py-3 px-2">
     <p>Elève: {{student.__toString}}</p>
-    <form action="">
-        <table class="table table-striped table-bordered scrollable">
-            <thead class="text-center">
-                <tr>
-                    <th colspan="4" class="align-middle">Intitulé du TP: {{ tp.name }}</th>
-                    <th class="align-middle">A</th>
-                    <th class="align-middle">A</th>
-                    <th class="align-middle">AP</th>
-                    <th class="align-middle">NA</th>
-                    <th class="align-middle">NO</th>
-                    <th colspan="3" class="align-middle">Niveau d'autonomie</th>
-                </tr>
-                <tr>
-                    <th colspan="4" class="align-middle">A: Acquis - AP: Acquis partiellement - NA: non acquis - NO: non observé</th>
-                    <th class="align-middle">Très bien</th>
-                    <th class="align-middle">Satisfaisant</th>
-                    <th class="align-middle">Insuffisant</th>
-                    <th class="align-middle">Très insuffisant</th>
-                    <th class="align-middle">Non mis en oeuvre</th>
-                    <th class="align-middle">Autonomie complète</th>
-                    <th class="align-middle">Aide partielle</th>
-                    <th class="align-middle">Aide totale</th>
-                </tr>
-            </thead>
-        
-            <tbody>
-
-                {% for task in tp.task %}
-                    {% for competence in task.competences %}
-                        <tr>
-                        
-                            {% if loop.first %}
-                                <th class="text-center align-middle" rowspan="{{ task.competences|length }}">{{ task.reference }}</th>
-                                <th class="align-middle" rowspan="{{ task.competences|length }}">{{ task.name }}</th>
-                            {% endif %}
-                            <th class="text-center align-middle">{{ competence.reference }}</th>
-                            <th class="align-middle">{{ competence.name }}</th>
-                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-note" id=""></td>
-                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-note" id=""></td>
-                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-note" id=""></td>
-                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-note" id=""></td>
-                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-note" id=""></td>
-                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-autonomie" id=""></td>
-                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-autonomie" id=""></td>
-                            <td class="text-center align-middle clickable"><input type="radio" name="{{competence.reference}}-autonomie" id=""></td>
-                        </tr>
-
-                    {% endfor %}
-                
-
-                {% endfor %}
-
-            </tbody>
-
-        </table>
-
+    <form action="" method="POST">
+        {{ dump(tp) }}
+        {% include('/front/tp/_sntpevaluate.html.twig') %}
         <div class="text-right">
             <button type="submit" class="btn btn-lg btn-primary">Envoyer</button>
         </div>
     </form>
 
-    <a href="{{ path('student_tp_list', {"id": student.id}) }}" class="">retour</a>
-
 </div>
+
+<a href="{{ path('student_tp_list', {"id": student.id}) }}" class="">retour</a>
 
 {% endblock %}
 

@@ -99,6 +99,16 @@ class Review
         return $this;
     }
 
+    public function addNote($note): self
+    {
+        $this->notes[] = $note;
+        // if (!$this->notes->contains($note)) {
+        //     $this->notes[] = $note;
+        // }
+
+        return $this;
+    }
+
     public function getComment(): ?string
     {
         return $this->comment;

@@ -203,7 +203,7 @@ class StudentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/tp/{tp}", name="student_tp_evaluate", methods={"GET","POST"}, requirements={"id":"\d+", "tp":"\d+"})
+     * @Route("/{id}/tp/{tp}", name="student_tp_evaluate", methods={"GET"}, requirements={"id":"\d+", "tp":"\d+"})
      */
     public function evaluateTp(Student $student, Tp $tp, Request $request): Response
     {
@@ -212,6 +212,45 @@ class StudentController extends AbstractController
             'tp' => $tp,
             // 'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{id}/tp/{tp}", name="student_tp_evaluate_save", methods={"POST"}, requirements={"id":"\d+", "tp":"\d+"})
+     */
+    public function evaluateTpSave(Student $student, Tp $tp, Request $request): Response
+    {
+        $evaluationDatas = $request->request->all();
+        $evaluation = [
+            'specialisation' => $tp->getSpecialisation()->getId(),
+            'tp' => [
+                'id' => $tp->getId(),
+                'name' => $tp->getName(),
+                'data' => $tp->getDatas()
+            ],
+            'student' => $student->getId(),
+            'datas' => [
+                'commentaire' => array_pop($evaluationDatas),
+                'notes' => $evaluationDatas
+            ],
+        ];
+
+        $review = $student->getReview();
+        
+        if($review->getTp()->contains($tp)) {
+            $notes = $review->getNotes();
+            $oldNote = array_search($tp->getId(), array_column($notes, 'tp', 'id'));
+            $notes[$oldNote] = $evaluation;
+            $review->setNotes($notes);
+        } else {
+            $review->addTp($tp);
+            $review->addNote($evaluation);
+        }
+
+        $this->getDoctrine()->getManager()->flush();
+
+        $this->addFlash('success', 'L\'évaluation du TP a bien été enregistrée');
+
+        return $this->redirectToRoute('student_show', ['id' => $student->getId()]);
     }
     
     /**

@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Tp{% endblock %}
+{% block title %}Modifier un TP{% endblock %}
 
 {% block body %}
-    <h1>Edit Tp</h1>
 
-    {{ include('back/tp/_form.html.twig', {'button_label': 'Update'}) }}
+<div class="container">
+    <h1>Modifier un TP</h1>
+    <div class="card my-3">
+        <div class="card-body">
+            <p class="card-text text-right">
+                {{ include('back/tp/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+            </p>
+            {{ include('back/tp/_delete_form.html.twig') }}
+        </div>
+    </div>
 
-    <a href="{{ path('admin_tp_index') }}">back to list</a>
+    <a href="{{ path('admin_tp_index', {'id': tp.specialisation.id }) }}">retour</a>
+</div>
 
-    {{ include('back/tp/_delete_form.html.twig') }}
 {% endblock %}

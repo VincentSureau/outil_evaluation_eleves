@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bac Pro Melec - âchesListe des t
+
+{% block body %}
+    <h1>Liste des tâches</h1>
+    
+    {#<a href="{{ path('admin_melec_task_new') }}">Créer un nouveau</a>#}
+    
+    <table id="melec_tasks_list" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Référence</th>
+                <th>Intitulé</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_specialisation_edit', { id: specialisation.id }) }}">retour</a>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+        var listUrl = '{{ path('api_melec_tasks_list')|escape('js') }}';
+    </script>
+    <script type="text/javascript" src="{{ asset("js/back/melectaskDatatable.js") }}"></script>
+{% endblock %}

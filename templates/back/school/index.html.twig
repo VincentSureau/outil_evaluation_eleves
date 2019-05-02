@@ -1,16 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}School index{% endblock %}
+{% block title %}Liste des lycées{% endblock %}
 
 {% block body %}
-    <h1>School index</h1>
+    <h1>Liste des écoles</h1>
     
-    <a href="{{ path('admin_school_new') }}">Create new</a>
+    <div class="text-right">
+        <button class="btn btn-primary m-bot-10">
+            <i class="fas fa-plus"></i>
+            <a class="text-white" href="{{ path('admin_school_new') }}">Ajouter une école</a>
+        </button>
+    </div>
 
     <table id="schools_list" class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>Prénom</th>
+                <th>Ville</th>
                 <th>Numéro</th>
                 <th>Email</th>
                 <th>Académie</th>

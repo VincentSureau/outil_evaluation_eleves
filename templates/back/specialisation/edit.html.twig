@@ -1,24 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Specialisation{% endblock %}
+{% block title %}Modifier une spécialisation{% endblock %}
 
 {% block body %}
 
     <div class="container">
 
-        <h1>Editer une Spécialisation</h1>
+        <h1>Modifier une Spécialisation</h1>
 
         <div class="card my-3">
             <div class="card-body">
                 <p class="card-text text-right">
                     {{ include('back/specialisation/_form.html.twig', {'button_label': 'Update'}) }}
                 </p>
-
-                <p class="card-text text-right">
-                    {{ include('back/specialisation/_delete_form.html.twig') }}
-                </p>
             </div>
         </div>
+
+        {% if specialisation.name != "MEI" %}
+            {{ include('back/specialisation/_cards.html.twig') }}
+        {% else %}
+            <div> en cours de création </div>
+        {% endif %}
 
         <a href="{{ path('admin_specialisation_index') }}">retour à la liste</a>
 

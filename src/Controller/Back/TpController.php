@@ -4,6 +4,7 @@ namespace App\Controller\Back;
 
 use App\Entity\Tp;
 use App\Form\TpType;
+use App\Entity\Specialisation;
 use App\Repository\TpRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,46 +18,82 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TpController extends AbstractController
 {
     /**
-     * @Route("/", name="tp_index", methods={"GET"})
+     * @Route("/{id}", name="tp_index", methods={"GET"}, requirements={"id"="\d+"})
      */
-    public function index(TpRepository $tpRepository, PaginatorInterface $paginator, Request $request): Response
+    public function index(Specialisation $specialisation): Response
     {
-        $query = $tpRepository->findAll();
-        $tps = $paginator->paginate(
-            $query,
-            $request->query->getInt('page', 1),
-            5
-        );
         return $this->render('back/tp/index.html.twig', [
-            'pagination' => $tps,
+            'specialisation' => $specialisation,
         ]);
     }
 
     /**
-     * @Route("/new", name="tp_new", methods={"GET","POST"})
+     * @Route("/specialisation/{id}/new", name="tp_new", methods={"GET","POST"}, requirements={"id"="\d+"})
      */
-    public function new(Request $request): Response
+    public function new(Specialisation $specialisation, Request $request): Response
     {
         $tp = new Tp();
+        $tp->setSpecialisation($specialisation);
         $form = $this->createForm(TpType::class, $tp);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            switch($tp->getSpecialisation()->getName()){
+                case 'MELEC':
+                    $tasks = [];
+                    $subCompetences = [];
+
+                    foreach($form->get('tasks')->getData() as $task){
+                        $tasks[] = $task->getId();
+                    }
+
+                    foreach($form->get('subCompetences')->getData() as $subCompetence){
+                        $subCompetences[] = $subCompetence->getId();
+                    }
+
+                    $datas = [
+                        'tasks' => $tasks,
+                        'subCompetences' => $subCompetences,
+                    ];
+                    break;
+                
+                case 'MEI':
+                    $datas = [
+                        'tasks' => $form->get('tasks')->getData(),
+                    ];
+                    break;
+
+                case 'SN':
+                    $tasks = [];
+
+                    foreach($form->get('tasks')->getData() as $task){
+                        $tasks[] = $task->getId();
+                    }
+
+                    $datas = [
+                        'tasks' => $tasks,
+                    ];
+                    break;
+            }
+
+            $tp->setDatas($datas);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($tp);
             $entityManager->flush();
 
-            return $this->redirectToRoute('tp_index');
+            return $this->redirectToRoute('admin_tp_index', ['id' => $specialisation->getId()]);
         }
 
         return $this->render('back/tp/new.html.twig', [
+            'specialisation' => $specialisation,
             'tp' => $tp,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="tp_show", methods={"GET"})
+     * @Route("/{id}", name="tp_show", methods={"GET"}, requirements={"id":"\d+"})
      */
     public function show(Tp $tp): Response
     {
@@ -74,10 +111,48 @@ class TpController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            switch($tp->getSpecialisation()->getName()){
+                case 'MELEC':
+                    $tasks = [];
+                    $subCompetences = [];
 
-            return $this->redirectToRoute('tp_index', [
-                'id' => $tp->getId(),
+                    foreach($form->get('tasks')->getData() as $task){
+                        $tasks[] = $task->getId();
+                    }
+
+                    foreach($form->get('subCompetences')->getData() as $subCompetence){
+                        $subCompetences[] = $subCompetence->getId();
+                    }
+
+                    $datas = [
+                        'tasks' => $tasks,
+                        'subCompetences' => $subCompetences,
+                    ];
+                    break;
+                
+                case 'MEI':
+                    $datas = [
+                        'tasks' => $form->get('tasks')->getData(),
+                    ];
+                    break;
+
+                case 'SN':
+                    $tasks = [];
+
+                    foreach($form->get('tasks')->getData() as $task){
+                        $tasks[] = $task->getId();
+                    }
+
+                    $datas = [
+                        'tasks' => $tasks,
+                    ];
+                    break;
+            }
+
+            $tp->setDatas($datas);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('admin_tp_index', [
+                'id' => $tp->getSpecialisation()->getId(),
             ]);
         }
 

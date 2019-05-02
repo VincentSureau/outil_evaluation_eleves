@@ -4,16 +4,16 @@
 
 {% block body %}
     <h1>Liste des TP</h1>
-
+    <a href="{{ path('tp_new',{ "id": specialisation.id }) }}">Créer un TP</a>
     {{ include('/front/partials/__tplist.html.twig') }}
 
-    <a href="{{ path('tp_new') }}">Create new</a>
+    <a href="{{ path('admin_specialisation_edit', { 'id': specialisation.id }) }}">Retour</a>
 {% endblock %}
 
 {% block javascripts %}
 
     <script type="text/javascript">
-        var listUrl = '{{ path('tps_list')|escape('js') }}';        
+        var listUrl = '{{ path('specialisation_tps_list', { 'id': specialisation.id })|escape('js') }}';        
     </script>
     <script type="text/javascript" src="{{ asset("js/tpDatatable.js") }}"></script>
 {% endblock %}

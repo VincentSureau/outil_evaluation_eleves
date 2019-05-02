@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Referent{% endblock %}
+{% block title %}Modifier un prof. principal{% endblock %}
 
 {% block body %}
-    <h1>Edit Referent</h1>
+    <h1>Modifier un prof. principal</h1>
 
     {{ include('front/referent/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('referent_index') }}">back to list</a>
+    <a href="{{ path('referent_index') }}">retour</a>
 
     {{ include('front/referent/_delete_form.html.twig') }}
 {% endblock %}
