@@ -2,11 +2,23 @@
 
 {% block title %}BACCALAUREAT PROFESSIONNEL SYSTEMES NUMERIQUES{% endblock %}
 
-{% block body %}
+{% block page %}
 
 <header>
+  <div>
     <h1>Epreuve E3: dsfdsffsdfd</h1>
     <h2> Sous epreuve E31: dfgsdfsdfsdf </h2>
+  </div>
+
+  <div>
+    <ul>
+      <li>Académie : {{ student.school.academy }}</li>
+      <li>Etablissement : Les Maçons du Dimanche</li>
+      <li>Nom : {{ sutent.firstnname }}</li>
+      <li>Prenom : {{student.lastname}}</li>
+      <li>Date : 01/01/2019</li>
+    </ul>
+  </div>
 </header>
 
 <table class="table">
