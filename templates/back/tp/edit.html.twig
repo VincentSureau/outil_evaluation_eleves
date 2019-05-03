@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('select2/select2.min.css') }}">
+{% endblock %}
+
 {% block title %}Modifier un TP{% endblock %}
 
 {% block body %}
-
+<h1>test</h1>
 <div class="container">
     <h1>Modifier un TP</h1>
     <div class="card my-3">
@@ -18,4 +22,9 @@
     <a href="{{ path('admin_tp_index', {'id': tp.specialisation.id }) }}">retour</a>
 </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('select2/select2.full.min.js') }}"></script>
+    <script src="{{ asset('select2/init.js') }}"></script>
 {% endblock %}

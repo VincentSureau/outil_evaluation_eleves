@@ -46,7 +46,8 @@ class TpType extends AbstractType
                             'choice_attr' => function ($choice) use ($tp) {
                                 return ['selected' => in_array($choice->getId(), $tp->getDatas()['tasks'])];
                             },
-                            'mapped' => false
+                            'mapped' => false,
+                            'attr' => ['class' => 'multiple']
                         ]);
                         $form->add('subCompetences', EntityType::class,[
                             'label' => 'Compétences',
@@ -75,7 +76,8 @@ class TpType extends AbstractType
                             'choice_attr' => function ($choice) use ($tp) {
                                 return ($tp->getId() && isset($tp->getDatas()['tasks']))? ['selected' => in_array($choice->getId(), $tp->getDatas()['tasks'])] : [];
                             },
-                            'mapped' => false
+                            'mapped' => false,
+                            'attr' => ['class' => 'multiple d-none']
                         ]);
                         break;                    
                 }
