@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PdfController extends AbstractController
-{;
+{
     /**
      * @Route("/pdf/{id}/tp/{tp}", name="student_tp_evaluate", methods={"GET"}, requirements={"id":"\d+", "tp":"\d+"})
      */
