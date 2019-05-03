@@ -60,7 +60,8 @@ class TpType extends AbstractType
                             'choice_attr' => function ($choice) use ($tp) {
                                                 return ['selected' => in_array($choice->getId(), $tp->getDatas()['subCompetences'])];
                                             },
-                            'mapped' => false
+                            'mapped' => false,
+                            'attr' => ['class' => 'multiple d-none']
                         ]);
                         break;
 

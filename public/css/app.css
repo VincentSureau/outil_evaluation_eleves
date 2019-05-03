@@ -51,6 +51,10 @@ header{
     height: 5em;
 }
 
+.select2-selection__choice {
+    white-space: normal;
+}
+
 
 
 @media (max-width: 769px) {
