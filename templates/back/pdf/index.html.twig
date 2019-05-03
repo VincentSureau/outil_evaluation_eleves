@@ -1,56 +1,53 @@
 
 <page>
-{% block title %}BACCALAUREAT PROFESSIONNEL SYSTEMES NUMERIQUES{% endblock %}
-
-{% block page %}
-
-<div>
-  <div>
-    <h1>Epreuve E3: dsfdsffsdfd</h1>
-    <h2> Sous epreuve E31: dfgsdfsdfsdf </h2>
-  </div>
+  <head><link rel="stylesheet" type="text/css" href="{{ asset("Bootstrap-4-4.1.1/css/bootstrap.min.css") }}"/></head>
 
   <div>
-    <ul>
-      <li>Académie : {{ student.school.academy }}</li>
-      <li>Etablissement : Les Maçons du Dimanche</li>
-      <li>Nom : {{ student.firstname }}</li>
-      <li>Prenom : {{ student.lastname }}</li>
-      <li>Date : 01/01/2019</li>
-    </ul>
+    <div>
+      <h1>Epreuve E3: dsfdsffsdfd</h1>
+      <h2> Sous epreuve E31: dfgsdfsdfsdf </h2>
+    </div>
+
+    <div>
+      <ul>
+        <li>Académie : {{ student.school.academy }}</li>
+        <li>Etablissement : Les Maçons du Dimanche</li>
+        <li>Nom : {{ student.firstname }}</li>
+        <li>Prenom : {{ student.lastname }}</li>
+        <li>Date : 01/01/2019</li>
+      </ul>
+    </div>
   </div>
-</div>
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">dgdf</th>
-      <th scope="col">dfg</th>
-      <th scope="col">dgf</th>
-      <th scope="col">dfg</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">dgfdg</th>
-      <td>dfgf</td>
-      <td>dfgf</td>
-      <td>dfg</td>
-    </tr>
-    <tr>
-      <th scope="row">dfgfdg</th>
-      <td>dfgf</td>
-      <td>dfgfd</td>
-      <td>dgf</td>
-    </tr>
-    <tr>
-      <th scope="row">gdfgd</th>
-      <td>dfgf</td>
-      <td>dfgd </td>
-      <td>dfgdfg</td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">1</th>
+        <th scope="col">2</th>
+        <th scope="col">3</th>
+        <th scope="col">4</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>2</td>
+        <td>3 </td>
+        <td>4</td>
+      </tr>
+    </tbody>
+  </table>
 
-{% endblock %}
 </page>
