@@ -2,31 +2,30 @@
 
 namespace App\Controller\Back;
 
-use App\Entity\Tp;
 use App\Entity\Student;
+use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PdfController extends AbstractController
 {
     /**
-     * @Route("/pdf/{id}/tp/{tp}", name="student_tp_evaluate", methods={"GET"}, requirements={"id":"\d+", "tp":"\d+"})
+     * @Route("/pdf/student/{id}", name="student_tp_evaluate", methods={"GET"}, requirements={"id":"\d+"})
      */
-    public function evaluateTp(Student $student, Tp $tp)
+    public function evaluateTp(Student $student): BinaryFileResponse
     {
         $html2pdf = new Html2Pdf();
 
-
-        return $this->renderView('front/tp/tpevaluate.html.twig', [
-            'student' => $student,
-            'tp' => $tp,
-            // 'form' => $form->createView(),
+        
+        $html = $this->renderView('back/pdf/index.html.twig', [
+            'student' => $student
         ]);
 
-        // dd($html);
+        $html2pdf->writeHTML($html);
 
-        // $html2pdf->writeHTML($html);
 
-        // $html2pdf->output('test.pdf');
+        return new BinaryFileResponse($html2pdf->output('test.pdf'));
+
     }
 }
