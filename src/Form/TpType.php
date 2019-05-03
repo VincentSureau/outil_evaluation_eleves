@@ -44,10 +44,10 @@ class TpType extends AbstractType
                                 return $choice->getReference() . ' - ' . $choice->getLabel();
                             },
                             'choice_attr' => function ($choice) use ($tp) {
-                                return ['selected' => in_array($choice->getId(), $tp->getDatas()['tasks'])];
+                                return ($tp->getId() && isset($tp->getDatas()['tasks']))? ['selected' => in_array($choice->getId(), $tp->getDatas()['tasks'])] : [];
                             },
                             'mapped' => false,
-                            'attr' => ['class' => 'multiple']
+                            'attr' => ['class' => 'multiple d-none']
                         ]);
                         $form->add('subCompetences', EntityType::class,[
                             'label' => 'Compétences',
@@ -58,7 +58,7 @@ class TpType extends AbstractType
                                 return $choice->getLabel();
                             },
                             'choice_attr' => function ($choice) use ($tp) {
-                                                return ['selected' => in_array($choice->getId(), $tp->getDatas()['subCompetences'])];
+                                                return ($tp->getId() && isset($tp->getDatas()['subCompetences']))? ['selected' => in_array($choice->getId(), $tp->getDatas()['subCompetences'])] : [];
                                             },
                             'mapped' => false,
                             'attr' => ['class' => 'multiple d-none']

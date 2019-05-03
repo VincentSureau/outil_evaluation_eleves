@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Tp{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('select2/select2.min.css') }}">
+{% endblock %}
+
+{% block title %}Créer un TP{% endblock %}
 
 {% block body %}
 
@@ -11,7 +15,7 @@
         <div class="card my-3">
             <div class="card-body">
                 <p class="card-text text-right">
-                    {{ include('back/tp/_form.html.twig') }}
+                    {{ include('back/tp/_form.html.twig', {'button_label': 'Enregistrer'}) }}
                 </p>
             </div>
         </div>
@@ -20,4 +24,9 @@
 
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('select2/select2.full.min.js') }}"></script>
+    <script src="{{ asset('select2/init.js') }}"></script>
 {% endblock %}
