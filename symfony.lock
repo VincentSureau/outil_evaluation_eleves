@@ -179,6 +179,9 @@
     "knplabs/knp-paginator-bundle": {
         "version": "v3.0.0"
     },
+    "knplabs/knp-snappy": {
+        "version": "v1.1.0"
+    },
     "markbaker/complex": {
         "version": "1.4.7"
     },
