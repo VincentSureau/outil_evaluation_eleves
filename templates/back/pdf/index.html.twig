@@ -1,109 +1,107 @@
 <page>
-    <body>
-        <div style=" margin: auto; width: 75%; display: flex; flex-direction: column; justify-content: center; text-align: center;" >
+    <div style=" margin: auto; width: 75%; display: flex; flex-direction: column; justify-content: center; text-align: center;" >
+        <div>
             <div>
-                <div>
-                    <h1>MINISTÈRE DE L’ÉDUCATION NATIONALE DE L’ENSEIGNEMENT SUPÉRIEUR ET DE LA RECHERCHE</h1>
-                </div>
-                <h2 style="text-align: left;">Épreuve E3 : Épreuve de pratique professionnelle</h2>
-                <h3>Sous épreuve E31 : Situations de travail spécifiées et réalisées en milieu professionnel</h3>
-                
-                <div>
-                    <p>Documents de suivi et d’évaluation. Ce document est à compléter par l’équipe pédagogique.Il permet d’effectuer le suivi et l’évaluation du candidat en établissement de formation. Il doit être mis à la disposition du jury.</p>
-                </div>
-
+                <h1>MINISTÈRE DE L’ÉDUCATION NATIONALE DE L’ENSEIGNEMENT SUPÉRIEUR ET DE LA RECHERCHE</h1>
             </div>
-        
-            <div style="display: flex; flex-direction: row-reverse; text-align: left;">
-                <ul>
-                <li>Académie : {{ student.school.academy }}</li>
-                <li>Etablissement : Les Maçons du Dimanche</li>
-                <li>Nom : {{ student.firstname }}</li>
-                <li>Prenom : {{ student.lastname }}</li>
-                <li>Date : 01/01/2019</li>
-                </ul>
+            <h2 style="text-align: left;">Épreuve E3 : Épreuve de pratique professionnelle</h2>
+            <h3>Sous épreuve E31 : Situations de travail spécifiées et réalisées en milieu professionnel</h3>
+            
+            <div>
+                <p>Documents de suivi et d’évaluation. Ce document est à compléter par l’équipe pédagogique.Il permet d’effectuer le suivi et l’évaluation du candidat en établissement de formation. Il doit être mis à la disposition du jury.</p>
             </div>
 
-            <div>
-                <p>1ère partie de l’évaluation (coef. 1,5) : situations de travail effectuées en entreprise</p>
-            </div>
-            <div>
-                <p>
-                    "Cette partie concerne l’évaluation des compétences mises en œuvre lors de la réalisation d’activités découlant de la contractualisation entre l’établissement de formation et l’entreprise. L’évaluation s’effectue au cours des périodes de formation en entreprise et porte sur des situations de travail réalisées par le candidat.  "				
-                </p>
-            </div>
-        
-            <div>
-                <table style="width: 100%; margin: auto; border-style: groove;">
-                    <thead style="background-color: #212529;">
+        </div>
+    
+        <div style="display: flex; flex-direction: row-reverse; text-align: left;">
+            <ul>
+            <li>Académie : {{ student.school.academy }}</li>
+            <li>Etablissement : Les Maçons du Dimanche</li>
+            <li>Nom : {{ student.firstname }}</li>
+            <li>Prenom : {{ student.lastname }}</li>
+            <li>Date : 01/01/2019</li>
+            </ul>
+        </div>
+
+        <div>
+            <p>1ère partie de l’évaluation (coef. 1,5) : situations de travail effectuées en entreprise</p>
+        </div>
+        <div>
+            <p>
+                "Cette partie concerne l’évaluation des compétences mises en œuvre lors de la réalisation d’activités découlant de la contractualisation entre l’établissement de formation et l’entreprise. L’évaluation s’effectue au cours des périodes de formation en entreprise et porte sur des situations de travail réalisées par le candidat.  "				
+            </p>
+        </div>
+    
+        <div>
+            <table style="width: 100%; margin: auto; border-style: groove;">
+                <thead style="background-color: #212529;">
+                    <tr style="color: white;">
+                        <th>Intitulé du TP : </th>
+                        <th>A</th>
+                        <th>A</th>
+                        <th>AP</th>
+                        <th>NA</th>
+                        <th>NO</th>
+                        <th colspan="3" >Niveau d'autonomie</th>
+                    </tr>
                         <tr style="color: white;">
-                            <th>Intitulé du TP : </th>
-                            <th>A</th>
-                            <th>A</th>
-                            <th>AP</th>
-                            <th>NA</th>
-                            <th>NO</th>
-                            <th colspan="3" >Niveau d'autonomie</th>
-                        </tr>
-                            <tr style="color: white;">
-                            <th>A: Acquis - AP: Acquis partiellement - NA: non acquis - NO: non observé</th>
-                            <th>Très bien</th>
-                            <th style="padding: 1.2em;">Satisfaisant</th>
-                            <th>Insuffisant</th>
-                            <th>Très insuffisant</th>
-                            <th>Non mis en oeuvre</th>
-                            <th>Autonomie complète</th>
-                            <th>Autonomie complète</th>
-                            <th>Autonomie complète</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-style: groove;">
-                            <th style="background-color: #007bff; text-align: left;" >C3-2 Réaliser l’intégration matérielle ou logicielle d’un équipement</th>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;">x</td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove">x</td>
-                            <td style="border-style: groove;"></td>
-                        </tr>
-                        <tr>
-                            <th style="text-align: left;">L’assemblage mécanique et les connections sont réalisés en respectant les procédures d’assemblage et les règles de sécurité</th>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td>x</td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                        </tr>
-                        <tr>
-                            <th style="text-align: left;">Les logiciels sont installés, configurés et paramétrés en respectant les procédures en vigueur</th>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td>x</td>
-                            <td style="border-style: groove;"></td>
-                            <td>x</td>
-                            <td style="border-style: groove;"></td>
-                        </tr>
-                        <tr>
-                            <th style="text-align: left;">Les choix d’installation sont justifiés</th>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td>x</td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td style="border-style: groove;"></td>
-                            <td>x</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-    </body>
+                        <th>A: Acquis - AP: Acquis partiellement - NA: non acquis - NO: non observé</th>
+                        <th>Très bien</th>
+                        <th style="padding: 1.2em;">Satisfaisant</th>
+                        <th>Insuffisant</th>
+                        <th>Très insuffisant</th>
+                        <th>Non mis en oeuvre</th>
+                        <th>Autonomie complète</th>
+                        <th>Autonomie complète</th>
+                        <th>Autonomie complète</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-style: groove;">
+                        <th style="background-color: #007bff; text-align: left;" >C3-2 Réaliser l’intégration matérielle ou logicielle d’un équipement</th>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;">x</td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove">x</td>
+                        <td style="border-style: groove;"></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">L’assemblage mécanique et les connections sont réalisés en respectant les procédures d’assemblage et les règles de sécurité</th>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td>x</td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">Les logiciels sont installés, configurés et paramétrés en respectant les procédures en vigueur</th>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td>x</td>
+                        <td style="border-style: groove;"></td>
+                        <td>x</td>
+                        <td style="border-style: groove;"></td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">Les choix d’installation sont justifiés</th>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td>x</td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td style="border-style: groove;"></td>
+                        <td>x</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 </page>
