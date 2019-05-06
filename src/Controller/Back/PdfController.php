@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PdfController extends AbstractController
 {
     /**
-     * @Route("/pdf/student/{id}", name="student_tp_evaluate", methods={"GET"}, requirements={"id":"\d+"})
+     * @Route("/pdf/student/{id}", name="student_generate_pdf", methods={"GET"}, requirements={"id":"\d+"})
      */
     public function evaluateTp(Student $student): BinaryFileResponse
     {
