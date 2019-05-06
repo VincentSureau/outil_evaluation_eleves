@@ -2,8 +2,10 @@
 
 namespace App\Controller\Back;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Entity\Student;
-use Spipu\Html2Pdf\Html2Pdf;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,16 +17,23 @@ class PdfController extends AbstractController
      */
     public function evaluateTp(Student $student): BinaryFileResponse
     {
-        $html2pdf = new Html2Pdf();
-
-        
+        // On crée une  instance pour définir les options de notre fichier pdf
+        $options = new Options();
+        // Pour simplifier l'affichage des images, on autorise dompdf à utiliser 
+        // des  url pour les nom de  fichier
+        $options->set('isRemoteEnabled', TRUE);
+        // On crée une instance de dompdf avec  les options définies
+        $dompdf = new Dompdf($options);
+        // On demande à Symfony de générer  le code html  correspondant à 
+        // notre template, et on stocke ce code dans une variable
         $html = $this->renderView('back/pdf/index.html.twig', [
             'student' => $student
         ]);
-
-        $html2pdf->writeHTML($html);
-        
-        return new BinaryFileResponse($html2pdf->output());
-
+        // On envoie le code html  à notre instance de dompdf
+        $dompdf->loadHtml($html);        
+        // On demande à dompdf de générer le  pdf
+        $dompdf->render();
+        // On renvoie  le flux du fichier pdf dans une  Response pour l'utilisateur
+        return new Response ($dompdf->stream());
     }
 }
