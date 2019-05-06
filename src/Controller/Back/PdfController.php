@@ -21,9 +21,14 @@ class PdfController extends AbstractController
         $options = new Options();
         // Pour simplifier l'affichage des images, on autorise dompdf à utiliser 
         // des  url pour les nom de  fichier
-        $options->set('isRemoteEnabled', TRUE);
+        $options->set([
+            'isRemoteEnabled' => TRUE,
+            'isHtml5ParserEnabled' => true,
+            ]);
+        
         // On crée une instance de dompdf avec  les options définies
         $dompdf = new Dompdf($options);
+        $dompdf->setPaper('A4', 'portrait');
         // On demande à Symfony de générer  le code html  correspondant à 
         // notre template, et on stocke ce code dans une variable
         $html = $this->renderView('back/pdf/index.html.twig', [
@@ -34,6 +39,6 @@ class PdfController extends AbstractController
         // On demande à dompdf de générer le  pdf
         $dompdf->render();
         // On renvoie  le flux du fichier pdf dans une  Response pour l'utilisateur
-        return new Response ($dompdf->stream());
+        return new BinaryFileResponse($dompdf->stream('dossier.pdf', ['Attachment' => 0]));
     }
 }
