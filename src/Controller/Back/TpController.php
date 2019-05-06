@@ -43,17 +43,26 @@ class TpController extends AbstractController
                     $tasks = [];
                     $subCompetences = [];
 
-                    foreach($form->get('tasks')->getData() as $task){
-                        $tasks[] = $task->getId();
+                    foreach($tp->getSpecialisation()->getMELECCompetences() as $competence) {
+                        $subCompetences[$competence->getReference()] = [];
+                        foreach ($form->get($competence->getReference())->getData() as $subComp) {
+                            $subCompetences[$competence->getReference()][] = $subComp->getId();
+                        }
                     }
 
-                    foreach($form->get('subCompetences')->getData() as $subCompetence){
-                        $subCompetences[] = $subCompetence->getId();
+                    foreach($form->get('tasks')->getData() as $task){
+                        $tasks[] = $task->getId();
                     }
 
                     $datas = [
                         'tasks' => $tasks,
                         'subCompetences' => $subCompetences,
+                    ];
+                    break;
+                
+                case 'MEI':
+                    $datas = [
+                        'tasks' => $form->get('tasks')->getData(),
                     ];
                     break;
                 
@@ -73,7 +82,7 @@ class TpController extends AbstractController
                     $datas = [
                         'tasks' => $tasks,
                     ];
-                    break;
+                    break;                
             }
 
             $tp->setDatas($datas);
@@ -81,6 +90,8 @@ class TpController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($tp);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Le TP ' . $tp->getName() . ' a bien été ajouté');
 
             return $this->redirectToRoute('admin_tp_index', ['id' => $specialisation->getId()]);
         }
@@ -116,12 +127,15 @@ class TpController extends AbstractController
                     $tasks = [];
                     $subCompetences = [];
 
-                    foreach($form->get('tasks')->getData() as $task){
-                        $tasks[] = $task->getId();
+                    foreach($tp->getSpecialisation()->getMELECCompetences() as $competence) {
+                        $subCompetences[$competence->getReference()] = [];
+                        foreach ($form->get($competence->getReference())->getData() as $subComp) {
+                            $subCompetences[$competence->getReference()][] = $subComp->getId();
+                        }
                     }
 
-                    foreach($form->get('subCompetences')->getData() as $subCompetence){
-                        $subCompetences[] = $subCompetence->getId();
+                    foreach($form->get('tasks')->getData() as $task){
+                        $tasks[] = $task->getId();
                     }
 
                     $datas = [
@@ -151,6 +165,9 @@ class TpController extends AbstractController
 
             $tp->setDatas($datas);
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'Le TP ' . $tp->getName() . ' a bien été modifié');
+
             return $this->redirectToRoute('admin_tp_index', [
                 'id' => $tp->getSpecialisation()->getId(),
             ]);
@@ -167,12 +184,17 @@ class TpController extends AbstractController
      */
     public function delete(Request $request, Tp $tp): Response
     {
+
+        $specialisation = $tp->getSpecialisation();
+
         if ($this->isCsrfTokenValid('delete'.$tp->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($tp);
             $entityManager->flush();
+
+            $this->addFlash('danger', 'le TP a bien été supprimé');
         }
 
-        return $this->redirectToRoute('tp_index');
+        return $this->redirectToRoute('admin_tp_index', ['id' => $specialisation->getId()]);
     }
 }

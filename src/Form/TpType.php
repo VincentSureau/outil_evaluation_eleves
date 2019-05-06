@@ -42,6 +42,7 @@ class TpType extends AbstractType
                             'label' => 'Activités',
                             'class' => MELECTask::class,
                             'multiple' => true,
+                            'required' => false,
                             'choices' => $specialisation->getMELECTasks(),
                             'choice_label' => function ($choice) {
                                 return $choice->getReference() . ' - ' . $choice->getLabel();
@@ -50,22 +51,27 @@ class TpType extends AbstractType
                                 return ($tp->getId() && isset($tp->getDatas()['tasks']))? ['selected' => in_array($choice->getId(), $tp->getDatas()['tasks'])] : ['selected' => true];
                             },
                             'mapped' => false,
-                            'attr' => ['class' => 'multiple d-none']
+                            'attr' => [
+                                'class' => 'multiple d-none',
+                            ]
                         ]);
                         foreach ($specialisation->getMELECCompetences() as $competence) {
                             $form->add($competence->getReference(), EntityType::class,[
                                 'label' => 'Compétence : ' . $competence->getReference() . ' ' . $competence->getLabel(),
                                 'class' => MELECSubCompetence::class,
                                 'multiple' => true,
+                                'required' => false,
                                 'choices' => $competence->getMelecSubCompetences(),
                                 'choice_label' => function ($choice) {
                                     return $choice->getLabel();
                                 },
-                                'choice_attr' => function ($choice) use ($tp) {
-                                                    return ($tp->getId() && isset($tp->getDatas()['subCompetences']))? ['selected' => in_array($choice->getId(), $tp->getDatas()['subCompetences'])] : ['selected' => true];
+                                'choice_attr' => function ($choice) use ($tp, $competence) {
+                                                    return ($tp->getId() && isset($tp->getDatas()['subCompetences']))? ['selected' => in_array($choice->getId(), $tp->getDatas()['subCompetences'][$competence->getReference()])] : ['selected' => true];
                                                 },
                                 'mapped' => false,
-                                'attr' => ['class' => 'multiple d-none']
+                                'attr' => [
+                                    'class' => 'multiple d-none',
+                                ]
                             ]);
                         }
                         // $form->add('subCompetences', EntityType::class,[
