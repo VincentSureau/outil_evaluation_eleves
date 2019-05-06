@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\TpManager;
 
 /**
  * @Route("/tp")
@@ -30,7 +31,7 @@ class TpController extends AbstractController
     /**
      * @Route("/specialisation/{id}/new", name="tp_new", methods={"GET","POST"}, requirements={"id"="\d+"})
      */
-    public function new(Specialisation $specialisation, Request $request): Response
+    public function new(Specialisation $specialisation, Request $request, TpManager $tpManager): Response
     {
         $tp = new Tp();
         $tp->setSpecialisation($specialisation);
@@ -38,61 +39,11 @@ class TpController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            switch($tp->getSpecialisation()->getName()){
-                case 'MELEC':
-                    $tasks = [];
-                    $subCompetences = [];
-
-                    foreach($tp->getSpecialisation()->getMELECCompetences() as $competence) {
-                        $subCompetences[$competence->getReference()] = [];
-                        foreach ($form->get($competence->getReference())->getData() as $subComp) {
-                            $subCompetences[$competence->getReference()][] = $subComp->getId();
-                        }
-                    }
-
-                    foreach($form->get('tasks')->getData() as $task){
-                        $tasks[] = $task->getId();
-                    }
-
-                    $datas = [
-                        'tasks' => $tasks,
-                        'subCompetences' => $subCompetences,
-                    ];
-                    break;
-                
-                case 'MEI':
-                    $datas = [
-                        'tasks' => $form->get('tasks')->getData(),
-                    ];
-                    break;
-                
-                case 'MEI':
-                    $datas = [
-                        'tasks' => $form->get('tasks')->getData(),
-                    ];
-                    break;
-
-                case 'SN':
-                    $tasks = [];
-
-                    foreach($form->get('tasks')->getData() as $task){
-                        $tasks[] = $task->getId();
-                    }
-
-                    $datas = [
-                        'tasks' => $tasks,
-                    ];
-                    break;                
+            if($tpManager->save($tp, $form)) {
+                $this->addFlash('success', 'Le TP ' . $tp->getName() . ' a bien été ajouté');
+            } else {
+                $this->addFlash('danger', 'Une erreur est survenue, le TP n\'a pas été enregistré');
             }
-
-            $tp->setDatas($datas);
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($tp);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Le TP ' . $tp->getName() . ' a bien été ajouté');
-
             return $this->redirectToRoute('admin_tp_index', ['id' => $specialisation->getId()]);
         }
 
@@ -116,58 +67,17 @@ class TpController extends AbstractController
     /**
      * @Route("/{id}/edit", name="tp_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Tp $tp): Response
+    public function edit(Request $request, Tp $tp, TpManager $tpManager): Response
     {
         $form = $this->createForm(TpType::class, $tp);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            switch($tp->getSpecialisation()->getName()){
-                case 'MELEC':
-                    $tasks = [];
-                    $subCompetences = [];
-
-                    foreach($tp->getSpecialisation()->getMELECCompetences() as $competence) {
-                        $subCompetences[$competence->getReference()] = [];
-                        foreach ($form->get($competence->getReference())->getData() as $subComp) {
-                            $subCompetences[$competence->getReference()][] = $subComp->getId();
-                        }
-                    }
-
-                    foreach($form->get('tasks')->getData() as $task){
-                        $tasks[] = $task->getId();
-                    }
-
-                    $datas = [
-                        'tasks' => $tasks,
-                        'subCompetences' => $subCompetences,
-                    ];
-                    break;
-                
-                case 'MEI':
-                    $datas = [
-                        'tasks' => $form->get('tasks')->getData(),
-                    ];
-                    break;
-
-                case 'SN':
-                    $tasks = [];
-
-                    foreach($form->get('tasks')->getData() as $task){
-                        $tasks[] = $task->getId();
-                    }
-
-                    $datas = [
-                        'tasks' => $tasks,
-                    ];
-                    break;
+            if($tpManager->save($tp, $form)) {
+                $this->addFlash('success', 'Le TP ' . $tp->getName() . ' a bien été ajouté');
+            } else {
+                $this->addFlash('danger', 'Une erreur est survenue, le TP n\'a pas été modifié');
             }
-
-            $tp->setDatas($datas);
-            $this->getDoctrine()->getManager()->flush();
-
-            $this->addFlash('success', 'Le TP ' . $tp->getName() . ' a bien été modifié');
-
             return $this->redirectToRoute('admin_tp_index', [
                 'id' => $tp->getSpecialisation()->getId(),
             ]);
