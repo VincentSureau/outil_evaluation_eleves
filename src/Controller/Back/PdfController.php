@@ -23,9 +23,8 @@ class PdfController extends AbstractController
         ]);
 
         $html2pdf->writeHTML($html);
-
-
-        return new BinaryFileResponse($html2pdf->output('test.pdf'));
+        
+        return new BinaryFileResponse($html2pdf->output());
 
     }
 }
