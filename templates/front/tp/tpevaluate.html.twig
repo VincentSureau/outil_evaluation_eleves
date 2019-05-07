@@ -9,7 +9,15 @@
     <p>Elève: {{student.__toString}}</p>
     <form action="" method="POST">
         {{ dump(tp) }}
-        {% include('/front/tp/_sntpevaluate.html.twig') %}
+        {% if tp.specialisation.name == 'SN' %}
+            {% include('/front/tp/_sntpevaluate.html.twig') %}
+        {% elseif tp.specialisation.name == 'MELEC' %}
+            {% include('/front/tp/_melectpevaluate.html.twig') %}
+        {% elseif tp.specialisation.name == 'MEI' %}
+            {% include('/front/tp/_meitpevaluate.html.twig') %}
+        {% else %}
+            <p>Le TP n'appartient pas à une spécialisation valide. Veuillez contacter le responsable.</p>
+        {% endif %}
         <div class="text-right">
             <button type="submit" class="btn btn-lg btn-primary">Envoyer</button>
         </div>

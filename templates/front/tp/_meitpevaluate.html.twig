@@ -1,0 +1,51 @@
+<table class="table table-striped table-bordered scrollable">
+    <thead class="text-center">
+        <tr>
+            <th colspan="2" class="align-middle">Intitulé du TP: {{ tp.name }}</th>
+            <th class="align-middle">A</th>
+            <th class="align-middle">A</th>
+            <th class="align-middle">AP</th>
+            <th class="align-middle">NA</th>
+            <th class="align-middle">NO</th>
+            <th colspan="3" class="align-middle">Niveau d'autonomie</th>
+        </tr>
+        <tr>
+            <th colspan="2" class="align-middle">A: Acquis - AP: Acquis partiellement - NA: non acquis - NO: non observé</th>
+            <th class="align-middle">Très bien</th>
+            <th class="align-middle">Satisfaisant</th>
+            <th class="align-middle">Insuffisant</th>
+            <th class="align-middle">Très insuffisant</th>
+            <th class="align-middle">Non mis en oeuvre</th>
+            <th class="align-middle">Autonomie complète</th>
+            <th class="align-middle">Aide partielle</th>
+            <th class="align-middle">Aide totale</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for task in tp.specialisation.snTasks if task.id in tp.datas.tasks %}
+        <tr>
+            <th class="text-center align-middle">{{ task.reference }}</th>
+            <th class="align-middle">{{ task.label }}</th>
+
+            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[note]" id="" value="4" required></td>
+            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[note]" id="" value="3"></td>
+            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[note]" id="" value="2"></td>
+            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[note]" id="" value="1"></td>
+            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[note]" id="" value=""></td>
+            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[autonomie]" id="" value="3" required></td>
+            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[autonomie]" id="" value="2"></td>
+            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[autonomie]" id="" value="1"></td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th colspan="2"><label for="commentaire">Commentaire :</label></th>
+            <td colspan="8">
+                <textarea name="commentaire" id="commentaire" style="width:100%" placeholder="Commentaire :"></textarea>
+            </td>
+        </tr>
+
+    </tbody>
+
+</table>
