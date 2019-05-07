@@ -74,7 +74,7 @@ class TpController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if($tpManager->save($tp, $form)) {
-                $this->addFlash('success', 'Le TP ' . $tp->getName() . ' a bien été ajouté');
+                $this->addFlash('success', 'Le TP ' . $tp->getName() . ' a bien été mis à jour');
             } else {
                 $this->addFlash('danger', 'Une erreur est survenue, le TP n\'a pas été modifié');
             }

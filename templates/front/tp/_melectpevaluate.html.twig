@@ -1,49 +1,41 @@
-<table class="table table-striped table-bordered scrollable">
+Intitulé du TP: {{ tp.name }}
+<table class="table table-striped table-bordered">
     <thead class="text-center">
         <tr>
-            <th colspan="2" class="align-middle">Intitulé du TP: {{ tp.name }}</th>
-            <th class="align-middle">A</th>
-            <th class="align-middle">A</th>
-            <th class="align-middle">AP</th>
-            <th class="align-middle">NA</th>
-            <th class="align-middle">NO</th>
-            <th colspan="3" class="align-middle">Niveau d'autonomie</th>
-        </tr>
-        <tr>
-            <th colspan="2" class="align-middle">A: Acquis - AP: Acquis partiellement - NA: non acquis - NO: non observé</th>
-            <th class="align-middle">Très bien</th>
-            <th class="align-middle">Satisfaisant</th>
-            <th class="align-middle">Insuffisant</th>
-            <th class="align-middle">Très insuffisant</th>
-            <th class="align-middle">Non mis en oeuvre</th>
-            <th class="align-middle">Autonomie complète</th>
-            <th class="align-middle">Aide partielle</th>
-            <th class="align-middle">Aide totale</th>
+            <th class="align-middle">Compétences</th>
+            <th class="align-middle" data-toggle="tooltip" data-placement="top" title="Absent">A</th>
+            <th class="align-middle" data-toggle="tooltip" data-placement="top" title="Non évalué">NE</th>
+            <th class="align-middle" data-toggle="tooltip" data-placement="top" title="Le stagiaire n'a pas réussi la tâche">1</th>
+            <th class="align-middle" data-toggle="tooltip" data-placement="top" title="Le stagiaire a réussi la tâche partiellement">2</th>
+            <th class="align-middle" data-toggle="tooltip" data-placement="top" title="Le stagiaire a réussi la tâche totalement avec de l'aide">3</th>
+            <th class="align-middle" data-toggle="tooltip" data-placement="top" title="Le stagiaire a réussi la tâche totalement en autonomie">4</th>
         </tr>
     </thead>
-
+    
     <tbody>
-
-        {% for task in tp.specialisation.snTasks if task.id in tp.datas.tasks %}
-        <tr>
-            <th class="text-center align-middle">{{ task.reference }}</th>
-            <th class="align-middle">{{ task.label }}</th>
-
-            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[note]" id="" value="4" required></td>
-            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[note]" id="" value="3"></td>
-            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[note]" id="" value="2"></td>
-            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[note]" id="" value="1"></td>
-            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[note]" id="" value=""></td>
-            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[autonomie]" id="" value="3" required></td>
-            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[autonomie]" id="" value="2"></td>
-            <td class="text-center align-middle clickable"><input type="radio" name="{{task.reference}}[autonomie]" id="" value="1"></td>
-        </tr>
+        {% for competence in tp.specialisation.mELECCompetences if (tp.datas.subCompetences[competence.reference] is defined) and (tp.datas.subCompetences[competence.reference] is not empty) %}
+                    <tr>
+                        <th>{{ competence.reference ~ ' ' ~ competence.label }}</th>
+                        <td colspan="6"></td>
+                    </tr>
+            {% for task in competence.mELECSubCompetences if task.id in tp.datas.subCompetences[competence.reference] %}
+                <tr>
+                    <td class="align-middle">{{ task.label }}</th>
+                    <td class="text-center align-middle selectionnable"><input type="checkbox" name="{{task.id}}[absent]" id="" value="1"></td>
+                    <td class="text-center align-middle selectionnable"><input type="checkbox" name="{{task.id}}[notEvaluated]" id="" value="1"></td>
+                    <td class="text-center align-middle clickable"><input type="radio" name="{{task.id}}[note]" id="" value="1" required></td>
+                    <td class="text-center align-middle clickable"><input type="radio" name="{{task.id}}[note]" id="" value="2"></td>
+                    <td class="text-center align-middle clickable"><input type="radio" name="{{task.id}}[note]" id="" value="3"></td>
+                    <td class="text-center align-middle clickable"><input type="radio" name="{{task.id}}[note]" id="" value="4"></td>
+                </tr>
+            {% endfor %}
         {% endfor %}
+
         <tr>
-            <th colspan="2"><label for="commentaire">Commentaire :</label></th>
-            <td colspan="8">
+            <th colspan="8">
+                <label for="commentaire">Commentaire :</label>
                 <textarea name="commentaire" id="commentaire" style="width:100%" placeholder="Commentaire :"></textarea>
-            </td>
+            </th>
         </tr>
 
     </tbody>
