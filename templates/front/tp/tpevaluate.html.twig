@@ -8,7 +8,7 @@
 <div class="white_shadow--container scrollable py-3 px-2">
     <p>Elève: {{student.__toString}}</p>
     <form action="" method="POST">
-        {{ dump(tp) }}
+        {# {{ dump(tp) }} #}
         {% if tp.specialisation.name == 'SN' %}
             {% include('/front/tp/_sntpevaluate.html.twig') %}
         {% elseif tp.specialisation.name == 'MELEC' %}

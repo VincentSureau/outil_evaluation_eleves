@@ -9,3 +9,8 @@ $('.selectionnable').click(function(e){
 $('.selectionnable>input').click(function(e){
     e.stopPropagation();
 })
+
+// tooltip activation
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
