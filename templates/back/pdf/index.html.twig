@@ -1,7 +1,30 @@
 <html>
     <head>
         <style>
-        
+        table{
+            table-layout: auto;
+            width: 100%;
+            border-collapse: collapse;
+         }
+
+         thead{
+            text-align: center;
+            border-style: solid;
+         }
+
+        th{
+            height: 7em;
+            
+        }
+
+
+         #recap-note{
+             background-color: white;
+         }
+
+         #note{
+             width: 5em;
+         }
         </style>
     </head>
     <div style="text-align: center;">
@@ -38,90 +61,87 @@
         </div>
     
         <div>
-            <table style="margin: auto; border-style: groove; padding-right: 0.5em;">
+            <table style="border-style: solid;">
                 <thead style=" display: table-row-group; background-color: #212529;">
-                    <tr style="color: white;">
-                        <th style="padding-right: 3em; text-align: center;">Intitulé du TP : </th>
-                        <th>A</th>
-                        <th>A</th>
-                        <th>AP</th>
-                        <th>NA</th>
-                        <th>NO</th>
-                        <th colspan="3" >Niveau d'autonomie</th>
+                    <tr>
+                        <th style="text-align: left; border-bottom-style: solid;border-right-style: solid;"><span style="color:white;"> Intitulé du TP : </span></th>
+                        <th style="border-bottom-style: solid;border-right-style: solid;"><span style="color: white;">A</span></th>
+                        <th style="border-bottom-style: solid;border-right-style: solid;"><span style="color:white;">A</span></th>
+                        <th style="border-bottom-style: solid;border-right-style: solid;"><span style="color:white;">AP</span></th>
+                        <th style="border-bottom-style: solid;border-right-style: solid;"><span style="color:white;">NA</span></th>
+                        <th style="border-bottom-style: solid;border-right-style: solid;"><span style="color:white;">NO</span></th>
+                        <th  style="border-bottom-style: solid;"colspan="3" ><span style="color:white;">Niveau d'autonomie</span></th>
                     </tr>
-                        <tr style="color: white;">
-                        <th>A: Acquis - AP: Acquis partiellement - NA: non acquis - NO: non observé</th>
-                        <th>Très bien</th>
-                        <th style="padding: 1.2em;">Satisfaisant</th>
-                        <th>Insuffisant</th>
-                        <th>Très insuffisant</th>
-                        <th>Non mis en oeuvre</th>
-                        <th>Autonomie complète</th>
-                        <th>Autonomie complète</th>
-                        <th>Autonomie complète</th>
+                        <tr>
+                            <th style="text-align: left; border-right-style: solid;"><span style="color:white;">A: Acquis - AP: Acquis partiellement - NA: non acquis - NO: non observé</span></th>
+                            <th style="border-right-style: solid;"><span style="color:white;">Très bien</span></th>
+                            <th style="border-right-style: solid;"><span style="color:white;">Satisfaisant</span></th>
+                            <th style="border-right-style: solid;"><span style="color:white;">Insuffisant</span></th>
+                            <th style="border-right-style: solid;"><span style="color:white;">Très insuffisant</span></th>
+                            <th style="border-right-style: solid;"><span style="color:white;">Non mis en oeuvre</span></th>
+                            <th style="border-right-style: solid;"><span style="color:white;">Autonomie complète</span></th>
+                            <th style="border-right-style: solid;"><span style="color:white;">Aide partielle</span></th>
+                            <th><span style="color:white;">Aide totale</span></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style="border-style: groove;">
-                        <th style="background-color: #007bff; text-align: left;" >C3-2 Réaliser l’intégration matérielle ou logicielle d’un équipement</th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="text-align: center; border-style: groove;">x</td>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="text-align: center; border-style: groove">x</td>
-                        <td style="border-style: groove;"></td>
+                    <tr style="border-style: solid;">
+                        <th style="background-color: #007bff; text-align: left; border-top-style: solid;border-bottom-style: solid;" >C3-2 Réaliser l’intégration matérielle ou logicielle d’un équipement</th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="text-align: center; border-style: solid;">x</td>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="text-align: center; border-style: solid">x</td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">L’assemblage mécanique et les connections sont réalisés en respectant les procédures d’assemblage et les règles de sécurité</th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="text-align: center; border-style: groove;">x</td>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="text-align: center; border-style: groove;">x</td>
-                        <td style="border-style: groove;"></td>
+                        <th style="text-align: left;border-bottom-style: solid;border-top-style: solid;">L’assemblage mécanique et les connections sont réalisés en respectant les procédures d’assemblage et les règles de sécurité</th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="text-align: center; border-style: solid;">x</td>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="text-align: center; border-style: solid;">x</td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">Les logiciels sont installés, configurés et paramétrés en respectant les procédures en vigueur</th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="text-align: center; border-style: groove;">x</td>
-                        <td style="border-style: groove;"></td>
-                        <td style="text-align: center; border-style: groove;">x</td>
-                        <td style="border-style: groove;"></td>
+                        <th style="text-align: left;border-bottom-style: solid;">Les logiciels sont installés, configurés et paramétrés en respectant les procédures en vigueur</th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="text-align: center; border-style: solid;">x</td>
+                        <td style="border-style: solid;"></td>
+                        <td style="text-align: center; border-style: solid;">x</td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                     <tr>
                         <th style="text-align: left;">Les choix d’installation sont justifiés</th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="text-align: center; border-style: groove;">x</td>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                        <td style="text-align: center; border-style: groove;">x</td>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="text-align: center; border-style: solid;">x</td>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
+                        <td style="text-align: center; border-style: solid;">x</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
-        <div style="border-style: solid; margin-top: 1em">
-            <table style="display: block;">
-                <thead style="display: block; border-bottom-style: solid;">
-                    <tr style="display: block;">
-                        <th style="display: inline-block;width: 50%; border-right-style: solid;">Observation de l'équipe pédagogique</th>
-                        <th style="display: inline-block;width: 49%;">Visa (Nom, Prénom, date, signature)</th>
-                    </tr>
+        <div>
+            <table>
+                <thead>
+                    <th style="border-right-style: solid;">Observation de l'équipe pédagogique</th>
+                    <th>Visa (Nom, Prénom, date, signature)</th>
                 </thead>
-
-                <tbody style="display: block;">
-                    <tr style="display: block;">
-                        <th style="display: block;width: 50%;border-right-style: solid;height: 18em;"></th>
+                <tbody>
+                    <tr style="border-style: solid;">
+                        <td style="border-style: solid; height: 10em;"><span style="display: hidden;">t</span></td>
+                        <td style="border-style: solid; height: 10em;"><span style="display: hidden;">t</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -136,62 +156,60 @@
         </div>
 
         <div>
-            <table style="margin: auto; border-style: groove; padding-right: 0.5em;">
+            <table style="margin: auto; border-style: solid; padding-right: 0.5em;">
                 <thead style=" display: table-row-group; background-color: #212529;">
                     <tr style="color: white;">
                         <th style="padding-right: 3em; text-align: center;">Critères d'évaluation</th>
                         <th>Pondération</th>
-                        <th style="padding-right: 1em; padding-left: 1em; text-align: center;">Note</th>
+                        <th id="note" style="text-align: center;">Note</th>
                     </tr> 
                 </thead>
                 <tbody>
-                    <tr style="border-style: groove;">
-                        <th style="background-color: #007bff; text-align: left;" >Exposé oral par le candidat</th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
+                    <tr style="border-style: solid;">
+                        <th style="background-color: #007bff; text-align: left;border-bottom-style: solid;" >Exposé oral par le candidat</th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">Cohérence et rigueur de l’exposé<ul><li>présentation du candidat</li><li>annonce du plan</li><li>respect du plan</li><li>pertinence et synthèse du  choix des information</li></ul></th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
+                        <th style="border-bottom-style: solid; text-align: left;">Cohérence et rigueur de l’exposé<ul><li>présentation du candidat</li><li>annonce du plan</li><li>respect du plan</li><li>pertinence et synthèse du  choix des information</li></ul></th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">Qualité de l'expression<ul><li>n’effectue pas la lecture de son dossier</li><li>utilise des notes</li><li>guide le jury dans l’utilisation du dossier</li><li> qualité du comportement  non verbal</li><li> ton, dynamisme, élocution</li></ul></th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
+                        <th style="border-top-style: solid;border-bottom-style: solid;text-align: left;">Qualité de l'expression<ul><li>n’effectue pas la lecture de son dossier</li><li>utilise des notes</li><li>guide le jury dans l’utilisation du dossier</li><li> qualité du comportement  non verbal</li><li> ton, dynamisme, élocution</li></ul></th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">Utilisation des supports adaptés aux contenus à présenter<ul><li> mise en œuvre du vidéo projecteur, rétroprojecteur, tableau…</li></ul></th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
+                        <th style="border-bottom-style: solid;text-align: left;">Utilisation des supports adaptés aux contenus à présenter<ul><li> mise en œuvre du vidéo projecteur, rétroprojecteur, tableau…</li></ul></th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">Présentation de l'entreprise<ul><li> situation économique et juridique de l’entreprise</li><li>situation du candidat dans l’entreprise</li></ul></th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
+                        <th style="border-bottom-style: solid;text-align: left;">Présentation de l'entreprise<ul><li> situation économique et juridique de l’entreprise</li><li>situation du candidat dans l’entreprise</li></ul></th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">Présentation de l'étude de cas proposée dans le dossier de synthèse<ul><li>présentation de la problématique</li><li>argumentation de l’analyse</li><li>résultats obtenus</li><li>solution retenue</li></ul></th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
+                        <th style="border-bottom-style: solid;text-align: left;">Présentation de l'étude de cas proposée dans le dossier de synthèse<ul><li>présentation de la problématique</li><li>argumentation de l’analyse</li><li>résultats obtenus</li><li>solution retenue</li></ul></th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                 </tbody>
             </table>
             <div style="border-style: solid; width: 12em; text-align: left; margin-top: 0.5em; margin-bottom: 0.5em; padding-top: 0.5em; padding-bottom: 0.5em;">note proposée: </div>
         </div>
 
-        <div style="border-style: solid; margin-top: 1em">
-            <table style="display: block;">
-                <thead style="display: block; border-bottom-style: solid;">
-                    <tr style="display: block;">
-                        <th style="display: inline-block;width: 50%; border-right-style: solid;">Observation de l'équipe pédagogique</th>
-                        <th style="display: inline-block;width: 49%;">Visa (Nom, Prénom, date, signature)</th>
-                    </tr>
+        <div>
+            <table>
+                <thead>
+                    <th style="border-right-style: solid;">Observation de l'équipe pédagogique</th>
+                    <th>Visa (Nom, Prénom, date, signature)</th>
                 </thead>
-
-                <tbody style="display: block;">
-                    <tr style="display: block;">
-                        <th style="display: block;width: 50%;border-right-style: solid;height: 18em;"></th>
+                <tbody>
+                    <tr style="border-style: solid;">
+                        <td style="border-style: solid; height: 10em;"><span style="display: hidden;">t</span></td>
+                        <td style="border-style: solid; height: 10em;"><span style="display: hidden;">t</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -206,101 +224,132 @@
         </div>
 
         <div>
-            <table style="margin: auto; border-style: groove; padding-right: 0.5em;">
+            <table style="margin: auto; border-style: solid; padding-right: 0.5em;">
                 <thead style=" display: table-row-group; background-color: #212529;">
                     <tr style="color: white;">
                         <th style="padding-right: 3em; text-align: center;">Critères d'évaluation</th>
                         <th>Pondération</th>
-                        <th style="padding-right: 1em; padding-left: 1em; text-align: center;">Note</th>
+                        <th id="note" style="text-align: center;">Note</th>
                     </tr> 
                 </thead>
                 <tbody>
-                    <tr style="border-style: groove;">
-                        <th style="background-color: #007bff; text-align: left;" >Exposé oral par le candidat</th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
+                    <tr style="border-style: solid;">
+                        <th style="background-color: #007bff; text-align: left;border-bottom-style: solid;" >Exposé oral par le candidat</th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">Cohérence et rigueur de l’exposé<ul><li>présentation du candidat</li><li>annonce du plan</li><li>respect du plan</li><li>pertinence et synthèse du  choix des information</li></ul></th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
+                        <th style="border-bottom-style: solid; text-align: left;">Cohérence et rigueur de l’exposé<ul><li>présentation du candidat</li><li>annonce du plan</li><li>respect du plan</li><li>pertinence et synthèse du  choix des information</li></ul></th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">Qualité de l'expression<ul><li>n’effectue pas la lecture de son dossier</li><li>utilise des notes</li><li>guide le jury dans l’utilisation du dossier/li><li> qualité du comportement  non verbal</li><li> ton, dynamisme, élocution</li></ul></th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
+                        <th style="border-bottom-style: solid;border-bottom-style: solid;text-align: left;">Qualité de l'expression<ul><li>n’effectue pas la lecture de son dossier</li><li>utilise des notes</li><li>guide le jury dans l’utilisation du dossier</li><li> qualité du comportement  non verbal</li><li> ton, dynamisme, élocution</li></ul></th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">Utilisation des supports adaptés aux contenus à présenter<ul><li> mise en œuvre du vidéo projecteur, rétroprojecteur, tableau…</li></ul></th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
+                        <th style="border-bottom-style: solid;text-align: left;">Utilisation des supports adaptés aux contenus à présenter<ul><li> mise en œuvre du vidéo projecteur, rétroprojecteur, tableau…</li></ul></th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">Présentation de l'entreprise<ul><li> situation économique et juridique de l’entreprise</li><li>situation du candidat dans l’entreprise</li></ul></th>
-                        <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
+                        <th style="border-bottom-style: solid;text-align: left;">Présentation de l'entreprise<ul><li> situation économique et juridique de l’entreprise</li><li>situation du candidat dans l’entreprise</li></ul></th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
                     </tr>
-                     <tr>
-                        <th style="text-align: left;">Présentation de l'étude de cas proposée dans le dossier de synthèse<ul><li>présentation de la problématique</li><li>argumentation de l’analyse</li><li>résultats obtenus</li><li>solution retenue</li></ul></th>
-                       <td style="border-style: groove;"></td>
-                        <td style="border-style: groove;"></td>
-                    </tr>
-                     <tr>
-                        <th style="border-style: solid; text-align: left;">note:</th>
+                    <tr>
+                        <th style="border-bottom-style: solid;text-align: left;">Présentation de l'étude de cas proposée dans le dossier de synthèse<ul><li>présentation de la problématique</li><li>argumentation de l’analyse</li><li>résultats obtenus</li><li>solution retenue</li></ul></th>
+                        <td style="border-style: solid;"></td>
+                        <td style="border-style: solid;"></td>
                     </tr>
                 </tbody>
             </table>
-
             <div style="border-style: solid; width: 12em; text-align: left; margin-top: 0.5em; margin-bottom: 0.5em; padding-top: 0.5em; padding-bottom: 0.5em;">note proposée: </div>
         </div>
 
-        <div style="border-style: solid; margin-top: 1em">
-            <table style="display: block;">
-                <thead style="display: block; border-bottom-style: solid;">
-                    <tr style="display: block;">
-                        <th style="display: inline-block;width: 50%; border-right-style: solid;">Observation de l'équipe pédagogique</th>
-                        <th style="display: inline-block;width: 49%;">Visa (Nom, Prénom, date, signature)</th>
-                    </tr>
+        <div>
+            <table>
+                <thead>
+                    <th style="border-right-style: solid;">Observation de l'équipe pédagogique</th>
+                    <th>Visa (Nom, Prénom, date, signature)</th>
                 </thead>
-
-                <tbody style="display: block;">
-                    <tr style="display: block;">
-                        <th style="display: block;width: 50%;border-right-style: solid;height: 18em;"></th>
+                <tbody>
+                    <tr style="border-style: solid;">
+                        <td style="border-style: solid; height: 10em;"><span style="display: hidden;">t</span></td>
+                        <td style="border-style: solid; height: 10em;"><span style="display: hidden;">t</span></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
            <h4>Attestations de périodes de formation en milieu professionnel</h4>
-        <div style="text-align: left; border-style: solid;">
-            <div style="border-bottom-style: solid;">Période N°</div>
-            
-            <div>
-                <h5 style=" margin-top: 0em; background-color: #007bff;">Période de la PFMP:</h5> 
-                <span>du: 01/02/2019. au: 02/03/2019</span>
-                <h5 style="background-color: #007bff;">L'élève</h5>
-                <ul>
-                    <li>Nom:</li>
-                    <li>Prénom:</li>
-                    <li>Classe:</li>
-                    <li>Année scolaire:</li>
-                </ul>
-                <h5 style="background-color: #007bff;">L'entreprise</h5>
-                <ul>
-                    <li>Nom:</li>
-                    <li>Service:</li>
-                    <li>Adresse:</li>
-                    <li>Nom du responsable:</li>
-                    <li>Nom du tuteur:</li>
-                </ul>
-                <div>
-                    <div>
-                        <h5 style="border-bottom-style: solid; background-color: #007bff; margin-bottom: 1.7em;">Les soussignés, attestent que les activités développées par l’élève dans le compte – rendu d’activités correspondent à celles confiées durant sa période de formation dans l’entreprise.</h5>
-                    </div>
-                    <span style="border-right-style: solid; border-bottom-style: solid; display: inline-block; width: 50%; margin-bottom:0em;"> <p style="margin-top:0; height: 6em;">Visa de l'entreprise (nom et qualité du signataire, date, cachet de l'entreprise)</p> </span>
-                    <span style="display: block; width: 50%; margin-top: -1.5em; border-right-style: solid;margin-bottom: 0em;padding-bottom: 6em;">Visa du stagiaire (nom, date, signature)</span>
-                </div>
-            </div>
+        <div>
+            <table style="text-align:left; border-style: solid;">
+                <thead>
+                    <th style="text-align: left; background-color:white; border-bottom-style: solid; ">Période N°:</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th style="background-color:#007bff; ">Periode de la PFMP: </th>
+                    </tr>
+                    <tr>
+                        <th style="height: 5em; border-bottom-style: solid;">du: 01/01/2019 au: 01/02/2019 </th>
+                    </tr>
+                    <tr>
+                        <th style="background-color:#007bff;">L'élève: </th>
+                    </tr>
+                    <tr>
+                        <th style="height: 1em;">Nom: </th>
+                    </tr>
+                    <tr>
+                        <th style="height: 1em;">Prénom: </th>
+                    </tr>
+                    <tr>
+                        <th style="height: 1em;">Classe: </th>
+                    </tr>
+                    <tr>
+                        <th style="height: 1em; border-bottom-style: solid;">Année scolaire: </th>
+                    </tr>
+                    <tr>
+                        <th style="background-color:#007bff;">L'entreprise</th>
+                    </tr>
+                    <tr>
+                        <th style="height: 1em;">Nom:</th>
+                    </tr>
+                    <tr>
+                        <th style="height: 1em;">Service:</th>
+                    </tr>
+                    <tr>
+                        <th style="height: 1em;">Adresse:</th>
+                    </tr>
+                    <tr>
+                        <th style="height: 1em;">Nom du reponsable:</th>
+                    </tr>
+                    <tr>
+                        <th style="height: 1em; border-bottom-style: solid;">Nom du tuteur:</th>
+                    </tr>
+                    <tr>
+                        <th style="background-color:#007bff;">Les soussignés, attestent que les activités développées par l’élève dans le compte – rendu d’activités correspondent à celles confiées durant sa période de formation dans l’entreprise.</th>
+                    </tr>
+                    <table style="border-left-style: solid; border-bottom-style: solid; border-right-style: solid;">
+                        <thead>
+                            <th style="width:50%;"> </th>
+                            <th> </th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th style="border-right-style: solid; border-bottom-style: solid; text-align:left; height: 7em;">Visa de l'entreprise (nom et qualité du signataire, date, cachet de l'entreprise)</th>
+                                <th><span style="display: hidden;">z</span></th>
+                            </tr>
+                            <tr>
+                                <th style="border-right-style: solid; text-align:left;height: 7em;"> Visa du stagiaire (nom, date, signature)</th>
+                                <th><span style="display: hidden;">z</span></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </tbody>
+            </table>
         </div>
         
         <div>
@@ -308,42 +357,42 @@
         </div>
        
        <div>
-            <table style="margin: auto; border-style: groove; padding-right: 0.5em; border-collapse: collapse;">
+            <table style="margin: auto; border-style: solid; padding-right: 0.5em; border-collapse: collapse;">
                 <thead>
 
-                        <tr style="border-right-style: solid;">
+                        <tr id="recap-note" style="border-right-style: solid;">
                             <th style="padding-right: 3em; text-align: center; border-right-style: solid; border-bottom-style: solid;">1ère partie de l’évaluation : situations de travail effectuées en entreprise</th>
                             <th style=" border-bottom-style: solid; border-right-style: solid;">Pondération</th>
-                            <th style="padding-right: 1em; padding-left: 1em; text-align: center; border-bottom-style: solid; border-right-style: solid;">Note</th>
+                            <th  id="note" style="padding-right: 1em; padding-left: 1em; text-align: center; border-bottom-style: solid; border-right-style: solid;">Note</th>
                         </tr> 
 
-                        <tr>
+                        <tr id="recap-note">
                             <th style="padding-right: 3em; text-align: center; border-right-style: solid; border-bottom-style: solid;">ÉVALUATION DES ATTITUDES PROFESSIONNELLES DU STAGIAIRE</th>
-                            <th style=" border-bottom-style: solid; border-right-style: solid;"></th>
+                            <th style=" height: 4em; border-bottom-style: solid; border-right-style: solid;"></th>
                             <th style="padding-right: 1em; padding-left: 1em; text-align: center; border-bottom-style: solid; border-right-style: solid;"></th>
                         </tr> 
 
-                        <tr>
+                        <tr id="recap-note">
                             <th style="padding-right: 3em; text-align: center; border-right-style: solid; border-bottom-style: solid;">2ème partie de l’évaluation : dossier de synthèse constitué par le candidat</th>
                             <th style=" border-bottom-style: solid; border-right-style: solid;">Pondération</th>
                             <th style="padding-right: 1em; padding-left: 1em; text-align: center; border-bottom-style: solid; border-right-style: solid;">Note</th>
                         </tr> 
 
-                        <tr>
+                        <tr id="recap-note">
                             <th style="padding-right: 3em; text-align: center; border-right-style: solid; border-bottom-style: solid;">PRÉSENTATION ORALE ET ENTRETIEN</th>
-                            <th style=" border-bottom-style: solid; border-right-style: solid;"></th>
+                            <th style="height: 4em; border-bottom-style: solid; border-right-style: solid;"></th>
                             <th style="padding-right: 1em; padding-left: 1em; text-align: center; border-bottom-style: solid;"></th>
                         </tr> 
 
-                        <tr>
+                        <tr id="recap-note">
                             <th style="padding-right: 3em; text-align: center; border-right-style: solid; border-bottom-style: solid;">3ème partie de l’évaluation :  exposé oral des travaux réalisés</th>
                             <th style=" border-bottom-style: solid; border-right-style: solid;">Pondération</th>
                             <th style="padding-right: 1em; padding-left: 1em; text-align: center; border-bottom-style: solid;">Note</th>
                         </tr> 
 
-                        <tr>
+                        <tr id="recap-note">
                             <th style="padding-right: 3em; text-align: center; border-right-style: solid; border-bottom-style: solid;">PRÉSENTATION ORALE ET ENTRETIEN</th>
-                            <th style=" border-bottom-style: solid; border-right-style: solid;">test</th>
+                            <th style="height: 4em; border-bottom-style: solid; border-right-style: solid;"></th>
                             <th style="padding-right: 1em; padding-left: 1em; text-align: center; border-bottom-style: solid;"></th>
                         </tr> 
                     </thead>
@@ -352,18 +401,16 @@
             <div style="border-style: solid;">Cette attestation sera dupliquée et complétée pour chacune des périodes de PFMP réalisée par le candidat.</div>
         </div>
         
-        <div style="border-style: solid; margin-top: 1em">
-            <table style="display: block;">
-                <thead style="display: block; border-bottom-style: solid;">
-                    <tr style="display: block;">
-                        <th style="display: inline-block;width: 50%; border-right-style: solid;">Observation de l'équipe pédagogique</th>
-                        <th style="display: inline-block;width: 49%;">Visa (Nom, Prénom, date, signature)</th>
-                    </tr>
+        <div>
+            <table>
+                <thead>
+                    <th style="border-right-style: solid;">Observation de l'équipe pédagogique</th>
+                    <th>Visa (Nom, Prénom, date, signature)</th>
                 </thead>
-
-                <tbody style="display: block;">
-                    <tr style="display: block;">
-                        <th style="display: block;width: 50%;border-right-style: solid;height: 18em;"></th>
+                <tbody>
+                    <tr style="border-style: solid;">
+                        <td style="border-style: solid; height: 10em;"><span style="display: hidden;">t</span></td>
+                        <td style="border-style: solid; height: 10em;"><span style="display: hidden;">t</span></td>
                     </tr>
                 </tbody>
             </table>
